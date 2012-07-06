@@ -1,0 +1,36 @@
+<div id="user list">
+	<h2>User List</h2>
+	
+	<table class="listing" summary="User List" >
+		
+		<tr class="header">
+			<th>id</th>
+			<th>Name</th>
+			<th>User Name</th>
+			<th>User Level</th>			
+			<th>Email Address</th>
+			<th>Job Title</th>
+			<th>Description</th>
+		</tr>
+		
+		
+		<% @users.each do |user| %>
+		
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.first_name %> <%= user.last_name %></td>
+			<td><%= user.username %></td>	
+			<td><%= user.level %></td>
+			<td><%= user.email %></td>
+			<td><%= user.title %></td>
+			<td><%= user.description %></td>
+			<td class="actions"> 
+				<%= link_to("Show", {:action => 'show', :id => user.id}, :class => 'action show') %>
+				<%= link_to("Edit", {:action => 'edit', :id => user.id}, :class => 'action edit') %>
+				<%= link_to("Delete", {:action =>'delete', :id => user.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	
+</div>

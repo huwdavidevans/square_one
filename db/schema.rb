@@ -19,16 +19,17 @@ ActiveRecord::Schema.define(:version => 20120706143721) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "first_name",  :limit => 50,                 :null => false
-    t.string   "last_name",   :limit => 50,                 :null => false
-    t.string   "user_name",   :limit => 25,                 :null => false
+    t.string   "first_name",  :limit => 50,                     :null => false
+    t.string   "last_name",   :limit => 50,                     :null => false
+    t.string   "username",    :limit => 25,                     :null => false
     t.string   "screen_name", :limit => 50
-    t.string   "email",       :limit => 100,                :null => false
+    t.string   "email",       :limit => 100,                    :null => false
     t.string   "title",       :limit => 50
     t.text     "description"
-    t.integer  "user_level",                 :default => 0
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.integer  "level",                      :default => 0
+    t.boolean  "active",                     :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
 end
