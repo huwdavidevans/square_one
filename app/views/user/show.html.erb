@@ -1,0 +1,36 @@
+<%= link_to("Back to list", {:action => 'list'})%>
+<div id="user show">
+<table summary="User detail" >
+	
+	<tr>
+		<th>Given Name</th>
+		<td><%= @user.first_name %> <%= @user.last_name %></td>
+	</tr>
+
+	<tr>
+		<th>UserName</th>
+		<td><%= @user.username %></td>	
+	</tr>
+	
+	<tr>
+		<th>Email Address</th>
+		<td><%= @user.email %></td>
+	</tr>
+
+	<tr>
+		<th>Job Title</th>
+		<td><%= @user.title %></td>
+	</tr>
+	
+	<tr>
+		<th>Description</th>
+		<td><%= @user.description %></td>
+	</tr>
+
+	<tr>
+		<th>User Level</th>
+		<td><%= UserRole.find(@user.level).title %></td>
+	</tr>
+	
+</table>
+</div>

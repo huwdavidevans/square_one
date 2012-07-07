@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20120706143721) do
     t.text     "description"
     t.integer  "level",                      :default => 0
     t.boolean  "active",                     :default => false
+    t.string   "password",                                      :null => false
+    t.string   "salt",                                          :null => false
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
   end

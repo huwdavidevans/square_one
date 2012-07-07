@@ -12,6 +12,8 @@ class CreateUsers < ActiveRecord::Migration
       t.integer "level", :default => 0
       t.boolean "active", :default => false
       
+      t.string "password", :null => false
+      t.string "salt", :null => false
       t.timestamps
       
     end
