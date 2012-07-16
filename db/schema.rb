@@ -11,7 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707182120) do
+ActiveRecord::Schema.define(:version => 20120716123900) do
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "deadline"
+    t.string   "code"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.date     "deadline"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "todo_lists", :force => true do |t|
+    t.integer  "task_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "todos", :force => true do |t|
+    t.integer  "todo_list_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "complete"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "user_roles", :force => true do |t|
     t.string "title",       :limit => 25
