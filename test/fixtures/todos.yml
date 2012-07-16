@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  todo_list_id: 
+  name: MyString
+  description: MyText
+  complete: false
+
+two:
+  todo_list_id: 
+  name: MyString
+  description: MyText
+  complete: false

@@ -1,4 +1,6 @@
 SquareOne::Application.routes.draw do
+  resources :todos
+
   resources :todo_lists
 
   resources :tasks
