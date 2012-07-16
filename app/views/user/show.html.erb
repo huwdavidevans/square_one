@@ -32,5 +32,9 @@
 		<td><%= UserRole.find(@user.level).title %></td>
 	</tr>
 	
+		<tr><td><%= image_tag @user.avatar.url %>	</td></tr>
+		<tr><td><%= image_tag @user.avatar.url(:medium) %></td>	</tr>
+		<tr><td><%= image_tag @user.avatar.url(:thumb) %></td>	</tr>
+		<tr><td><%= @user.avatar_content_type %> </td>	</tr>
 </table>
 </div>
