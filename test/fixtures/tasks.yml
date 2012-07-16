@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project_id: 
+  user_id: 
+  name: MyString
+  description: MyText
+  deadline: 2012-07-16
+  todo_list_id: 
+
+two:
+  project_id: 
+  user_id: 
+  name: MyString
+  description: MyText
+  deadline: 2012-07-16
+  todo_list_id: 
