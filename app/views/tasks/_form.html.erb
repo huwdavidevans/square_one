@@ -12,13 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
-  </div>
-  <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
+    <%= f.select(:user_id, User.all.collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %></td>
+	</div>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -30,10 +26,6 @@
   <div class="field">
     <%= f.label :deadline %><br />
     <%= f.date_select :deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :todo_list_id %><br />
-    <%= f.text_field :todo_list_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
