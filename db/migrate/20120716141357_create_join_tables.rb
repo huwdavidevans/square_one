@@ -1,5 +1,5 @@
 class CreateJoinTables < ActiveRecord::Migration
-  def up
+  def change
     create_table :projects_users, :id => false do |t|
       t.references :project, :null => false
       t.references :user, :null => false
@@ -8,10 +8,5 @@ class CreateJoinTables < ActiveRecord::Migration
     
        
   end
-
-
-
-
-  def down
-  end
+  
 end

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :username, :screen_name, :email, :title, :description, :level, :avatar
   attr_protected :password, :salt
   
+  #scope :named, lambda{ |usrnm| where(:username => usrnm)}
+  
   # For Paperclip
   has_attached_file :avatar, 
   :styles => { :medium => "250x250>", :small => "150x150>", :thumb => "50x50>" }, 
