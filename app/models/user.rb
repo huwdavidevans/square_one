@@ -1,6 +1,9 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   
+  has_and_belongs_to_many :projects
+  has_many :tasks
+  
   attr_accessor :supplied_password
   
   before_save :create_hashed_password
@@ -30,10 +33,7 @@ class User < ActiveRecord::Base
   # for password change or email on sign up
   ### validates_confirmation_of :email, :message => "should match confirmation"  
   
-  
-  
-  
-  
+    
   def self.make_salt(username="")
     Digest::SHA1.hexdigest("Salt #{username} at #{Time.now}")
   end
