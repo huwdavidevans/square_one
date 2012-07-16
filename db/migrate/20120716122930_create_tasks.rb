@@ -6,7 +6,6 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.date :deadline
-      t.int :todo_list_id
 
       t.timestamps
     end
