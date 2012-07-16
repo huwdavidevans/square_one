@@ -1,4 +1,11 @@
 <%= link_to("Back to list", {:action => 'list'})%>
+
+<% if !flash[:notice].blank? %>
+<div class="notice">
+	<%= flash[:notice]%>
+</div>
+<%end%>
+
 <div id="user show">
 <table summary="User detail" >
 	
@@ -32,7 +39,7 @@
 		<td><%= UserRole.find(@user.level).title %></td>
 	</tr>
 	
-		<tr><td><%= image_tag @user.avatar.url %>	</td></tr>
+		<!-- <tr><td><%= image_tag @user.avatar.url %>	</td></tr> -->
 		<tr><td><%= image_tag @user.avatar.url(:medium) %></td>	</tr>
 		<tr><td><%= image_tag @user.avatar.url(:thumb) %></td>	</tr>
 		<tr><td><%= @user.avatar_content_type %> </td>	</tr>

@@ -1,4 +1,9 @@
-<div id="user list">
+<% if !flash[:notice].blank? %>
+<div class="notice">
+	<%= flash[:notice]%>
+</div>
+<%end%> 
+			<div id="user list">
 	<h2>User List</h2>
 	
 	<table class="listing" summary="User List" >
