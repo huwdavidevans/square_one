@@ -1,0 +1,18 @@
+<div class="pSquare">
+	<div class="title">
+		<%= link_to project.name , project %>
+	</div>
+	<div class="code">
+		<%= project.code %>
+	</div>
+	<div class="description">
+		<%= project.description %>
+	</div>
+	
+	
+	<div class="deadline">
+		<%= project.deadline %>
+	</div>
+	
+	<div class="controls"> <%= link_to 'Edit', edit_project_path(project) %> <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+</div>
