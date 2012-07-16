@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+    
+  activerecord:
+    attributes:
+      user:
+        supplied_password: "Password"

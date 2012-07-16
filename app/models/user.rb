@@ -13,15 +13,20 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, 
   :styles => { :medium => "250x250>", :small => "150x150>", :thumb => "50x50>" }, 
   :path => ":rails_root/public/:class/:attachment/:id_partition/:style/:filename",
-  :url => "/:class/:attachment/:id_partition/:style/:filename"
-  
+  :url => "/:class/:attachment/:id_partition/:style/:filename",
+  :default_url => "/users/avatars/default/:style.png"
+
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-  
+ 
+  validates :supplied_password, :presence => true, :length => {:within => 6..40}, :on => :create
+  #validates :password, :confirmation => true, :length => {:within => 6..40}, :allow_blank => true, :on => :update
+
   validates :first_name, :presence => true, :length => { :maximum => 25 }
   validates :last_name, :presence => true, :length => { :maximum => 50  }
   validates :username, :presence => true, :uniqueness => true, :length => { :within => 3..25 }
   validates :email, :presence => true, :length => { :maximum => 100 }, :format => EMAIL_REGEX
-  # TODO : Look at addinf :confirmation => true for email or password, where user has to enter them twice to check they match. 
+  
+  # TODO : Look at adding :confirmation => true for email or password, where user has to enter them twice to check they match. 
   # for password change or email on sign up
   ### validates_confirmation_of :email, :message => "should match confirmation"  
   

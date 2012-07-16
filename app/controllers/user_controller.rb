@@ -14,8 +14,8 @@ class UserController < ApplicationController
   end
 
   def create
-    
-    @user = User.new(params[:user]) 
+    @user = User.new(params[:user])
+
     if @user.save
       flash[:notice] = "User Created."
       redirect_to(:action => 'list')
@@ -23,6 +23,7 @@ class UserController < ApplicationController
       flash[:notice] = "User Create Failed."
       render('new')
     end
+    
   end
 
   # READ
