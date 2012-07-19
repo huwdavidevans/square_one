@@ -16,11 +16,20 @@ class User < ActiveRecord::Base
   
   # For Paperclip
   has_attached_file :avatar, 
-  :styles => { :medium => "250x250>", :small => "150x150>", :thumb => "50x50>" }, 
+  :styles => { :medium => "250x250>", :small => "150x150>", :thumb => ["50x50>", :png], :tiny => ["30x30>", :png], :teeny => ["20x20>", :png] }, 
   :path => ":rails_root/public/:class/:attachment/:id_partition/:style/:filename",
   :url => "/:class/:attachment/:id_partition/:style/:filename",
-  :default_url => "/users/avatars/default/:style.png"
-
+  :default_url => "/users/avatars/default/:style.png",
+  :convert_options => {
+                     # :thumb => Proc.new{self.convert_options(8)}, 
+                     # :tiny => Proc.new{self.convert_options(4)},
+                     # :teeny => Proc.new{self.convert_options(2)}
+                      :thumb => Proc.new{self.convert_options_win(8)}, 
+                      :tiny => Proc.new{self.convert_options_win(4)},
+                      :teeny => Proc.new{self.convert_options_win(2)}
+                      }
+                      
+                      
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
  
   validates :supplied_password, :presence => true, :length => {:within => 6..40}, :on => :create
@@ -35,7 +44,23 @@ class User < ActiveRecord::Base
   # for password change or email on sign up
   ### validates_confirmation_of :email, :message => "should match confirmation"  
   
+  def self.convert_options(px = 10)
+      trans = ""
+      trans << " \\( +clone -alpha extract "
+      trans << "-draw 'fill black polygon 0,0 0,#{px} #{px},0 fill white circle #{px},#{px} #{px},0' "
+      trans << "\\( +clone -flip \\) -compose Multiply -composite "
+      trans << "\\( +clone -flop \\) -compose Multiply -composite "
+      trans << "\\) -alpha off -compose CopyOpacity -composite "
+  end
     
+  def self.convert_options_win(px = 10)
+      trans = " "
+      trans << " ( +clone -alpha extract -draw \"fill black polygon 0,0 0,#{px} #{px},0 fill white circle #{px},#{px} #{px},0 \"  "
+      trans << " ( +clone -flip ) -compose Multiply -composite  "
+      trans << " ( +clone -flop ) -compose Multiply -composite ) "
+      trans << " -alpha off -compose CopyOpacity -composite  "
+  end
+  
   def self.make_salt(username="")
     Digest::SHA1.hexdigest("Salt #{username} at #{Time.now}")
   end
@@ -56,6 +81,14 @@ class User < ActiveRecord::Base
   def clear_password
     self.supplied_password = nil
   end
+
+       
+  def rename_avatar
+    extension = File.extname(avatar_file_name).downcase
+    self.avatar.instance_write :file_name, "#{Time.now.to_i.to_s}#{extension}"
+  end
+    
+    
   
 end
 
