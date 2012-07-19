@@ -1,3 +1,68 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass";
+
+body {
+	background: url('handmadepaper.png');
+	position: absolute;
+}
+
+.pSquare {
+	position: relative;
+	background: #FFF;
+	width: 240px;
+	min-height: 240px;
+	margin: 10px;
+	float: left;
+	@include border-radius(10px);
+	@include box-shadow(#999 0px 2px 8px);
+	clear:all;
+
+	.title {
+		position:relative;
+		margin: 20px 15px 15px;
+		font-size: 24px;
+		line-height: 1.2em;
+		font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+		width: 150px;
+		
+		a {
+			color: #397799;
+			text-decoration: none;
+		}
+		
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	.description {
+		position:relative;
+		width: 150px;
+		margin: 15px;
+		font-size: 12px;
+		line-height: 15px;
+		font-family: "Helvetica", Arial, "MS Trebuchet", sans-serif;
+		color:  #568099;
+	}
+
+	.ribbon {
+		position:absolute;
+		top: -10px;
+		left: 180px;
+		width: 40px;
+		height: 175px;
+		background: #2F7DA0;
+		@include box-shadow(#999 0px 2px 4px);
+	}
+	
+	.users {
+		position:absolute;
+		bottom: 0px;
+		margin:15px;
+	}
+	
+
+}

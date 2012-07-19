@@ -11,17 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-
-.pSquare {
-width: 350px;
-margin: 10px;
-float: left;
-padding: 10px;
-border: 1px solid gray;
-}
-
-.pSquare .title {
-font-size: 3em;
-line-height: 1em;
-}

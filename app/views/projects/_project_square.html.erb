@@ -1,18 +1,28 @@
 <div class="pSquare">
+	
 	<div class="title">
 		<%= link_to project.name , project %>
 	</div>
-	<div class="code">
-		<%= project.code %>
-	</div>
+
 	<div class="description">
-		<%= project.description %>
+		<%= truncate(project.description, :length => 100) %>
 	</div>
+	
+	<div class="ribbon"><%= link_to 'Edit', edit_project_path(project) %> </br>
+			<%= link_to 'Del', project, method: :delete, data: { confirm: 'Are you sure?' } %>
 	
 	
 	<div class="deadline">
-		<%= project.deadline %>
+		<%= project.deadline.strftime('%b') %>
+			<%= project.deadline.strftime('%d') %>
+	</div>
 	</div>
 	
-	<div class="controls"> <%= link_to 'Edit', edit_project_path(project) %> <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+	<div class="users">
+	<% project.users.each do |u| %>
+	<%= image_tag u.avatar.url(:tiny)%>
+	<% end %>
+	</div>
+	
+	
 </div>
