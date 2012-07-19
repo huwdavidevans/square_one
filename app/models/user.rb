@@ -4,13 +4,16 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_many :tasks
   
-  attr_accessor :supplied_password
+  attr_accessor :supplied_password, :del_avatar
+   
   
-  before_save :create_hashed_password
+  before_save :create_hashed_password, :destroy_image?
   after_save :clear_password
  
   attr_accessible :first_name, :last_name, :username, :screen_name, :email, :title, :description, :level, :avatar
   attr_protected :password, :salt
+  
+  #before_post_process :rename_avatar
   
   #scope :named, lambda{ |usrnm| where(:username => usrnm)}
   
@@ -68,8 +71,20 @@ class User < ActiveRecord::Base
   def self.hash(password="", salt="")
     Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
   end
+  
+  
+  def del_avatar
+    @del_avatar ||= "0"
+  end
+
+  def del_avatar=(value)
+    @del_avatar = value
+  end
+  
+  
     
-  private
+  private  
+  
     
   def create_hashed_password
     unless supplied_password.blank?
@@ -82,10 +97,14 @@ class User < ActiveRecord::Base
     self.supplied_password = nil
   end
 
-       
+  def destroy_image?
+    self.avatar.clear if @del_avatar == "1"
+  end
+  
   def rename_avatar
-    extension = File.extname(avatar_file_name).downcase
-    self.avatar.instance_write :file_name, "#{Time.now.to_i.to_s}#{extension}"
+   # extension = File.extname(avatar_file_name).downcase
+    #self.avatar.instance_write :file_name, "#{Time.now.to_i.to_s}#{extension}"
+    puts 'nothing'
   end
     
     
