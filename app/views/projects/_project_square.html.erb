@@ -1,28 +1,46 @@
 <div class="pSquare">
-	
-	<div class="title">
-		<%= link_to project.name , project %>
-	</div>
-
-	<div class="description">
-		<%= truncate(project.description, :length => 100) %>
-	</div>
-	
-	<div class="ribbon"><%= link_to 'Edit', edit_project_path(project) %> </br>
-			<%= link_to 'Del', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-	
-	
-	<div class="deadline">
-		<%= project.deadline.strftime('%b') %>
-			<%= project.deadline.strftime('%d') %>
-	</div>
-	</div>
-	
-	<div class="users">
-	<% project.users.each do |u| %>
-	<%= image_tag u.avatar.url(:tiny)%>
-	<% end %>
+	<div class="top">
+		<div class="left">
+			<div class="title">
+				<%= link_to project.name , project %>
+			</div>
+			<div class="description">
+				<%= truncate(project.description, :length => 100) %>
+			</div>
+		</div>
+		<div class="right">
+			<div class="ribbon">
+				<div class="deadline">
+					<div class="month"><%= project.deadline.strftime('%b').upcase %></div>
+					<div class="date"><%= project.deadline.strftime('%d') %></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
+	<div class="actions">
+		<%= link_to 'SHOW', project %> . 
+		<%= link_to 'EDIT', edit_project_path(project) %>&#09; . 
+		<%= link_to 'DELETE', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+	</div>
+	
+	
+	<div class="details">
+	</div>
+	
+	
+	<div class="activity">
+	</div>
+	
+	
+	<div class="admin">
+	</div>
+	
+	
+		<div class="users">
+			<% project.users.each do |u| %>
+			<%= image_tag u.avatar.url(:tiny), :title => "#{u.first_name} #{u.last_name}" %>
+			<% end %>
+		</div>
 	
 </div>
