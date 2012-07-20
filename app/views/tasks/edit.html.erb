@@ -1,6 +1,7 @@
 <h1>Editing task</h1>
 
-<%= render 'form' %>
+<%= form_for(:task, :url => {:action => 'update', :project_id => @project.id}) do |f| %>
+<%= render(:partial => 'form', :locals => {:f => f})%>
 
 <%= link_to 'Show', @task %> |
 <%= link_to 'Back', tasks_path %>

@@ -1,25 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
+<p id="notice">
+	<%= notice %>
 </p>
-
 <p>
-  <b>Description:</b>
-  <%= @project.description %>
+	<b>Name:</b>
+	<%= @project.name %>
 </p>
-
 <p>
-  <b>Deadline:</b>
-  <%= @project.deadline %>
+	<b>Description:</b>
+	<%= @project.description %>
 </p>
-
 <p>
-  <b>Code:</b>
-  <%= @project.code %>
+	<b>Deadline:</b>
+	<%= @project.deadline %>
 </p>
+<p>
+	<b>Code:</b>
+	<%= @project.code %>
+</p>
+<div class="tasks">
+	<% if @project.tasks.length > 0 %>
+	<ul>
+		<% @project.tasks.each do |task| %>
+		<li> <%= link_to(task.name, task, :style =>"font-weight:bold;color:blue;") %>    : <%= link_to('Edit', edit_task_path(task)) %> :  <%= link_to('Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }) %>  </li>
+		<% end %>
+	</ul>
+	<% end %>
+</div>
 
 
+
+<%= link_to 'Add Task', new_task_path(:project_id => @project.id) %> |
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path %> 

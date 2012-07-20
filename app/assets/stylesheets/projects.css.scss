@@ -9,7 +9,7 @@
   }
   
 $action-link-subtle-grey: #CCCCCC;
-
+$project-link-colour-blue: #397799;
 body {
 	background: url('handmadepaper.png');
 	position: absolute;
@@ -38,12 +38,12 @@ body {
 		width: 150px;
 		
 		a {
-			color: #397799;
+			color: $project-link-colour-blue;
 			text-decoration: none;
 		}
 		
 		a:hover {
-      color: darken(#397799, 20);
+      color: darken($project-link-colour-blue, 20);
 		}
 	}
 	
@@ -122,4 +122,13 @@ body {
   	}
 	
 
+}
+
+
+.tasks {
+  color: #EF02CB;
+  padding:10px;
+  margin: 10px 0;
+  background: #EFEF22;
+  
 }

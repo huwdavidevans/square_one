@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   #before_post_process :rename_avatar
   
   #scope :named, lambda{ |usrnm| where(:username => usrnm)}
+  scope :sorted, order("user.first_name ASC, user.last_name ASC")
   
   # For Paperclip
   has_attached_file :avatar, 
@@ -46,6 +47,11 @@ class User < ActiveRecord::Base
   # TODO : Look at adding :confirmation => true for email or password, where user has to enter them twice to check they match. 
   # for password change or email on sign up
   ### validates_confirmation_of :email, :message => "should match confirmation"  
+  
+  
+  def name
+    "#{first_name} #{last_name}"
+  end  
   
   def self.convert_options(px = 10)
       trans = ""
