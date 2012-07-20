@@ -15,12 +15,12 @@ class User < ActiveRecord::Base
   
   #before_post_process :rename_avatar
   
-  #scope :named, lambda{ |usrnm| where(:username => usrnm)}
+ # scope :named, lambda{ |usrnm| where(:username => usrnm)}
   scope :sorted, order("user.first_name ASC, user.last_name ASC")
   
   # For Paperclip
   has_attached_file :avatar, 
-  :styles => { :medium => "250x250>", :small => "150x150>", :thumb => ["50x50>", :png], :tiny => ["30x30>", :png], :teeny => ["20x20>", :png] }, 
+  :styles => { :medium => "250x250#", :small => "150x150#", :thumb => ["50x50#", :png], :tiny => ["30x30#", :png], :teeny => ["20x20#", :png] }, 
   :path => ":rails_root/public/:class/:attachment/:id_partition/:style/:filename",
   :url => "/:class/:attachment/:id_partition/:style/:filename",
   :default_url => "/users/avatars/default/:style.png",
