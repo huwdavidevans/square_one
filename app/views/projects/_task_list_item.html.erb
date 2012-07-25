@@ -1,6 +1,24 @@
-<div class="task">
-<%=image_tag(task.user.avatar.url(:teeny)) %>
-<%= link_to(task.name, task, :style =>"font-weight:bold;color:blue;") %> : 
-<%= link_to('Edit', edit_task_path(task) ) %> : 
-<%= link_to('Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }) %> 
+<div class="task polabox">
+	<div class="deadline left">
+		<%= render :partial => 'shared/calendar_date', :locals => { :date => task.deadline }  %>
+	</div>
+	<div class="details left">
+		<div class="name">
+			<%= link_to(task.name, task) %>
+		</div>
+		<div class="user">
+			<div class="avatar left">
+				<%= image_tag(task.user.avatar.url(:teeny), :size => "15x15") %>
+			</div>
+			<div class="name left" >
+				<%= task.user.name %>
+			</div>
+		</div>
+	</div>
+	<div class="admin left">
+		<%= link_to('E', edit_task_path(task) ) %>
+		<br />
+		<%= link_to('D', task, method: :delete, data: { confirm: 'Are you sure?' }) %>
+	</div>
+	<div class="time right"></div>
 </div>

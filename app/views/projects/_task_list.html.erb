@@ -1,0 +1,22 @@
+<h2>TASKS</h2>
+<%= link_to '+ Add Task', new_task_path(:project_id => project.id), :class => 'button'%>
+
+
+<div class="filter">
+	<div class="buttons">
+		<a href='#'>ALL</a>
+		<a href='#'>IN PROGRESS</a>
+		<a href='#'>IN QA</a>
+		<a href='#'>COMPLETED</a>
+		<a href='#'>NOT STARTED</a>
+	</div>
+	<div class="indicator"><hr/></div>
+</div>
+
+
+
+<% if project.tasks.length > 0 %>
+	<% project.tasks.each do |task| %>
+		<%= render :partial => 'task_list_item', :locals => {:task => task} %>
+	<% end %>
+<% end %>

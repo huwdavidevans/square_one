@@ -4,11 +4,22 @@
 
 @import "compass";
 @import "colours-mixins";
+@import "fancy-buttons";
 
+.button{
+  @include fancy-button( #91dc3d, 14px, 4px, 1px);
+}
 
 body {
 	background: url('handmadepaper.png');
-	position: absolute;
+}
+
+.left {
+  float:left;
+}
+
+.right {
+  float:right;
 }
 
 .calendar {
@@ -17,7 +28,7 @@ body {
    font-size: 14px;
    
    .month {
-     //font-weight: bold; 
+     //font-weight: bold;
    }
    
    .date {
@@ -127,13 +138,35 @@ body {
 }
 
 
-#projects {
+#projects {  
 	margin: 20px 0;
+	
+}
+
+.demoBox { 
+  width: 180px;
+  height: 200px;
+  }
+  
+.polabox {
+  border: 3px solid #FFF;
+  @include background-image(linear-gradient(#EFEFEF, #D3D3D3));
+  @include single-box-shadow(#AAA, 0, 2px, 5px)
+ }
+
+
+
+#top {
+  background: #f1f4f8;
+  project: 20px;
+  @include single-box-shadow(#AAA, 0, 2px, 5px)
 }
 
 
+
 #project {
-	
+  width:960px;
+  margin: 0 auto;
 	text-shadow: 0 1px 0px #FFF;
 	
 	.code {
@@ -174,34 +207,123 @@ body {
 	}
  	
 	#main-content {
-		position:relative;
-		margin:10px 0;
+	  margin: 5px 0 0 0;
+	  overflow: auto;
 		
 		#controls {
-			position:absolute;
-			width: 210px;
+      min-height: 250px;
+		  width: 185px;
+		  padding: 20px;
+			background: #EFEFEF;
+			@include background-image(linear-gradient(#EFEFEF, #D3D3D3));
 			
-			top:0;
-			left:0;
-			right:0;
-			bottom:0;
-			
-			@include placeholder-border;
-			
+			#userList{
+			  .user {
+			    overflow: auto;
+          margin: 15px 0;
+			    color: $heading-grey;
+          min-height: 35px;
+			    
+			    .avatar{
+			      margin-right:5px;
+			      
+			    }			    
+			    .details{
+			      margin-left:5px;
+            line-height: 16px;
+			      .name {
+			        font-weight: bold;
+			        font-size: 14px;
+			      }
+			      .summary{
+			        font-size: 11px;
+			      }
+			    }
+			  }
+			}
+					
 		}
 
 		#tasks {
-			min-height: 250px;
-			margin-left: 240px;
+      @include single-box-shadow(#AAA, -2px, -2px, 4px, false, false);
+		  padding: 20px;
+			min-height: 210px;
+			min-width: 475px;
+		//	text-shadow: none;
+		//	color: #EF02CB;
 			
-			text-shadow: none;
-			color: #EF02CB;
-			@include placeholder-border;
+			.filter{
+			   margin: 20px 0;
+			   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+			   text-align:justify;
+			   
+			  .buttons{
+			    a {
+			       color: $action-link-subtle-grey;
+			       text-decoration: none;
+			       margin-left:1em;
+			    } 
+			    
+			  }
+			  
+			}
 			
 			.task {
-				@include placeholder-border;
+				//@include placeholder-border;
 				margin: 5px auto;
+				padding: 10px;
+				overflow:auto;
+				
+				.deadline{
+				  color: #666;
+				  font-weight:bold;
+				}
+				
+				.details {
+				  margin: 0 10px;
+				  min-width: 300px;
+				  
+				  .name{				    
+				      a {
+                color: #333;
+				        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+				        text-decoration: none;        	        
+				      }
+				      margin-bottom: 6px;
+				  }		   
+				   
+				  .user{
+            .avatar {
+				      
+				    }
+				    .name {
+				      color: #666;
+				      font-size: 11px;
+				      line-height: 16px;
+				      margin-left: 6px;
+				    }
+				  }
+				  
+				  
+				}
+				
+				.admin {
+				  margin: 0 auto;
+				}
+				
+				.time {
+				  width:40px;
+				  height:40px;
+				  background: #234873;
+				}
 			}
+			
+		}
+		
+		#metrics {
+		  padding: 20px;
+		  width: 180px;
+      min-height: 250px;
 		}
 		
 	}

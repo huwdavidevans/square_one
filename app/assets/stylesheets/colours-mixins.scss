@@ -1,5 +1,7 @@
 $action-link-subtle-grey: #CCCCCC;
 $project-link-colour-blue: #397799;
+$heading-grey: #666;
+
 
 @mixin letterpress($color) {
     text-shadow: 0 -1px 0 darken($color, 40%), 0 1px 0 lighten($color, 15%)

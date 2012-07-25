@@ -1,0 +1,15 @@
+<div id="userList">
+	<h2><%= "Users".upcase %></h2>
+	<h3>Role Name</h3>
+	<% project.users.each do |user| %>
+		<div class="user">
+			<div class="avatar left"><%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %></div>
+			<div class="details">
+				<div class="name"> <%= user.name %></div>
+				<div class="summary"># of <%= project.tasks.where("user_id = #{user.id}").length  %> Tasks Completed</div>				
+			</div>		
+		</div>
+	<% end %>
+	<hr />
+	<span style="font-size: 12px; color:#666;">Add new User..</span>
+</div>
