@@ -11,8 +11,7 @@
 		<div class="right">
 			<div class="ribbon">
 				<div class="deadline">
-					<div class="month"><%= project.deadline.strftime('%b').upcase %></div>
-					<div class="date"><%= project.deadline.strftime('%d') %></div>
+					<%= render :partial => 'shared/calendar_date', :locals => {:date => project.deadline} %>
 				</div>
 			</div>
 		</div>
@@ -26,6 +25,9 @@
 	
 	
 	<div class="details">
+		
+		Tasks : <span class="metric"><%= project.tasks.length %></span>
+		
 	</div>
 	
 	

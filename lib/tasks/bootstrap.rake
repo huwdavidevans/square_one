@@ -30,7 +30,7 @@ namespace :bootstrap do
     p = Project.new
     p.name = "Alice in Wonderland"
     p.description = "Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.Poor Alice! It was as much as she could do, lying down on one side, to look through into the garden with one eye; but to get through was more hopeless than ever: she sat down and began to cry again."
-    p.deadline = DateTime.civil(2012, 8, 24)
+    p.deadline = 30.days.from_now
     p.code = "ALICE"
     p.users = [User.find_by_username('evansh'), User.find_by_username('legendary')]    
     p.tasks << Task.new(:deadline => p.deadline, :description => 'Description for the white rabbit task', :name => 'Follow the White Rabbit', :project_id => p.id, :user_id => User.find_by_username('evansh').id )

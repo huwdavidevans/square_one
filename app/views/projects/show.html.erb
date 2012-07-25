@@ -1,34 +1,52 @@
-<p id="notice">
-	<%= notice %>
-</p>
-<p>
-	<b>Name:</b>
-	<%= @project.name %>
-</p>
-<p>
-	<b>Description:</b>
-	<%= @project.description %>
-</p>
-<p>
-	<b>Deadline:</b>
-	<%= @project.deadline %>
-</p>
-<p>
-	<b>Code:</b>
-	<%= @project.code %>
-</p>
-<div class="tasks">
-	<% if @project.tasks.length > 0 %>
-	<ul>
-		<% @project.tasks.each do |task| %>
-		<li> <%= link_to(task.name, task, :style =>"font-weight:bold;color:blue;") %>    : <%= link_to('Edit', edit_task_path(task)) %> :  <%= link_to('Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }) %>  </li>
+<div id="project">
+	<h1><%= @project.name %></h1> 
+	<p class="code"> <%= link_to 'Edit', edit_project_path(@project) %> : <%= @project.code %> </p>
+	<p class="description"><%= @project.description %> </p>
+
+
+
+	<div id="milestones">
+		<div class="milestone start" style="left:0px;">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.created_at} %>
+		</div>	
+		<div class="milestone today" style="left:<%= @percent_to_finish.to_i %>%;">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => Date.today} %>			
+			<p><%= @days_to_finish %> Days until finish. </p>
+		</div>	
+		<div class="milestone finish" style="right:0px;">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.deadline} %>
+		</div>		 
+	</div>
+	
+
+	<p id="notice"> <%= notice %> </p>
+
+	<div id="main-content">
+	<div id="controls">
+		<ul> 
+			<% @project.users.each do |user| %> 
+				<li>
+					<%=image_tag(user.avatar.url(:tiny)) %><%= user.name %> 
+				</li>
+	 		<% end %>
+	 	</ul>
+	</div>
+
+	<div id="tasks"> 
+		
+		<%= link_to 'Add Task', new_task_path(:project_id => @project.id) %> 
+		<% if @project.tasks.length > 0 %> 
+			<% @project.tasks.each do |task| %> 
+				<%= render :partial => 'task_list_item', :locals => {:task => task} %>
+	 		<% end %>
 		<% end %>
-	</ul>
-	<% end %>
+	</div>
+	</div>
 </div>
 
 
 
-<%= link_to 'Add Task', new_task_path(:project_id => @project.id) %> |
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %> 
+
+
+
+<%= link_to 'Back', projects_path %>

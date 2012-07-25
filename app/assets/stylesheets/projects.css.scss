@@ -3,16 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "compass";
+@import "colours-mixins";
 
-@mixin letterpress($color) {
-    text-shadow: 0 -1px 0 darken($color, 40%), 0 1px 0 lighten($color, 15%)
-  }
-  
-$action-link-subtle-grey: #CCCCCC;
-$project-link-colour-blue: #397799;
+
 body {
 	background: url('handmadepaper.png');
 	position: absolute;
+}
+
+.calendar {
+   margin:0 auto;
+   text-align: center;
+   font-size: 14px;
+   
+   .month {
+     //font-weight: bold; 
+   }
+   
+   .date {
+      font-size: 2em;
+   }
 }
 
 .pSquare {
@@ -25,10 +35,10 @@ body {
 	@include border-radius(10px);
 	@include box-shadow(#999 0px 2px 8px);
 	
-	
-	.top{
-    min-height: 130px;
+	.top {
+    	min-height: 130px;
 	}
+	
 	.title {
 		position:relative;
 		margin: 20px 15px 15px;
@@ -43,7 +53,7 @@ body {
 		}
 		
 		a:hover {
-      color: darken($project-link-colour-blue, 20);
+			color: darken($project-link-colour-blue, 20);
 		}
 	}
 	
@@ -53,7 +63,6 @@ body {
 		margin: 15px;
 		font-size: 12px;
 		line-height: 15px;
-		font-family: "Helvetica", Arial, "MS Trebuchet", sans-serif;
 		color: #568099;
 	}
 
@@ -68,22 +77,9 @@ body {
 		.deadline {
 		   position:absolute;
 		   bottom:32px;
-		   margin:0 auto;
 		   width: 60px;
-		   font-family: "Helvetica", Arial, "MS Trebuchet", sans-serif;		   
-		   text-align: center;
-		   font-size: 14px;
-       color: #233c50;
-       @include letterpress(#3594c0);
-		   
-		   .month {
-		     //font-weight: bold; 
-		   }
-		   
-		   .date {
-		      font-size: 2em;
-		   }
-		   
+		   color: #233c50;
+	       @include letterpress(#3594c0);	   
 		}
 		
 	}
@@ -105,16 +101,22 @@ body {
 	}
 	
 	.details {
+		margin:10px;
+		font-size:14px;
+		color: darken($action-link-subtle-grey, 30);
+		.metric {
+			color: $project-link-colour-blue;
+		}
 	}
 	
-  .activity {
-  }
-  
-  .admin {
-  }
-  
-  
-  
+  	.activity {
+	
+	}
+	
+    .admin {
+	
+	}
+
   	.users {
   		position:relative;
   		bottom: 0px;
@@ -125,10 +127,83 @@ body {
 }
 
 
-.tasks {
-  color: #EF02CB;
-  padding:10px;
-  margin: 10px 0;
-  background: #EFEF22;
-  
+#projects {
+	margin: 20px 0;
+}
+
+
+#project {
+	
+	text-shadow: 0 1px 0px #FFF;
+	
+	.code {
+		color: $action-link-subtle-grey;
+		margin:5px 0;
+	}
+	
+	.description {
+		margin:5px 0;	
+		font-size: 14px;
+		line-height: 18px;
+		color: #566067;
+	}
+	
+	#milestones {
+		position: relative;
+		min-height: 120px;
+		border: 1px dashed $action-link-subtle-grey;
+		margin: 10px 0px;
+		
+		.milestone {
+			position:absolute;	
+			width: 40px;		
+		}
+		
+		.today {
+			border: 1px blue solid;
+		}
+		
+		.start {
+			border: 1px green solid;
+		}
+		
+		.finish {
+			border: 1px red solid;
+		}
+		
+	}
+ 	
+	#main-content {
+		position:relative;
+		margin:10px 0;
+		
+		#controls {
+			position:absolute;
+			width: 210px;
+			
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			
+			@include placeholder-border;
+			
+		}
+
+		#tasks {
+			min-height: 250px;
+			margin-left: 240px;
+			
+			text-shadow: none;
+			color: #EF02CB;
+			@include placeholder-border;
+			
+			.task {
+				@include placeholder-border;
+				margin: 5px auto;
+			}
+		}
+		
+	}
+	
 }

@@ -1,10 +1,10 @@
 <h1>Listing projects</h1>
 
-
+<div id="projects">
 <% @projects.each do |project| %>
   <%= render(:partial => 'project_square', :locals => {:project => project})%>
 <% end %>
-
+</div>
 
 <br />
 

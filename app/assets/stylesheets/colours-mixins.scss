@@ -1,0 +1,13 @@
+$action-link-subtle-grey: #CCCCCC;
+$project-link-colour-blue: #397799;
+
+@mixin letterpress($color) {
+    text-shadow: 0 -1px 0 darken($color, 40%), 0 1px 0 lighten($color, 15%)
+  }
+
+@mixin placeholder-border {
+	border: 1px $action-link-subtle-grey dashed;
+	@include border-radius(10px);
+	@include box-shadow(#CCC 0px 2px 8px);
+	padding:10px;
+}

@@ -29,8 +29,8 @@ class User < ActiveRecord::Base
                      # :tiny => Proc.new{self.convert_options(4)},
                      # :teeny => Proc.new{self.convert_options(2)}
                       :thumb => Proc.new{self.convert_options_win(8)}, 
-                      :tiny => Proc.new{self.convert_options_win(4)},
-                      :teeny => Proc.new{self.convert_options_win(2)}
+                       :tiny => Proc.new{self.convert_options_win(4)},
+                       :teeny => Proc.new{self.convert_options_win(2)}
                       }
                       
                       
