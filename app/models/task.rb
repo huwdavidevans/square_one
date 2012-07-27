@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
   
   attr_accessor :supplied_work_days  
   
-  before_save :calculate_work_minutes
+  before_save :work_days_to_minutes
   after_save :clear_work_days
   
   belongs_to :project
@@ -12,11 +12,14 @@ class Task < ActiveRecord::Base
   
   attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days  
  
+  def work_days
+    work_minutes / MINUTES_IN_WORK_DAY
+  end
   
   private
   
-  def calculate_work_minutes
-    self.work_minutes = supplied_work_days.to_i * 438
+  def work_days_to_minutes
+    self.work_minutes = supplied_work_days.to_i * MINUTES_IN_WORK_DAY
   end
   
   def clear_work_days

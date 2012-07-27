@@ -6,18 +6,22 @@ class TasksController < ApplicationController
   before_filter :find_project
   
   def index
-    list
-    #render('list')
-  end
+    @tasks = Task.all
 
-
-  def list    
-    @tasks = Task.order("tasks.deadline DESC").where(:project_id => @project.id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
-    end    
+    end
   end
+  
+  
+  # def index  
+  #     @tasks = Task.order("tasks.deadline DESC").where(:project_id => @project.id)
+  #     respond_to do |format|
+  #       format.html # index.html.erb
+  #       format.json { render json: @tasks }
+  #     end    
+  #   end
 
 
   # GET /tasks/1
@@ -76,16 +80,15 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
-    respond_to do |format|
+  
+      
       if @task.update_attributes(params[:task])
-        format.html { redirect_to 'index' }
-        #format.html { redirect_to @task, :project_id => @task.project_id, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
+        flash[:notice] = "task updated."
+        redirect_to(:action => 'show', :id => @task.id)
       else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        render('edit')
       end
-    end
+      
   end
 
   # DELETE /tasks/1

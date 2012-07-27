@@ -1,7 +1,5 @@
 <%= render(:partial => 'form_errors', :locals => {:object => @task})%>	
 
-
-
   <div class="field">
     <%= f.label :user_id %><br />
     <%= f.select(:user_id, User.all.collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %></td>
