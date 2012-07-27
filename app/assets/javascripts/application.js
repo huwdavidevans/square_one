@@ -13,3 +13,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+function drawCircleIn(divID, colour){
+
+	var myDiv = $('#'+divID)[0];
+	var _w = myDiv.width;
+	var _h = myDiv.height;
+	var ctx = myDiv.getContext("2d");
+	
+	var radius ;
+	(_w > _h) ? radius = (_h-4)/2 : radius = (_w-4)/2;
+
+	colour == null ? ctx.fillStyle = "#666" : ctx.fillStyle = colour;
+	ctx.beginPath();
+	//arc(x, y, radius, startAngle, endAngle, anticlockwise);
+	ctx.arc(_w/2, _h/2, radius, 0, Math.PI*2, true); 
+	ctx.closePath();
+	ctx.fill();
+	
+}

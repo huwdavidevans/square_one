@@ -146,6 +146,7 @@ body {
 .demoBox { 
   width: 180px;
   height: 200px;
+  margin: 10px 0 20px ;
   }
   
 .polabox {
@@ -270,51 +271,56 @@ body {
 			
 			.task {
 				//@include placeholder-border;
-				margin: 5px auto;
-				padding: 10px;
+				margin: 10px auto;
 				overflow:auto;
 				
 				.deadline{
+				  margin:10px ;
 				  color: #666;
 				  font-weight:bold;
 				}
 				
 				.details {
-				  margin: 0 10px;
+				  margin: 10px 10px 10px 0;
 				  min-width: 300px;
 				  
-				  .name{				    
+				  .task-name {
+
 				      a {
                 color: #333;
 				        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-				        text-decoration: none;        	        
+				        text-decoration: none;
 				      }
-				      margin-bottom: 6px;
+				      
+				      margin-bottom: 7px;
 				  }		   
 				   
-				  .user{
-            .avatar {
-				      
+				  .user {
+				    
+            .avatar {				      
 				    }
-				    .name {
+				    
+				    .screen-name {
 				      color: #666;
 				      font-size: 11px;
 				      line-height: 16px;
 				      margin-left: 6px;
 				    }
+				    
 				  }
 				  
 				  
 				}
 				
 				.admin {
-				  margin: 0 auto;
+				  margin: 10px auto;
 				}
 				
 				.time {
+          margin: 10px;
 				  width:40px;
 				  height:40px;
-				  background: #234873;
+				  //background: #234873;
 				}
 			}
 			

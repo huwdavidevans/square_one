@@ -1,60 +1,44 @@
 <div id="project">
-	
 	<div id="top">
 		
-		<h1><%= @project.name %></h1>
+		<h2><%= link_to 'Home', projects_path %> &gt; <%= @project.name %> : <%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %></h2>
 		
 		<p class="code">
-			<%= link_to 'Edit', edit_project_path(@project) %> : <%= @project.code %>
+			 <%= @project.code %>
 		</p>
-		
 		<p class="description">
 			<%= @project.description %>
 		</p>
-		
 		<div id="milestones">
-			
 			<div class="milestone start" style="left:0px;">
 				<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.created_at} %>
 			</div>
-			
 			<div class="milestone today" style="left:<%= @percent_to_finish.to_i %>%;">
 				<%= render :partial => 'shared/calendar_date', :locals => {:date => Date.today} %>
 				<p>
 					<%= @days_to_finish %> Days until finish.
 				</p>
 			</div>
-			
 			<div class="milestone finish" style="right:0px;">
 				<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.deadline} %>
 			</div>
-			
 		</div>
-			
 		<p id="notice">
 			<%= notice %>
 		</p>
-		
 	</div>
-	
-	<div id="main-content">	
-			
-			<div id="controls" class="left">
-				<%= render :partial => 'user_list_filter', :locals => {:project => @project} %>
-			</div>
-	
+	<div id="main-content">
+		<div id="controls" class="left">
+			<%= render :partial => 'user_list_filter', :locals => {:project => @project} %>
+		</div>
+		<div class="left">
 			<div id="tasks" class="left">
 				<%= render :partial => 'task_list', :locals => {:project => @project} %>
 			</div>
-			
 			<div id="metrics" class="right">
 				<%= render :partial => 'project_details', :locals => {:project => @project}  %>
 				<%= render :partial => 'project_activity', :locals => {:project => @project}  %>
-			</div>		
+			</div>
+		</div>
 	</div>
-	
-</div>
-
-<div>
-	<%= link_to 'Back', projects_path %>
 </div>

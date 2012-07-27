@@ -3,22 +3,34 @@
 		<%= render :partial => 'shared/calendar_date', :locals => { :date => task.deadline }  %>
 	</div>
 	<div class="details left">
-		<div class="name">
+		<div class="task-name">
 			<%= link_to(task.name, task) %>
 		</div>
 		<div class="user">
 			<div class="avatar left">
 				<%= image_tag(task.user.avatar.url(:teeny), :size => "15x15") %>
 			</div>
-			<div class="name left" >
+			<div class="screen-name left" >
 				<%= task.user.name %>
 			</div>
 		</div>
 	</div>
 	<div class="admin left">
-		<%= link_to('E', edit_task_path(task) ) %>
+		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(task) ) %>
 		<br />
-		<%= link_to('D', task, method: :delete, data: { confirm: 'Are you sure?' }) %>
+		<%= link_to(image_tag('actions/destroy_btn_16.png', {:title => "Delete Task"}), task, method: :delete, data: { confirm: 'Are you sure?' }) %>
 	</div>
-	<div class="time right"></div>
+	
+	
+	
+	<div class="time right">		
+		<canvas id="time-<%=task.id%>" width="40" height="40">
+		</canvas>
+		<script type="text/javascript">
+		$( function(){drawCircleIn("time-<%=task.id%>") } );
+		
+		</script>		
+	</div>
+	
+	
 </div>
