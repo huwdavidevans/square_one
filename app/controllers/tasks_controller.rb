@@ -49,13 +49,10 @@ class TasksController < ApplicationController
 
   # POST /tasks
   # POST /tasks.json
-  def create
-    
+  def create    
     @task = Task.new(params[:task])
-    
     @task.project_id = @project.id;
     
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, :project_id => @task.project_id, notice: 'Task was successfully created.' }
@@ -79,10 +76,10 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
-
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, :project_id => @task.project_id, notice: 'Task was successfully updated.' }
+        format.html { redirect_to 'index' }
+        #format.html { redirect_to @task, :project_id => @task.project_id, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

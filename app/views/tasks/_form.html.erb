@@ -18,6 +18,12 @@
     <%= f.label :deadline %><br />
     <%= f.date_select :deadline %>
   </div>
+  
+   <div class="field">
+  	<%= f.label :supplied_work_days, "Days worth of work"  	%>
+  	<%= f.select(:supplied_work_days, (1..10).to_a  ) 	%>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
