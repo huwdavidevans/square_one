@@ -140,7 +140,6 @@ body {
 
 #projects {  
 	margin: 20px 0;
-	
 }
 
 .demoBox { 
@@ -158,9 +157,10 @@ body {
 
 
 #top {
-  background: #f1f4f8;
-  project: 20px;
-  @include single-box-shadow(#AAA, 0, 2px, 5px)
+  	background: #f1f4f8;
+  	padding: 20px;
+	overflow:auto;
+  	@include single-box-shadow(#AAA, 0, 2px, 5px);	
 }
 
 
@@ -297,7 +297,7 @@ body {
 				   
 				  .user {
 				    
-            .avatar {				      
+            		.avatar {				      
 				    }
 				    
 				    .screen-name {
@@ -335,3 +335,22 @@ body {
 	}
 	
 }
+
+#task {
+	.user{
+		
+		.user-name{
+		}
+
+	}
+	
+	.deadline{
+		width: 40px;
+		clear:left	;
+	}
+	
+	.description{
+		
+	}
+}
+

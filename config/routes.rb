@@ -1,4 +1,8 @@
 SquareOne::Application.routes.draw do
+  resources :comments
+
+  resources :time_logs
+
   resources :todos
 
   resources :todo_lists

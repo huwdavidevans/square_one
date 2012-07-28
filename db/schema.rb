@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727123918) do
+ActiveRecord::Schema.define(:version => 20120728002731) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.integer  "project_id"
+    t.integer  "in_reply_to"
+    t.text     "body"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -39,6 +49,15 @@ ActiveRecord::Schema.define(:version => 20120727123918) do
     t.datetime "updated_at",                      :null => false
     t.boolean  "complete",     :default => false
     t.integer  "work_minutes", :default => 438
+  end
+
+  create_table "time_logs", :force => true do |t|
+    t.integer  "task_id",      :null => false
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.integer  "time_minutes"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "todo_lists", :force => true do |t|

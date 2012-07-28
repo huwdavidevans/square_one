@@ -1,35 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div id="task">
+	
+	<div id="top">
+	
+		<h2>
+			<%= link_to 'Home', projects_path %> &gt;
+			<%= link_to  @task.project.name, project_path(@task.project) %> &gt;
+			<%= @task.name %> :
+			<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
+		</h2>
+		
+		<div class="user">
+			<div class="avatar left"><%= image_tag(@task.user.avatar.url(:tiny), {:title => @task.user.name}) %></div>
+			<div class="user-name left"><%= @task.user.name %></div>
+		</div>
+		
+		<div class="deadline">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => @task.deadline} %>
+		</div>
+		
+		<div class="description">
+			<%= @task.description %>
+		</div>
+		
+		<p id="notice">
+			<%= notice %>
+		</p>
+	
+	</div>
+	
+	<div id="main-content">
+		
+		
+		<div id="activity">
+			
+		</div>
+		
+		<div id="metrics">
+			
+		</div>
+		
+	</div>
+	
+	
+</div>
 
-<p>
-  <b>Project:</b>
-  <%= @task.project_id %>
-</p>
 
-<p>
-  <b>User:</b>
-  <%= @task.user_id %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @task.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @task.description %>
-</p>
-
-<p>
-  <b>Deadline:</b>
-  <%= @task.deadline %>
-</p>
-
-
-<p>
-  <b>Work  Minutes</b>
-  <%= @task.work_minutes %>
-</p>
 
 
 
