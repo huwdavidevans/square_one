@@ -1,3 +1,39 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#task {
+	.user{
+		
+		.user-name{
+		}
+
+	}
+	
+	.deadline{
+		width: 40px;
+		clear:left	;
+	}
+	
+	.description{
+		
+	}
+	
+		
+		#activity{
+			width:600px;
+		}
+	
+		#metrics {
+			min-height: 500px;
+			width:300px;
+			padding:10px;
+			background: url("wood_pattern.png");
+			.polabox{
+				padding:10px;	
+			}
+			
+		}
+	
+}

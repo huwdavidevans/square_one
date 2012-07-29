@@ -1,4 +1,10 @@
 class CommentsController < ApplicationController
+  
+  before_filter :find_task
+  
+  
+  
+  
   # GET /comments
   # GET /comments.json
   def index
@@ -9,6 +15,9 @@ class CommentsController < ApplicationController
       format.json { render json: @comments }
     end
   end
+  
+  
+  
 
   # GET /comments/1
   # GET /comments/1.json
@@ -21,16 +30,29 @@ class CommentsController < ApplicationController
     end
   end
 
+
+
+
+
+
+
   # GET /comments/new
   # GET /comments/new.json
   def new
-    @comment = Comment.new
+    
+    # should get user id here too
+    @comment = Comment.new(:task_id => @task.id)
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
     end
   end
+
+
+
+
+
 
   # GET /comments/1/edit
   def edit
@@ -52,6 +74,9 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+
+
 
   # PUT /comments/1
   # PUT /comments/1.json
@@ -80,4 +105,17 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  
+  private
+
+   def find_task
+     if params[:task_id]
+       @task = Task.find_by_id(params[:task_id])
+     end 
+   end
+  
+  
+  
 end

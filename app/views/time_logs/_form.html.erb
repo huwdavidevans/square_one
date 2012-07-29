@@ -1,15 +1,40 @@
 <%= form_for(@time_log) do |f| %>
-  <% if @time_log.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@time_log.errors.count, "error") %> prohibited this time_log from being saved:</h2>
+  
+<%= render(:partial => 'shared/form_errors', :locals => {:object => @time_log})%>	
 
-      <ul>
-      <% @time_log.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+<div>
+	<%= f.label :user_id, "User" %> :
+	<%= f.select(:user_id, @task.project.users.collect {|r| [r.name, r.id]}) %>
+</div>
+
+<div>
+	<%= f.label :task_id %> : <%= @task.name %>
+	<%= f.hidden_field :task_id %> 
+</div>
+
+<div>
+	<%= f.label :time_minutes, "Time in Minutes" %> :
+	<%= f.select(:time_minutes, (1..10).to_a ) %>
+</div>
+
+
+<%= fields_for @comment do |c| %>
+	<div>
+		Comment : </br>
+		<%= c.text_area :body %>
+	</div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
 
   <div class="actions">
     <%= f.submit %>

@@ -1,15 +1,20 @@
 <%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<%= render(:partial => 'shared/form_errors', :locals => {:object => @comment})%>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+<div>
+	<%= f.label :user_id, "User" %> :
+	<%= f.select(:user_id, @task.project.users.collect {|r| [r.name, r.id]}) %>
+</div>
+
+<div>
+	<%= f.label :task_id %> : <%= @task.name %>
+	<%= f.hidden_field :task_id %> 
+</div>
+
+<div>
+	<%= f.text_area :body %>
+</div>
 
   <div class="actions">
     <%= f.submit %>

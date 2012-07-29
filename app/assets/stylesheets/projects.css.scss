@@ -22,6 +22,10 @@ body {
   float:right;
 }
 
+.clear {
+	clear:both;
+}
+
 .calendar {
    margin:0 auto;
    text-align: center;
@@ -211,6 +215,7 @@ body {
 	  margin: 5px 0 0 0;
 	  overflow: auto;
 		
+		
 		#controls {
       min-height: 250px;
 		  width: 185px;
@@ -287,7 +292,7 @@ body {
 				  .task-name {
 
 				      a {
-                color: #333;
+				        color: #333;
 				        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 				        text-decoration: none;
 				      }
@@ -336,21 +341,5 @@ body {
 	
 }
 
-#task {
-	.user{
-		
-		.user-name{
-		}
 
-	}
-	
-	.deadline{
-		width: 40px;
-		clear:left	;
-	}
-	
-	.description{
-		
-	}
-}
 

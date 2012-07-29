@@ -1,4 +1,7 @@
 class TimeLogsController < ApplicationController
+  
+  before_filter :find_task
+  
   # GET /time_logs
   # GET /time_logs.json
   def index
@@ -24,8 +27,10 @@ class TimeLogsController < ApplicationController
   # GET /time_logs/new
   # GET /time_logs/new.json
   def new
-    @time_log = TimeLog.new
-
+    @time_log = TimeLog.new(:task_id => @task.id)
+    @comment = Comment.new(:task_id => @task.id)
+    
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @time_log }
@@ -37,11 +42,15 @@ class TimeLogsController < ApplicationController
     @time_log = TimeLog.find(params[:id])
   end
 
+
+
   # POST /time_logs
   # POST /time_logs.json
   def create
     @time_log = TimeLog.new(params[:time_log])
-
+    @comment = Comment.new(params[:comment])
+    @time_log.comment = @comment
+    
     respond_to do |format|
       if @time_log.save
         format.html { redirect_to @time_log, notice: 'Time log was successfully created.' }
@@ -52,6 +61,12 @@ class TimeLogsController < ApplicationController
       end
     end
   end
+
+
+
+
+
+
 
   # PUT /time_logs/1
   # PUT /time_logs/1.json
@@ -80,4 +95,19 @@ class TimeLogsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  
+  
+  private
+
+   def find_task
+     if params[:task_id]
+       @task = Task.find_by_id(params[:task_id])
+     end 
+   end
+  
+  
+  
+  
 end

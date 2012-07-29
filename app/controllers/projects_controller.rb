@@ -15,11 +15,6 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     
-    @length_of_project = (@project.deadline - @project.created_at.to_date).to_i
-    @days_from_start = ((Date.today + 0.days) - @project.created_at.to_date).to_i
-    @days_to_finish = (@project.deadline - Date.today).to_i
-    @percent_to_finish =  ((100 * (@days_from_start.to_f / @length_of_project.to_f) ).ceil.to_f )#/100   
-
       respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

@@ -9,15 +9,6 @@
 			<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
 		</h2>
 		
-		<div class="user">
-			<div class="avatar left"><%= image_tag(@task.user.avatar.url(:tiny), {:title => @task.user.name}) %></div>
-			<div class="user-name left"><%= @task.user.name %></div>
-		</div>
-		
-		<div class="deadline">
-			<%= render :partial => 'shared/calendar_date', :locals => {:date => @task.deadline} %>
-		</div>
-		
 		<div class="description">
 			<%= @task.description %>
 		</div>
@@ -28,14 +19,43 @@
 	
 	</div>
 	
+	
+	
 	<div id="main-content">
 		
-		
-		<div id="activity">
+		<div id="activity" class="left">
+			
+			<%= link_to 'Home', projects_path %>
+			
+			<p>
+				<%= link_to 'Log Time', new_time_log_path(:task_id => @task.id), :class => 'button'%> 
+				<%= link_to 'Post Comment', new_comment_path(:task_id => @task.id), :class => 'button'%>
+			</p>
+
+			<div>
+				:COMMENTS:
+				<% @task.comments.each do |c| %>
+				<li><%= c.body %></li>
+				<% end %>
+			</div>
+
+			<div>
+				:TIME LOGS:
+				<% @task.time_logs.each do |tl| %>
+				<li><%= tl.comment.body %></li>
+				<% end %>
+			</div>
 			
 		</div>
 		
-		<div id="metrics">
+		<div id="metrics" class="left">
+			<div class="polabox">
+				<p>Deadline: <%= @task.deadline.strftime("%A %d %B %Y") %></p>
+				<p>Days til deadline: <%= @task.days_left %></p>
+				<p>User: <%= image_tag(@task.user.avatar.url(:teeny), {:title => @task.user.name}) %> <%= @task.user.name %></p>
+				<p>Days Allocated: <%= @task.work_days %>
+				<p>Days Spent: <%= @task.work_days_spent %>
+			</div>
 			
 		</div>
 		
@@ -46,7 +66,7 @@
 
 
 
-
+<div class="clear"> </div>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', project_path(@task.project_id) %>
