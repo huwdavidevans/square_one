@@ -1,10 +1,7 @@
 class CommentsController < ApplicationController
   
   before_filter :find_task
-  
-  
-  
-  
+    
   # GET /comments
   # GET /comments.json
   def index
@@ -105,6 +102,7 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
   
   
   

@@ -53,8 +53,9 @@
 				<p>Deadline: <%= @task.deadline.strftime("%A %d %B %Y") %></p>
 				<p>Days til deadline: <%= @task.days_left %></p>
 				<p>User: <%= image_tag(@task.user.avatar.url(:teeny), {:title => @task.user.name}) %> <%= @task.user.name %></p>
-				<p>Days Allocated: <%= @task.work_days %>
-				<p>Days Spent: <%= @task.work_days_spent %>
+				<p>Days Allocated: <%= @task.work_days %></p>
+				<p>Days Spent: <%= @task.work_days_spent %></p>
+				<p>Percentage of Time used: <%= @task.work_percent_spent %></p>
 			</div>
 			
 		</div>

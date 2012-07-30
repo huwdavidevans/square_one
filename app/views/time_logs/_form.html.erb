@@ -1,11 +1,9 @@
-<%= form_for(@time_log) do |f| %>
-  
 <%= render(:partial => 'shared/form_errors', :locals => {:object => @time_log})%>	
 
 
 <div>
-	<%= f.label :user_id, "User" %> :
-	<%= f.select(:user_id, @task.project.users.collect {|r| [r.name, r.id]}) %>
+	<%= f.label :user_id, @task.user.name %> :
+	<%= f.select(:user_id, @task.project.users.collect {|r| [r.name, r.id]})	 %>
 </div>
 
 <div>
@@ -14,8 +12,10 @@
 </div>
 
 <div>
-	<%= f.label :time_minutes, "Time in Minutes" %> :
-	<%= f.select(:time_minutes, (1..10).to_a ) %>
+	<%= f.label :supplied_hours, "Hours" %> :
+	<%= f.select(:supplied_hours, (0..10).to_a ) %>
+	<%= f.label :supplied_minutes, "Minutes" %> :
+	<%= f.select(:supplied_minutes, (0..59).to_a ) %>
 </div>
 
 
@@ -29,14 +29,6 @@
 
 
 
-
-
-
-
-
-
-
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>

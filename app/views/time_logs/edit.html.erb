@@ -1,6 +1,8 @@
 <h1>Editing time_log</h1>
 
-<%= render 'form' %>
+<%= form_for(@time_log, :url => {:action => 'update', :id=>@time_log.id} ) do |f| %>
+<%= render(:partial => 'form', :locals => {:f => f}) %>
+<% end %>
 
 <%= link_to 'Show', @time_log %> |
 <%= link_to 'Back', time_logs_path %>

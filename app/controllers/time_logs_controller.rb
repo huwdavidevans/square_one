@@ -27,8 +27,8 @@ class TimeLogsController < ApplicationController
   # GET /time_logs/new
   # GET /time_logs/new.json
   def new
-    @time_log = TimeLog.new(:task_id => @task.id)
-    @comment = Comment.new(:task_id => @task.id)
+    @time_log = TimeLog.new(:task_id => @task.id, :user_id => @task.user.id)
+    @comment = Comment.new()
     
     
     respond_to do |format|
@@ -47,7 +47,8 @@ class TimeLogsController < ApplicationController
   # POST /time_logs
   # POST /time_logs.json
   def create
-    @time_log = TimeLog.new(params[:time_log])
+    
+    @time_log = TimeLog.new(params[:time_log], :task_id => @task.id, :user_id => @task.user.id)
     @comment = Comment.new(params[:comment])
     @time_log.comment = @comment
     
@@ -107,7 +108,6 @@ class TimeLogsController < ApplicationController
      end 
    end
   
-  
-  
+    
   
 end

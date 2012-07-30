@@ -1,7 +1,9 @@
 <div class="task polabox">
+	
 	<div class="deadline left">
 		<%= render :partial => 'shared/calendar_date', :locals => { :date => task.deadline }  %>
 	</div>
+	
 	<div class="details left">
 		<div class="task-name">
 			<%= link_to(task.name, task) %>
@@ -15,20 +17,18 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="admin left">
 		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(task) ) %>
 		<br />
 		<%= link_to(image_tag('actions/destroy_btn_16.png', {:title => "Delete Task"}), task, method: :delete, data: { confirm: 'Are you sure?' }) %>
 	</div>
 	
-	
-	
 	<div class="time right">		
 		<canvas id="time-<%=task.id%>" width="40" height="40">
 		</canvas>
 		<script type="text/javascript">
-		$( function(){drawCircleIn("time-<%=task.id%>") } );
-		
+		$( function(){drawPieIn("time-<%=task.id%>", <%=task.work_percent_spent%>) } );		
 		</script>		
 	</div>
 	

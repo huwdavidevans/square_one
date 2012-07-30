@@ -31,7 +31,7 @@ class Task < ActiveRecord::Base
   end
   
   def percent_of_time_left
-    ((100 * (days_from_start.to_f / length_of.to_f) ).ceil.to_f )
+    sprintf("%.2f", (100 * (days_from_start.to_f / length_of.to_f) ).ceil.to_f , :precision => 2) 
   end
   
   def work_days_left
@@ -43,10 +43,12 @@ class Task < ActiveRecord::Base
     time_logs.each do |tl|
       total += tl.time_minutes
     end
-    return total.to_f / MINUTES_IN_WORK_DAY
+    sprintf("%.2f",  total.to_f / MINUTES_IN_WORK_DAY).to_f
   end
   
-  
+  def work_percent_spent
+    sprintf("%.2f",  work_days_spent / work_days.to_f).to_f
+  end
   
   private
   
