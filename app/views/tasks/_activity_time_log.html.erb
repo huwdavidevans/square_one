@@ -1,0 +1,35 @@
+
+ 	<div class="activity time_log" id="time_log-<%=time_log.id%>">
+	
+	<div class="left">
+		<div class="avatar">
+			<%= image_tag time_log.user.avatar.url(:thumb) %>
+			<div class="icon">
+				<%= image_tag 'time_log.png' %>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="left">
+		<div class="description">
+			<%= time_log.user.first_name %> logged <span class="type"><%= time_log.time_string %></span>
+		</div>
+		<div class="time">			
+			<% if time_log.created_at.to_date == Date.today %>
+				<strong><%= distance_of_time_in_words(Time.now, time_log.created_at).gsub('about ','') %></strong> ago
+			<% elsif %>
+				at <strong><%= time_log.created_at.strftime("%H:%M")%></strong>
+			<% end %>
+			</span>			
+		</div>
+		<div class="body">
+			<%= time_log.comment.body %></span>
+		</div>
+		
+		
+	</div>
+	
+
+</div>
+ 	

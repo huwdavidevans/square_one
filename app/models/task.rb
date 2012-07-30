@@ -50,6 +50,14 @@ class Task < ActiveRecord::Base
     sprintf("%.2f",  work_days_spent / work_days.to_f).to_f
   end
   
+  def activity
+    
+    (comments + time_logs).sort_by(&:created_at).reverse!
+  end
+  
+  
+  
+  
   private
   
   def work_days_to_minutes

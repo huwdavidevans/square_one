@@ -2,38 +2,104 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "compass";
 
 #task {
+
 	.user{
-		
 		.user-name{
 		}
-
 	}
 	
 	.deadline{
 		width: 40px;
-		clear:left	;
+		clear: left;
 	}
 	
-	.description{
-		
+	.description{		
 	}
-	
 		
-		#activity{
-			width:600px;
+	#activity-list{
+		width: 725px;
+	}
+
+	#metrics{
+	  @include box-shadow(#888 2px 2px 6px inset );
+		min-height: 500px;
+		width: 275px;
+		padding: 10px;
+		background: url("wood_pattern.png");
+		.polabox{
+			padding: 10px;	
 		}
-	
-		#metrics {
-			min-height: 500px;
-			width:300px;
-			padding:10px;
-			background: url("wood_pattern.png");
-			.polabox{
-				padding:10px;	
-			}
-			
-		}
-	
+	}
+		
+}
+
+.activity {
+  overflow:auto;
+  margin: 20px 10px;
+  background: white;
+  @include border-radius(5px);
+  @include box-shadow(#999 0px 1px 6px);
+  
+  
+  .avatar{
+    border: 2px white solid;
+    @include border-radius(10px);
+    @include box-shadow(#999 0px 1px 6px);
+    margin:20px;
+    position:relative;
+    img {
+      vertical-align:middle;
+    }
+    .icon {
+      position:absolute;
+      bottom: -10px;
+      right: -4px;
+    }
+  }
+  
+  
+  .description{ 
+      color: #555; 
+      margin: 20px 0 5px;
+      font-size: 17px;
+  }
+  
+  .time {  
+    font-size: 13px;
+    color:#999;    
+  }
+  
+  .body{
+    margin: 10px 0 20px;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  strong{
+    font-weight:bold;
+  }
+}
+
+
+
+
+.comment {
+  
+  .type {
+    font-weight:bold;
+    color:orange;
+  }
+  
+}
+
+.time_log {
+  
+  .type {
+    font-weight:bold;
+    color: #3d86c2;
+  }
+  
 }

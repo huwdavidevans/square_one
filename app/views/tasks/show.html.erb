@@ -23,28 +23,37 @@
 	
 	<div id="main-content">
 		
-		<div id="activity" class="left">
+		<div id="activity-list" class="left">
 			
 			<%= link_to 'Home', projects_path %>
+			
 			
 			<p>
 				<%= link_to 'Log Time', new_time_log_path(:task_id => @task.id), :class => 'button'%> 
 				<%= link_to 'Post Comment', new_comment_path(:task_id => @task.id), :class => 'button'%>
 			</p>
 
-			<div>
-				:COMMENTS:
-				<% @task.comments.each do |c| %>
-				<li><%= c.body %></li>
-				<% end %>
-			</div>
 
-			<div>
-				:TIME LOGS:
-				<% @task.time_logs.each do |tl| %>
-				<li><%= tl.comment.body %></li>
+
+			<% recent_date = @task.activity.first.created_at.to_date  if @task.activity.first %>
+			<h2><%= recent_date.strftime("%A %d %B") %></h2>
+			<% @task.activity.each do |a| %>
+			
+				<% if a.created_at.to_date < recent_date %>
+					<h2><%= a.created_at.strftime("%A %d %B") %></h2>
+					<% recent_date = a.created_at.to_date %>
 				<% end %>
-			</div>
+				
+				<% if a.instance_of?(Comment)  %>
+				<%= render :partial => 'activity_comment', :locals => { :comment => a } %>
+				<% elsif a.instance_of?(TimeLog)  %>					
+				<%= render :partial => 'activity_time_log', :locals => { :time_log => a } %>
+				<% end %>			
+			<% end %>
+
+			
+
+
 			
 		</div>
 		
