@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>app/assets/stylesheets/tasks.css.scss</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -19,6 +21,20 @@
 	<integer>258</integer>
 	<key>metaData</key>
 	<dict>
+		<key>app/assets/stylesheets/tasks.css.scss</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>22</integer>
+				<key>line</key>
+				<integer>102</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>84</integer>
+		</dict>
 		<key>app/controllers/user_controller.rb</key>
 		<dict>
 			<key>caret</key>
@@ -77,6 +93,34 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/views/tasks/_activity_comment.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/tasks/_activity_time_log.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>43</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/views/tasks/edit.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -91,7 +135,28 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/views/tasks/show.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>43</integer>
+				<key>line</key>
+				<integer>49</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>27</integer>
+		</dict>
 	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>app/views/tasks/_activity_comment.html.erb</string>
+		<string>app/assets/stylesheets/tasks.css.scss</string>
+		<string>app/views/tasks/_activity_time_log.html.erb</string>
+		<string>app/views/tasks/show.html.erb</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>

@@ -1,19 +1,18 @@
-<div class="activity comment" id="comment-<%=comment.id%>">
+<div class="activity comment <%=my_class%>" id="comment-<%=comment.id%>">
 	
-	<div class="left">
-		<div class="avatar">
-			<%= image_tag comment.user.avatar.url(:thumb) %>
-			<div class="icon">
-				<%= image_tag 'comment.png' %>
-			</div>
+	<div class="avatar left">
+		<%= image_tag comment.user.avatar.url(:thumb) %>
+		<div class="icon">
+			<%= image_tag 'comment.png' %>
 		</div>
 	</div>
 	
-	
-	<div class="left">
+	<div class="details left">
+		
 		<div class="description">
 			<%= comment.user.first_name %> posted a <span class="type">comment</span>
 		</div>
+		
 		<div class="time">			
 			<% if comment.created_at.to_date == Date.today %>
 				<strong><%= distance_of_time_in_words(Time.now, comment.created_at).gsub('about ','') %></strong> ago
@@ -22,6 +21,7 @@
 			<% end %>
 			</span>			
 		</div>
+		
 		<div class="body">
 			<%= comment.body %></span>
 		</div>
@@ -29,6 +29,5 @@
 		<!-- comment.in_reply_to -->
 		
 	</div>
-	
 
 </div>

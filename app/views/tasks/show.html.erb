@@ -25,9 +25,6 @@
 		
 		<div id="activity-list" class="left">
 			
-			<%= link_to 'Home', projects_path %>
-			
-			
 			<p>
 				<%= link_to 'Log Time', new_time_log_path(:task_id => @task.id), :class => 'button'%> 
 				<%= link_to 'Post Comment', new_comment_path(:task_id => @task.id), :class => 'button'%>
@@ -36,25 +33,33 @@
 
 
 			<% recent_date = @task.activity.first.created_at.to_date  if @task.activity.first %>
-			<h2><%= recent_date.strftime("%A %d %B") %></h2>
+			
+			<% classArr = ["", "right_of_line"] %>
+			<% toggle = 0 %>
+			<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>
+			<div class="seperator">
 			<% @task.activity.each do |a| %>
 			
 				<% if a.created_at.to_date < recent_date %>
-					<h2><%= a.created_at.strftime("%A %d %B") %></h2>
+					</div>
+					<h2 class="day"><%= a.created_at.strftime("%A %d %B") %></h2>					
+					<div class="seperator">
 					<% recent_date = a.created_at.to_date %>
 				<% end %>
 				
+				<% toggle == 0 ? toggle = 1 : toggle = 0 %>
 				<% if a.instance_of?(Comment)  %>
-				<%= render :partial => 'activity_comment', :locals => { :comment => a } %>
+				
+				<%= render :partial => 'activity_comment', :locals => { :comment => a, :my_class => classArr[toggle] } %>
 				<% elsif a.instance_of?(TimeLog)  %>					
-				<%= render :partial => 'activity_time_log', :locals => { :time_log => a } %>
+				<%= render :partial => 'activity_time_log', :locals => { :time_log => a, :my_class => classArr[toggle]   } %>
 				<% end %>			
 			<% end %>
-
+			</div>
 			
 
 
-			
+			<!-- thing-->
 		</div>
 		
 		<div id="metrics" class="left">
