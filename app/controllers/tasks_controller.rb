@@ -61,8 +61,8 @@ class TasksController < ApplicationController
     
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, :project_id => @task.project_id, notice: 'Task was successfully created.' }
-        format.json { render json: @task, :project_id => @task.project_id, status: :created, location: @task }
+        format.html { redirect_to @task.project, notice: 'Task was successfully created.' }
+        format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -97,10 +97,11 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
+    
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, :project_id => @task.project_id}
+      format.html { redirect_to @project}
       format.json { head :no_content }
     end
   end

@@ -54,7 +54,7 @@ class TimeLogsController < ApplicationController
     
     respond_to do |format|
       if @time_log.save
-        format.html { redirect_to @time_log, notice: 'Time log was successfully created.' }
+        format.html { redirect_to @task, notice: 'Time log was successfully created.' }
         format.json { render json: @time_log, status: :created, location: @time_log }
       else
         format.html { render action: "new" }
@@ -75,7 +75,7 @@ class TimeLogsController < ApplicationController
     @time_log = TimeLog.find(params[:id])    
     respond_to do |format|
       if @time_log.update_attributes(params[:time_log]) && @time_log.comment.update_attributes( params[:comment])
-        format.html { redirect_to @time_log, notice: 'Time log was successfully updated.' }
+        format.html { redirect_to @task, notice: 'Time log was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
