@@ -16,12 +16,7 @@
 
 
 
-
-
-
-
 function drawCircleIn(divID, colour) {
-
 	var myDiv = $('#'+divID)[0];
 	var _w = myDiv.width;
 	var _h = myDiv.height;
@@ -34,15 +29,14 @@ function drawCircleIn(divID, colour) {
 	ctx.arc(_w / 2, _h / 2, radius, 0, Math.PI * 2, true);
 	ctx.closePath();
 	ctx.fill();
-
 }
 
 
 
 function drawPieIn(divID, slicePercent, colour) {
-
 	var colArray = ["#00df00", "#5fdf00", "#9fdf00", "#dfdf00", "#ffdf00", "#ffbf00", "#ff9f00", "#ff7f00", "#ff3f00", "#ff0000"]
-	drawCircleIn(divID);
+	
+	drawCircleIn(divID, "#aeaeae");
 	
 	if(slicePercent > 0) {
 
