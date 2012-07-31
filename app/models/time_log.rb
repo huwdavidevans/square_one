@@ -5,6 +5,7 @@ class TimeLog < ActiveRecord::Base
   belongs_to :task
   has_one :comment
 
+
   before_validation :hours_to_minutes
   
   attr_accessor :supplied_minutes, :supplied_hours

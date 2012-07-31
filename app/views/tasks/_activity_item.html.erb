@@ -30,11 +30,39 @@
 		</div>
 		
 		<div class="body">
-			<%= item.body %></span>
+			<%= item.body %>
 		</div>
 		
-		<!-- comment.in_reply_to -->
-	</div>		
+		<div class="actions hidden">
+			<%= link_to "reply", new_comment_path %>
+		</div>
+		
+		
+	</div>
+	
+	<% if type == 'comment' && !item.replies.empty? %>
+			<div class="replies">
+				<% item.replies.each do |reply| %>
+					<hr />
+					
+					<div class="left">
+						<%= image_tag reply.user.avatar.url(:teeny) %>						
+					</div>
+					<div class="time">
+						<%= reply.user.name %> replied 
+						<% if reply.created_at.to_date == Date.today %>
+							<%= distance_of_time_in_words(Time.now, reply.created_at).gsub('about ','') %> ago
+						<% elsif %>
+							at <%= reply.created_at.strftime("%H:%M on %a %d %b %Y" )%>
+						<% end %>
+						</span>
+					</div>
+
+					<p><%= reply.body %></p>
+				<% end %>
+			</div>
+		<% end %>
+				
 </div>
 
 	<div class="pointer">
