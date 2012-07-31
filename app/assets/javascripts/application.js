@@ -18,20 +18,6 @@
 
 
 
-$(document).ready(function () {
-  
-  
-  
-	$(".activity").hover(
-	        function() {
-	            $(this).find('.actions').removeClass('hidden');
-	        },
-	        function () {
-	            $(this).find(' .actions').addClass('hidden');
-	        }
-	);
-
-});
 
 
 function drawCircleIn(divID, colour) {

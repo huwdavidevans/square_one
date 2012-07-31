@@ -3,3 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 
+$(document).ready ->
+  $(".task").hover (->
+    $(this).find(".admin").removeClass "hidden"
+  ), ->
+    $(this).find(".admin").addClass "hidden"
+    
+    
+  

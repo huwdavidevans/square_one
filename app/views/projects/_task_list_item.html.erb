@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	
-	<div class="admin left">
+	<div class="admin left hidden">
 		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(task) ) %>
 		<br />
 		<%= link_to(image_tag('actions/destroy_btn_16.png', {:title => "Delete Task"}), task, method: :delete, data: { confirm: 'Are you sure?' }) %>
