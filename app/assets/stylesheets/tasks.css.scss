@@ -6,6 +6,7 @@
 
 #task {
 	text-shadow: 0 1px 0px #FFF;
+	
 	.user{
 		.user-name{
 		}
@@ -21,6 +22,11 @@
 		
 	#activity-list{
 		width: 770px;
+		
+		.new_activity{
+		  text-align: center;
+		  margin: 10px auto;
+		}
 		
 		.day {
 			margin: 20px 0;

@@ -25,18 +25,13 @@
 		
 		<div id="activity-list" class="left">
 			
-			<p>
-				<%= link_to 'Log Time', new_time_log_path(:task_id => @task.id), :class => 'button'%> 
-				<%= link_to 'Post Comment', new_comment_path(:task_id => @task.id), :class => 'button'%>
-			</p>
-
-
-
-			<% recent_date = @task.activity.first.created_at.to_date  if @task.activity.first %>
-			
 			<% classArr = ["", "right_of_line"] %>
 			<% toggle = 0 %>
+			<% recent_date = @task.activity.first.created_at.to_date if @task.activity.first %>
+			<% recent_date = Date.today if recent_date < Date.today  %>
+			
 			<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>
+			<%= render :partial => 'new_activity_buttons' %>			
 			<div class="seperator">
 			<% @task.activity.each do |a| %>
 			
