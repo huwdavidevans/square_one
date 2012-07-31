@@ -72,10 +72,9 @@ class TimeLogsController < ApplicationController
   # PUT /time_logs/1
   # PUT /time_logs/1.json
   def update
-    @time_log = TimeLog.find(params[:id])
-
+    @time_log = TimeLog.find(params[:id])    
     respond_to do |format|
-      if @time_log.update_attributes(params[:time_log])
+      if @time_log.update_attributes(params[:time_log]) && @time_log.comment.update_attributes( params[:comment])
         format.html { redirect_to @time_log, notice: 'Time log was successfully updated.' }
         format.json { head :no_content }
       else
@@ -105,6 +104,10 @@ class TimeLogsController < ApplicationController
    def find_task
      if params[:task_id]
        @task = Task.find_by_id(params[:task_id])
+     elsif  params[:id]
+       @time_log = TimeLog.find(params[:id])
+       @task = @time_log.task
+       @comment = @time_log.comment
      end 
    end
   

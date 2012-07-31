@@ -23,11 +23,12 @@
 		width: 770px;
 		
 		.day {
-			margin: 50px 0;
+			margin: 20px 0;
 			text-align: center;
 			color: #7196B0;
 		}
 		.seperator{
+		  padding:20px 0;
 			background: url('bar.png') repeat-y center;
 		}
 	}
@@ -45,10 +46,46 @@
 		
 }
 
+
+
 .right_of_line{
-	left:400px;
-	
+	left:400px;	
 }
+
+.timepoint {
+    position:relative;  
+    //  right: -20px;
+  }
+  
+   .pointer {
+      position:absolute;         
+      left: 371px;   
+      top: 24px;
+      .arrow{
+        position: absolute;
+        left: -11px;
+        top: 0px;
+      }
+    }
+  
+  .right_of_line{
+    
+    .pointer {
+      left: -29px; 
+        .arrow{
+        position: absolute;
+        left: 27px;
+        top: 0px;
+      }
+    }
+    
+    
+    
+}
+
+
+
+
 .activity {
 	width: 350px;
 	position:relative;
@@ -59,6 +96,8 @@
 	@include border-radius(5px);
 	@include box-shadow(#999 0px 1px 6px);
 //	@include background-image(linear-gradient(#EFEFEF, #D3D3D3));
+  
+  
   
   
   .avatar{

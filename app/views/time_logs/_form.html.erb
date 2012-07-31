@@ -13,9 +13,9 @@
 
 <div>
 	<%= f.label :supplied_hours, "Hours" %> :
-	<%= f.select(:supplied_hours, (0..10).to_a ) %>
+	<%= f.select(:supplied_hours, (0..10).to_a, :selected => @time_log.hours_i) %>
 	<%= f.label :supplied_minutes, "Minutes" %> :
-	<%= f.select(:supplied_minutes, (0..59).to_a ) %>
+	<%= f.select(:supplied_minutes, (0..59).to_a, :selected => @time_log.minutes_i ) %>
 </div>
 
 

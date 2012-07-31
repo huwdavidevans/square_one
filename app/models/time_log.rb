@@ -14,13 +14,22 @@ class TimeLog < ActiveRecord::Base
   validates :time_minutes, :numericality => {:greater_than => 0}
  
  
+  def body
+    comment.body
+  end
+ 
+  def minutes_i
+    (time_minutes % 60).to_i
+  end 
+ 
+  def hours_i
+    (time_minutes / 60).to_i 
+  end  
+ 
   def time_string
-    i_min = (time_minutes % 60).to_i
-    i_hrs = (time_minutes / 60).to_i 
-    str_min = pluralize(i_min, "Minute") if i_min > 0
-    str_hrs = pluralize(i_hrs, "Hour") if i_hrs > 0
-    return  "#{str_hrs} #{str_min}"
-     
+    str_min = pluralize(minutes_i, "Minute") if minutes_i > 0
+    str_hrs = pluralize(hours_i, "Hour") if hours_i > 0
+    return  "#{str_hrs} #{str_min}"     
   end
  
   private 

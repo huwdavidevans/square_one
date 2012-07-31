@@ -48,18 +48,14 @@
 				<% end %>
 				
 				<% toggle == 0 ? toggle = 1 : toggle = 0 %>
-				<% if a.instance_of?(Comment)  %>
+				<% my_type = a.class.name.underscore() %>				
+				<%= render :partial => 'activity_item', :locals => {:type => my_type, :item => a, :my_class => classArr[toggle]} %>
 				
-				<%= render :partial => 'activity_comment', :locals => { :comment => a, :my_class => classArr[toggle] } %>
-				<% elsif a.instance_of?(TimeLog)  %>					
-				<%= render :partial => 'activity_time_log', :locals => { :time_log => a, :my_class => classArr[toggle]   } %>
-				<% end %>			
 			<% end %>
 			</div>
 			
 
 
-			<!-- thing-->
 		</div>
 		
 		<div id="metrics" class="left">
@@ -82,6 +78,3 @@
 
 
 <div class="clear"> </div>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', project_path(@task.project_id) %>

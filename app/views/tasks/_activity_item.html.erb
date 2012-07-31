@@ -1,0 +1,49 @@
+<div class="timepoint  <%= my_class %>">
+	
+<div class="activity <%= type %>" id="<%= type %>-<%=item.id%>">
+	
+	<div class="avatar left">
+		<%= image_tag item.user.avatar.url(:thumb) %>
+		<div class="icon">
+			<%= image_tag "#{type}.png" %>
+		</div>
+	</div>
+	
+	<div class="details left">
+		
+		<div class="description">			
+			<%= item.user.first_name %> 
+			<% if type == 'time_log' %>
+			logged <span class="type"><%= item.time_string %></span>
+			<% elsif type == 'comment'%>
+			posted a <span class="type">comment</span>
+			<%end%>
+		</div>
+		
+		<div class="time">
+			<% if item.created_at.to_date == Date.today %>
+				<strong><%= distance_of_time_in_words(Time.now, item.created_at).gsub('about ','') %></strong> ago
+			<% elsif %>
+				at <strong><%= item.created_at.strftime("%H:%M")%></strong>
+			<% end %>
+			</span>
+		</div>
+		
+		<div class="body">
+			<%= item.body %></span>
+		</div>
+		
+		<!-- comment.in_reply_to -->
+	</div>		
+</div>
+
+	<div class="pointer">
+		<%= image_tag 'timeline-point.png' %>
+		<% if my_class == "right_of_line" %>
+			<%= image_tag 'timeline-arrow-from-right.png', :class=>'arrow' %>
+			<% else %>
+			<%= image_tag 'timeline-arrow-from-left.png', :class=>'arrow' %>
+		<% end %>
+	</div>
+
+</div>
