@@ -27,11 +27,10 @@
 			
 			<% classArr = ["", "right_of_line"] %>
 			<% toggle = 0 %>
-			<% recent_date = @task.activity.first.created_at.to_date if @task.activity.first %>
-			<% recent_date = Date.today if recent_date < Date.today  %>
+			<% recent_date = Date.today %>
 			
 			<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>
-			<%= render :partial => 'new_activity_buttons' %>			
+			<%= render :partial => 'new_activity_buttons' %>
 			<div class="seperator">
 			<% @task.activity.each do |a| %>
 			

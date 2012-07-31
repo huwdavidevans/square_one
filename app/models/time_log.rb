@@ -19,7 +19,7 @@ class TimeLog < ActiveRecord::Base
   end
  
   def minutes_i
-    (time_minutes % 60).to_i
+    (time_minutes % 60).to_i 
   end 
  
   def hours_i

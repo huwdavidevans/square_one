@@ -27,7 +27,7 @@ class TimeLogsController < ApplicationController
   # GET /time_logs/new
   # GET /time_logs/new.json
   def new
-    @time_log = TimeLog.new(:task_id => @task.id, :user_id => @task.user.id)
+    @time_log = TimeLog.new(:task_id => @task.id, :user_id => @task.user.id, :time_minutes => 0 )
     @comment = Comment.new()
     
     
