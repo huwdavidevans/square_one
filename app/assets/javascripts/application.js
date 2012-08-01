@@ -61,28 +61,47 @@ function drawPi(myDiv, start, amount, radiusPadding, colour){
 	var _w = myDiv.width;
 	var _h = myDiv.height;
 	var radius; (_w > _h) ? radius = (_h - radiusPadding) / 2 : radius = (_w - radiusPadding) / 2;
-	ctx.fillStyle = colour;
+	ctx.fillStyle = colour;	
 	ctx.beginPath();
-	ctx.arc(_w / 2, _h / 2, radius, _s.radians-ninetyDeg, _s.radians+_e.radians-ninetyDeg, false);
-	ctx.lineTo(_w / 2, _h / 2);
-	ctx.closePath();
+	ctx.arc(_w / 2, _h / 2, radius, _s.radians-ninetyDeg, _s.radians+_e.radians-ninetyDeg, false);	
+	
+	if (_e.percent < 1){
+		ctx.strokeStyle = '#888'
+		ctx.lineWidth  = 0.5;
+		ctx.lineTo(_w / 2, _h / 2);
+		ctx.closePath();
+		ctx.stroke();
+	} else{
+		ctx.closePath();
+	}
+	
 	ctx.fill();
+	
+	return ctx;
 }
 
 function drawTaskPie(divID, slicePercent) {	
 	var colArray = ["#00df00", "#5fdf00", "#9fdf00", "#dfdf00", "#ffdf00", "#ffbf00", "#ff9f00", "#ff7f00", "#ff3f00", "#ff0000"]
-	colour = colArray[parseInt(slicePercent * 9, 10)];	
-	var myDiv = $('#'+divID)[0];
-	//draw background circle
-	drawPi(myDiv, '0%', '1%', 4, "#aeaeae");
-	//draw time pie
-	if(slicePercent > 0) {
-		drawPi(myDiv, '0d', slicePercent+'%', 8, colour);
-	} else if(slicePercent > 1) {
-		drawPi(myDiv, '0%', '1%', 8, colArray[colArray.length-1]);
-	}	
+	var colour = colArray[parseInt(slicePercent * 9, 10)];	
+	var myDiv = $('#'+divID)[0];	
+	var ctx = myDiv.getContext("2d");
+	var clockFace = new Image();
+	
+	clockFace.onload = function() {
+			//draw background circle
+			drawPi(myDiv, '0%', '1%', 4, "#aeaeae");
+			ctx.save();			
+			//draw time pie		
+			if(slicePercent > 0) {
+				drawPi(myDiv, '0d', slicePercent+'%', 5, colour);
+				console.log(colour)
+			} else if(slicePercent > 1) {
+				drawPi(myDiv, '0%', '1%', 5, colArray[colArray.length-1]);
+			}
+	       ctx.drawImage(clockFace, 0, 0);
+	  }
+	clockFace.src = "/assets/clock_overlay.png";
 }
-
 
 
 

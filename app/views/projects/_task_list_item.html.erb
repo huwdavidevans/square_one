@@ -24,9 +24,12 @@
 		<%= link_to(image_tag('actions/destroy_btn_16.png', {:title => "Delete Task"}), task, method: :delete, data: { confirm: 'Are you sure?' }) %>
 	</div>
 	
-	<div class="time right">		
+	<div class="time right">
+		<a href="#">
 		<canvas id="time-<%=task.id%>" width="40" height="40">
+			<%= (task.work_percent_spent * 100).round %>% of allocated time used
 		</canvas>
+		</a>	
 		<script type="text/javascript">
 		$(function(){drawTaskPie("time-<%=task.id%>", <%=task.work_percent_spent%>) } );		
 		</script>		
