@@ -1,51 +1,46 @@
-<div id="project">
+<% @page_title = @project.name %>
+<% @page_class = 'project' %>
 	
-	<div id="top">
-		
-		<h2><%= link_to 'Home', projects_path %> &gt; <%= @project.name %> : <%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %></h2>
-		
-		<p class="code">
-			 <%= @project.code %>
-		</p>
-		<p class="description">
-			<%= @project.description %>
-		</p>
-		
-		
-		
-		<div id="milestones">
-			<div class="milestone start" style="left:0px;">
-				<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.created_at} %>
-			</div>
-			<div class="milestone today" style="left:<%= @project.percent_of_time_left.to_i %>%;">
-				<%= render :partial => 'shared/calendar_date', :locals => {:date => Date.today} %>
-				<p>
-					<%= @project.days_left %> Days until finish.
-				</p>
-			</div>
-			<div class="milestone finish" style="right:0px;">
-				<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.deadline} %>
-			</div>
+<% content_for :top do %>
+	<h2><%= link_to 'Home', projects_path %> &gt; <%= @project.name %> : <%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %></h2>
+	
+	<p class="code">
+		 <%= @project.code %>
+	</p>
+	<p class="description">
+		<%= @project.description %>
+	</p>
+	
+	<div id="milestones">
+		<div class="milestone start" style="left:0px;">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.created_at} %>
 		</div>
-		<p id="notice">
-			<%= notice %>
-		</p>
+		<div class="milestone today" style="left:<%= @project.percent_of_time_left.to_i %>%;">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => Date.today} %>
+			<p>
+				<%= @project.days_left %> Days until finish.
+			</p>
+		</div>
+		<div class="milestone finish" style="right:0px;">
+			<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.deadline} %>
+		</div>
 	</div>
-	
+<% end %>
 
-	<div id="main-content">
-		<div id="controls" class="left">
-			<%= render :partial => 'user_list_filter', :locals => {:project => @project} %>
-		</div>
-		<div class="left">
-			<div id="tasks" class="left">
-				<%= render :partial => 'task_list', :locals => {:project => @project} %>
-			</div>
-			<div id="metrics" class="right">
-				<%= render :partial => 'project_details', :locals => {:project => @project}  %>
-				<%= render :partial => 'project_activity', :locals => {:project => @project}  %>
-			</div>
-		</div>
+
+<div class="grey_board">
+	
+	<div id="controls" class="left">
+		<%= render :partial => 'user_list_filter', :locals => {:project => @project} %>
 	</div>
 	
+	<div id="details" class="left">
+		<div id="tasks" class="left">
+			<%= render :partial => 'task_list', :locals => {:project => @project} %>
+		</div>
+		<div id="metrics" class="right">
+			<%= render :partial => 'project_details', :locals => {:project => @project}  %>
+			<%= render :partial => 'project_activity', :locals => {:project => @project}  %>
+		</div>
+	</div>
 </div>

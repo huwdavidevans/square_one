@@ -21,6 +21,13 @@
     <%= f.date_select :deadline %>
   </div>
 
+	
+  <div class="field">
+  	<th>Project Type</th>
+	<td><%= f.select(:project_type_id, ProjectType.all.collect {|r| [r.name, r.id]}) %></td>
+  </div>
+
+
 
   <div class="field">
     <%= f.label :code %><br />

@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+
+@import "compass";
+@import "colours-mixins";
+@import "fancy-buttons";
+
+
+.button{
+  @include fancy-button( #91dc3d, 14px, 4px, 1px);
+}
+
+body {
+	background: url('handmadepaper.png');
+}
+
+
+.square_one {
+	width:960px;
+	margin: 0 auto;
+	position:relative;
+	text-shadow: 0 1px 0px #FFF;
+	@include box-shadow(#CCC 0px 2px 4px);
+	z-index: 100;
+		
+}
+
+
+#user_fold{
+	background: #333;
+	height: 48px;
+}
+
+#top_fold{
+  	background: #f1f4f8;
+  	padding: 20px;
+	overflow:auto;	
+	@include box-shadow(#999 0px 2px 5px);
+	position: relative;
+}
+
+#main_fold{
+	overflow: auto;
+}
+
+#footer_fold{
+	background: #CAD9DF;
+	height: 24px;
+	bottom: 0px;
+	
+}
+
+.clear {
+	height: 100%;
+}
+
+.left {
+  float:left;
+}
+
+.right {
+  float:right;
+}

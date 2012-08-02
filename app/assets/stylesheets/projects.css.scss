@@ -2,29 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 @import "compass";
 @import "colours-mixins";
 @import "fancy-buttons";
 
-.button{
-  @include fancy-button( #91dc3d, 14px, 4px, 1px);
-}
 
-body {
-	background: url('handmadepaper.png');
-}
 
-.left {
-  float:left;
-}
-
-.right {
-  float:right;
-}
-
-.clear {
-	clear:both;
-}
 
 .calendar {
    margin:0 auto;
@@ -51,7 +35,7 @@ body {
 	@include box-shadow(#999 0px 2px 8px);
 	
 	.top {
-    	min-height: 130px;
+    	min-height: 166px;
 	}
 	
 	.title {
@@ -87,8 +71,7 @@ body {
 		left: 175px;
 		width: 60px;
 		height: 160px;
-		background: url('projects/bookmark.png') no-repeat scroll top left;
-		
+				
 		.deadline {
 		   position:absolute;
 		   bottom:32px;
@@ -160,19 +143,12 @@ body {
 
 
 
-#top {
-  	background: #f1f4f8;
-  	padding: 20px;
-	overflow:auto;
-  	@include single-box-shadow(#AAA, 0, 2px, 5px);	
-}
 
 
 
-#project {
-  width:960px;
-  margin: 0 auto;
-	text-shadow: 0 1px 0px #FFF;
+
+.project {
+
 	
 	.code {
 		color: $action-link-subtle-grey;
@@ -211,17 +187,20 @@ body {
 		
 	}
  	
-	#main-content {
-	  margin: 5px 0 0 0;
-	  overflow: auto;
-		
+ 	
+ 	
+	#main_fold {
+	  
+	  
+	  #grey_board{}
+      background: #D3D3D3;
+      @include background-image(linear-gradient(#EFEFEF, #D3D3D3));
+	  
 		
 		#controls {
       min-height: 250px;
 		  width: 185px;
 		  padding: 20px;
-			background: #EFEFEF;
-			@include background-image(linear-gradient(#EFEFEF, #D3D3D3));
 			
 			#userList{
 			  .user {
@@ -250,95 +229,97 @@ body {
 					
 		}
 
-		#tasks {
-      @include single-box-shadow(#AAA, -2px, -2px, 4px, false, false);
-		  padding: 20px;
-			min-height: 210px;
-			min-width: 475px;
-		//	text-shadow: none;
-		//	color: #EF02CB;
-			
-			.filter{
-			   margin: 20px 0;
-			   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-			   text-align:justify;
-			   
-			  .buttons{
-			    a {
-			       color: $action-link-subtle-grey;
-			       text-decoration: none;
-			       margin-left:1em;
-			    } 
-			    
-			  }
-			  
-			}
-			
-			.task {
-				//@include placeholder-border;
-				margin: 10px auto;
-				overflow:auto;
-				
-				.deadline{
-				  margin:10px ;
-				  color: #666;
-				  font-weight:bold;
-				}
-				
-				.details {
-				  margin: 10px 10px 10px 0;
-				  min-width: 300px;
-				  
-				  .task-name {
+    #details{
+      background: url("handmadepaper.png");
+      @include single-box-shadow(#AAA, -2px, 0px, 4px, false, false);
+    
+  		#tasks {
+  		  padding: 20px;
+  			min-height: 210px;
+  			min-width: 475px;
 
-				      a {
-				        color: #333;
-				        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-				        text-decoration: none;
-				      }
-				      
-				      margin-bottom: 7px;
-				  }		   
-				   
-				  .user {
-				    
-            .avatar {				      
-				    }
-				    
-				    .screen-name {
-				      color: #666;
-				      font-size: 11px;
-				      line-height: 16px;
-				      margin-left: 6px;
-				    }
-				    
-				  }
-				  
-				  
-				}
-				
-				.admin {
-				  margin: 10px auto;
-				}
-				
-				.time {
-          margin: 10px;
-				  width:40px;
-				  height:40px;
-				  //background: #234873;
-				}
-			}
-			
-		}
-		
-		#metrics {
-		  padding: 20px;
-		  width: 180px;
-      min-height: 250px;
-		}
-		
-	}
-	
+  			
+  			.filter{
+  			   margin: 20px 0;
+  			   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  			   text-align:justify;
+  			   
+  			  .buttons{
+  			    a {
+  			       color: $action-link-subtle-grey;
+  			       text-decoration: none;
+  			       margin-left:1em;
+  			    } 
+  			    
+  			  }
+  			  
+  			}
+  			
+  			.task {
+  				margin: 10px auto;
+  				overflow:auto;
+  				
+  				.deadline{
+  				  margin:10px ;
+  				  color: #666;
+  				  font-weight:bold;
+  				}
+  				
+  				.details {
+  				  margin: 10px 10px 10px 0;
+  				  min-width: 300px;
+  				  
+  				  .task-name {
+  
+  				      a {
+  				        color: #333;
+  				        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  				        text-decoration: none;
+  				      }
+  				      
+  				      margin-bottom: 7px;
+  				  }		   
+  				   
+  				  .user {
+  				    
+              .avatar {				      
+  				    }
+  				    
+  				    .screen-name {
+  				      color: #666;
+  				      font-size: 11px;
+  				      line-height: 16px;
+  				      margin-left: 6px;
+  				    }
+  				    
+  				  }
+  				  
+  				  
+  				}
+  				
+  				.admin {
+  				  margin: 10px auto;
+  				}
+  				
+  				.time {
+            margin: 10px;
+  				  width:40px;
+  				  height:40px;
+  				  //background: #234873;
+  				}
+  			}
+  			
+  		}
+  		
+  		#metrics {
+  		  padding: 20px;
+  		  width: 180px;
+        min-height: 250px;
+  		}
+  		
+  	}
+  
+  }
 }
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731122844) do
+ActiveRecord::Schema.define(:version => 20120802124755) do
 
   create_table "comment_replies", :id => false, :force => true do |t|
     t.integer  "comment_id"
@@ -40,13 +40,20 @@ ActiveRecord::Schema.define(:version => 20120731122844) do
 
   add_index "comments_replies", ["comment_id", "reply_id"], :name => "index_comments_replies_on_comment_id_and_reply_id"
 
+  create_table "project_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.date     "deadline"
     t.string   "code"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "project_type_id"
   end
 
   create_table "projects_users", :id => false, :force => true do |t|

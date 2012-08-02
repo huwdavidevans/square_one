@@ -1,74 +1,62 @@
-<div id="task">
+<% @page_title = "#{@task.project.name} > #{@task.name}" %>
+<% @page_class = 'task' %>
+
+
+<% content_for :top do %>
+	<h2>
+		<%= link_to 'Home', projects_path %> &gt;
+		<%= link_to  @task.project.name, project_path(@task.project) %> &gt;
+		<%= @task.name %> :
+		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
+	</h2>
 	
-	<div id="top">
-	
-		<h2>
-			<%= link_to 'Home', projects_path %> &gt;
-			<%= link_to  @task.project.name, project_path(@task.project) %> &gt;
-			<%= @task.name %> :
-			<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
-		</h2>
-		
-		<div class="description">
-			<%= @task.description %>
-		</div>
-		
-		<p id="notice">
-			<%= notice %>
-		</p>
-	
+	<div class="description">
+		<%= @task.description %>
 	</div>
 	
+<% end %>
+
+<div id="wood_board">
 	
-	
-	<div id="main-content">
+	<div id="activity_list" class="left">
 		
-		<div id="activity-list" class="left">
-			
-			<% classArr = ["", "right_of_line"] %>
-			<% toggle = 0 %>
-			<% recent_date = Date.today %>
-			
-			<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>
-			<%= render :partial => 'new_activity_buttons' %>
-			<div class="seperator">
-			<% @task.activity.each do |a| %>
-			
-				<% if a.created_at.to_date < recent_date %>
-					</div>
-					<h2 class="day"><%= a.created_at.strftime("%A %d %B") %></h2>					
-					<div class="seperator">
-					<% recent_date = a.created_at.to_date %>
-				<% end %>
-				
-				<% toggle == 0 ? toggle = 1 : toggle = 0 %>
-				<% my_type = a.class.name.underscore() %>				
-				<%= render :partial => 'activity_item', :locals => {:type => my_type, :item => a, :my_class => classArr[toggle]} %>
-				
+		<% classArr = ["", "right_of_line"] %>
+		<% toggle = 0 %>
+		<% recent_date = Date.today %>
+		
+		<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>
+		<%= render :partial => 'new_activity_buttons' %>
+		<div class="seperator">
+		<% @task.activity.each do |a| %>
+		
+			<% if a.created_at.to_date < recent_date %>
+				</div>
+				<h2 class="day"><%= a.created_at.strftime("%A %d %B") %></h2>					
+				<div class="seperator">
+				<% recent_date = a.created_at.to_date %>
 			<% end %>
-			</div>
 			
-
-
+			<% toggle == 0 ? toggle = 1 : toggle = 0 %>
+			<% my_type = a.class.name.underscore() %>				
+			<%= render :partial => 'activity_item', :locals => {:type => my_type, :item => a, :my_class => classArr[toggle]} %>
+			
+		<% end %>
 		</div>
-		
-		<div id="metrics" class="left">
-			<div class="polabox">
-				<p>Deadline: <%= @task.deadline.strftime("%A %d %B %Y") %></p>
-				<p>Days til deadline: <%= @task.days_left %></p>
-				<p>User: <%= image_tag(@task.user.avatar.url(:teeny), {:title => @task.user.name}) %> <%= @task.user.name %></p>
-				<p>Days Allocated: <%= @task.work_days %></p>
-				<p>Days Spent: <%= @task.work_days_spent %></p>
-				<p>Percentage of Time used: <%= @task.work_percent_spent %></p>
-			</div>
-			
+	
+	</div>
+	
+	<div id="metrics" class="left">
+		<div class="polabox">
+			<p>Deadline: <%= @task.deadline.strftime("%A %d %B %Y") %></p>
+			<p>Days til deadline: <%= @task.days_left %></p>
+			<p>User: <%= image_tag(@task.user.avatar.url(:teeny), {:title => @task.user.name}) %> <%= @task.user.name %></p>
+			<p>Days Allocated: <%= @task.work_days %></p>
+			<p>Days Spent: <%= @task.work_days_spent %></p>
+			<p>Percentage of Time used: <%= @task.work_percent_spent %></p>
 		</div>
 		
 	</div>
-	
-	
 </div>
+	
 
 
-
-<div class="clear"> </div>

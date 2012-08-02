@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>SquareOne</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>SquareOne :: <%= @page_title || '' %> </title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="square_one <%= @page_class %>">
+			
+			<div id="user_fold"></div>
+			
+			<div id="top_fold">
+				<%= yield :top %>
+			</div>
+			
+			<% if !flash[:notice].blank? %>
+			<div id="notify_fold">
+				<%= flash[:notice]%>
+			</div>
+			<%end%>
+			
+			<div id="main_fold">
+				<%= yield %>
+			</div>
+			
+			<div class="clear"> </div>
 
-<%= yield %>
-
-</body>
+			<div id="footer_fold"></div>
+			
+		</div>
+	</body>
 </html>

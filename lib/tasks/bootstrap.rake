@@ -103,11 +103,38 @@ namespace :bootstrap do
   
   
   
-  
-
+  desc "Add inital Project Types"
+  task :add_project_types => :environment do
+    
+    pt = ProjectType.new
+    pt.name = "Generic"
+    pt.save
+    
+    pt = ProjectType.new
+    pt.name = "NGfL"
+    pt.save
+    
+    pt = ProjectType.new
+    pt.name = "WJEC"
+    pt.save
+    
+    pt = ProjectType.new
+    pt.name = "CiLT"
+    pt.save
+        
+    pt = ProjectType.new
+    pt.name = "CPD"
+    pt.save
+    
+    pt = ProjectType.new
+    pt.name = "DFES"
+    pt.save
+    
+    
+  end
 
 
 
   desc "Run all bootstrapping tasks"
-  task :all => [:default_user_roles, :default_user, :extra_users, :add_test_projects]
+  task :all => [:default_user_roles, :default_user, :extra_users, :add_test_projects, :add_project_types]
 end

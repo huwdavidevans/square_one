@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		<div class="right">
-			<div class="ribbon">
+			<div class="ribbon" style="background: url(<%= project.ribbonURL %>) no-repeat scroll top left;">
 				<div class="deadline">
 					<%= render :partial => 'shared/calendar_date', :locals => {:date => project.deadline} %>
 				</div>

@@ -4,8 +4,7 @@
 
 @import "compass";
 
-#task {
-	text-shadow: 0 1px 0px #FFF;
+.task {
 	
 	.user{
 		.user-name{
@@ -20,42 +19,73 @@
 	.description{		
 	}
 		
-	#activity-list{
-		width: 770px;
-		
-		.new_activity{
-		  text-align: center;
-		  margin: 10px auto;
-		}
-		
-		.day {
-			margin: 20px 0;
-			text-align: center;
-			color: #7196B0;
-		}
-		.seperator{
-		  padding:20px 0;
-			background: url('bar.png') repeat-y center;
-		}
-	}
-
-	#metrics{
-	  @include box-shadow(#888 2px 2px 6px inset );
-		min-height: 500px;
-		width: 275px;
-		padding: 10px;
-		background: url("wood_pattern.png");
-		.polabox{
-			padding: 10px;	
-		}
-	}
+	
 		
 }
 
 
 
+
+#wood_board {
+  background: url("wood_pattern.png");
+  overflow: auto;   
+  
+  #activity_list{
+    background: url("handmadepaper.png");
+    width: 730px;
+    @include box-shadow(#888 2px 0px 6px );    
+    
+    .new_activity{
+      text-align: center;
+      margin: 10px auto;
+    }
+    
+    .day {
+      margin: 20px 0;
+      text-align: center;
+      color: #7196B0;
+    }
+    
+    .seperator{
+      padding:20px 0;
+      background: url('bar.png') repeat-y center;
+      overflow-x: hidden;
+    }
+    
+  }
+
+  #metrics{
+        
+    min-height: 500px;
+    width: 210px;
+    padding: 10px;
+    
+    .polabox{
+      padding: 10px;  
+    }
+    
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .right_of_line{
-	left:400px;	
+	left:379px;	
 }
 
 .timepoint {
@@ -65,7 +95,7 @@
   
    .pointer {
       position:absolute;         
-      left: 371px;   
+      left: 350px;   
       top: 24px;
       .arrow{
         position: absolute;
@@ -93,7 +123,7 @@
 
 
 .activity {
-	width: 350px;
+	width: 330px;
 	position:relative;
 	overflow:auto;
 	margin: 20px 10px;
@@ -101,14 +131,11 @@
 
 	@include border-radius(5px);
 	@include box-shadow(#999 0px 1px 6px);
-//	@include background-image(linear-gradient(#EFEFEF, #D3D3D3));
-  
-  
-  
-  
+
+
   .avatar{
-	width:50px;
-    margin:20px;
+	  width:50px;
+    margin:15px;
     position:relative;
     border: 2px white solid;
     @include border-radius(10px);
