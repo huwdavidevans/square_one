@@ -43,19 +43,32 @@ class Task < ActiveRecord::Base
     time_logs.each do |tl|
       total += tl.time_minutes
     end
-    sprintf("%.2f",  total.to_f / MINUTES_IN_WORK_DAY).to_f
+    total.to_f / MINUTES_IN_WORK_DAY
   end
   
   def work_percent_spent
-    sprintf("%.2f",  work_days_spent / work_days.to_f).to_f
+    work_days_spent / work_days
   end
   
   def activity
-    
     (comments + time_logs).sort_by(&:created_at).reverse!
   end
   
+  def started
+    time_logs.length > 0
+  end
+
+  def in_progress
+    started && !complete
+  end
   
+  def overdue
+    Date.today > deadline
+   end
+
+   def overrun
+     work_days_spent > work_days
+   end
   
   
   private

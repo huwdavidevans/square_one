@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   
   def total_work_days
     total = 0;    
-    self.tasks.each do |t|
+    tasks.each do |t|
       total += t.work_days
     end
     return total
@@ -38,13 +38,93 @@ class Project < ActiveRecord::Base
   
   
   def work_days_left
-    
+    (total_work_days.to_f - work_days_spent)
   end
   
   
   def work_days_spent
-    
+    total = 0
+    tasks.each do |t|
+      total += t.work_days_spent
+    end
+    total
+    #sprintf("%.2f",  total.to_f / MINUTES_IN_WORK_DAY).to_f
   end
+  
+  def work_percent_spent
+   work_days_spent / total_work_days
+  end
+  
+  
+  def overdue
+    Date.today > deadline
+  end
+  
+  
+  def overrun
+    work_days_spent > total_work_days
+  end
+  
+  def work_days_over
+    work_days_spent - total_work_days
+  end
+  
+  
+  def tasks_not_started
+     total = 0
+      tasks.each do |t|
+        total +=1 unless t.started
+      end
+      total
+  end
+
+  
+  def tasks_in_progress
+     total = 0
+       tasks.each do |t|
+         total +=1 if t.in_progress
+       end
+       total
+   end
+   
+   def tasks_completed
+     total = 0
+       tasks.each do |t|
+         total +=1 if t.complete
+       end
+       total
+   end
+  
+  
+  def percent_of_tasks_in_progress
+   tasks_in_progress / tasks.length 
+  end
+  
+  def percent_of_tasks_completed
+    tasks_completed / tasks.length
+  end
+  
+  def percent_of_tasks_not_started
+     tasks_not_started / tasks.length
+  end
+  
+  
+  def tasks_overdue
+    to = []
+     tasks.each do |t|
+       to << t if t.overdue
+     end
+     to
+  end
+  
+  def tasks_overrun
+    to = []
+    tasks.each do |t|
+       to << t if t.overrun
+     end
+     to
+  end
+  
   
   def type
     project_type ? project_type.name.downcase.underscore : 'generic'
@@ -53,6 +133,8 @@ class Project < ActiveRecord::Base
   def ribbonURL
     "assets/projects/bookmark_#{type}.png"    
   end
+  
+  
   
   
 end
