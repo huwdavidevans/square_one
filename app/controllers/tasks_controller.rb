@@ -61,9 +61,10 @@ class TasksController < ApplicationController
     
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task.project, notice: 'Task was successfully created.' }
+        format.html { redirect_to @task.project, success: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
+        flash[:error] = "Task not created."
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end      
@@ -82,12 +83,12 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
-  
-      
+    
       if @task.update_attributes(params[:task])
-        flash[:notice] = "task updated."
+        flash[:success] = "Task updated."
         redirect_to(:action => 'show', :id => @task.id)
       else
+        flash[:error] = "Task not updated."
         render('edit')
       end
       
