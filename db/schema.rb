@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120802124755) do
 
-  create_table "comment_replies", :id => false, :force => true do |t|
-    t.integer  "comment_id"
-    t.integer  "reply_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "task_id"
