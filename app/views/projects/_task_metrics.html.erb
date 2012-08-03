@@ -1,0 +1,19 @@
+
+		
+		<h3><%= pluralize(project.tasks.length, 'task').upcase %> </h3>
+		<div class="centre">
+		<div class="piechart left">
+			<canvas id="taskPie-<%= project.id %>" width="46" height="46"></canvas>
+			<script type="text/javascript" charset="utf-8">
+				$(function(){ drawTotalTasksPie("taskPie-<%= project.id %>", <%= project.percent_of_tasks_not_started %>, <%= project.percent_of_tasks_in_progress%>, <%= 0 %>, <%= project.percent_of_tasks_completed %>) } );
+			</script>
+		</div></div>
+		
+		<div class="rundown left">
+			<p> <span class="not_started bold"><%=  project.tasks_not_started %> </span> not started </p>
+			<p> <span class="in_progress bold"><%=  project.tasks_in_progress %></span> in progress </p>
+			<p> <span class="in_qa bold"><%=  project.tasks_in_qa %></span> in QA </p>
+			<p> <span class="completed bold"><%=  project.tasks_completed %></span> completed </p>
+			<!-- 	<p> <span class="total bold"><%=  project.tasks.length %></span> total </p> -->			
+		</div>
+		<div class="clear"></div>

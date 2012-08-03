@@ -1,46 +1,20 @@
 <h2>DETAILS</h2>
-<div class="demoBox polabox">
+
+<div class="polabox">
 	
-	
-	<p>	
- 	<%= pluralize project.work_days_spent.round, 'day' %> out of <%= project.total_work_days %>
-	</p>
-	
-	<%  if project.overdue %>
-		Project Overdue<br/>
-	<% end %>
-	
-	<%  if project.overrun %>
-		Project Over-run by <%= pluralize project.work_days_over, 'day' %><br/>
-	<%  else %>
-	
-	<%= project.work_percent_spent %>
-		<%= pluralize project.work_days_left.round, 'day'%> of work left <br/>
-	<% end %>
-	
-	
-	<p>	
- 	<%= pluralize project.tasks_not_started, 'task' %> not started
-	</p>	
-	
-	<p>	
- 	<%= pluralize project.tasks_in_progress, 'task' %> in progress
-	</p>	
-	
-	<p>	
- 	<%= pluralize project.tasks_completed, 'task' %> completed
-	</p>	
-	
-	<p>	
- 	<%= pluralize project.tasks.length, 'task' %> total
-	</p>
+	<div id="dev-time" class="section">		
+		<%= render :partial => 'development_metrics', :locals => {:project => project} %>
+	</div>
 	
 	<hr/>
 	
-	<p>
-	<%= pluralize project.tasks_overrun.length, 'task' %> Over-run	
-</p>	<p>
-	<%= pluralize project.tasks_overdue.length, 'task' %> Over-due
-</p>
+	<div id="dev-tasks" class="section">
+	<%= render :partial => 'task_metrics', :locals => {:project => project} %>
+	</div>
+	
+	<hr/>
+	
+	<p> <%= pluralize project.tasks_overrun.length, 'task' %> Over-run </p>
+	<p> <%= pluralize project.tasks_overdue.length, 'task' %> Over-due </p>
 	
 </div>

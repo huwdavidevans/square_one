@@ -19,7 +19,7 @@
   
    <div class="field">
   	<%= f.label :supplied_work_days, "Days worth of work"  	%>
-  	<%= f.select(:supplied_work_days, (1..10).to_a  ) 	%>
+  	<%= f.select(:supplied_work_days, (1..10).to_a, :selected => @task.work_days || 1 ) 	%>
   </div>
   
   <div class="actions">

@@ -38,7 +38,7 @@ class Project < ActiveRecord::Base
   
   
   def work_days_left
-    (total_work_days.to_f - work_days_spent)
+    total_work_days.to_f - work_days_spent
   end
   
   
@@ -52,7 +52,7 @@ class Project < ActiveRecord::Base
   end
   
   def work_percent_spent
-   work_days_spent / total_work_days
+    total_work_days > 0 ? work_days_spent / total_work_days : 0
   end
   
   
@@ -79,6 +79,14 @@ class Project < ActiveRecord::Base
   end
 
   
+  def tasks_in_qa
+     total = 0
+       tasks.each do |t|
+         total +=1 if t.in_qa
+       end
+       total
+   end
+  
   def tasks_in_progress
      total = 0
        tasks.each do |t|
@@ -97,15 +105,15 @@ class Project < ActiveRecord::Base
   
   
   def percent_of_tasks_in_progress
-   tasks_in_progress / tasks.length 
+   tasks_in_progress.to_f / tasks.length 
   end
   
   def percent_of_tasks_completed
-    tasks_completed / tasks.length
+    tasks_completed.to_f / tasks.length
   end
   
   def percent_of_tasks_not_started
-     tasks_not_started / tasks.length
+     tasks_not_started.to_f / tasks.length
   end
   
   

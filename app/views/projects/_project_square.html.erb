@@ -1,4 +1,4 @@
-<div class="pSquare">
+<div class="pSquare" id="project-<%= project.id %>">
 	<div class="top">
 		<div class="left">
 			<div class="title">
@@ -18,25 +18,39 @@
 	</div>
 	
 	<div class="actions">
-		<%= link_to 'SHOW', project %> . 
-		<%= link_to 'EDIT', edit_project_path(project) %>&#09; . 
-		<%= link_to 'DELETE', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<ul>
+			
+			<li id="details_action">
+				<%= link_to_function "DETAILS", "showDetails(#{project.id})" %>				
+			</li>
+			
+			<li>
+				<%= link_to 'EDIT', edit_project_path(project) %>&#09;
+			</li>
+			
+			<li class="last">
+				<%= link_to 'DELETE', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+			</li>
+			
+		</ul>
 	</div>
 	
 	
-	<div class="details">
+	
+	<div class="split hidden">		
+		<div id="metrics" class="details hidden">
+			<%= render :partial => 'development_metrics', :locals => {:project => project} %>
+			<hr/>
+			<%= render :partial => 'task_metrics', :locals => {:project => project} %>
+		</div>
 		
-		Tasks : <span class="metric"><%= project.tasks.length %></span>
+		<div class="activity hidden"></div>
 		
+		<div class="admin hidden"></div>
+		
+		<div class="split_end"></div>
 	</div>
 	
-	
-	<div class="activity">
-	</div>
-	
-	
-	<div class="admin">
-	</div>
 	
 	
 		<div class="users">

@@ -62,6 +62,11 @@ class Task < ActiveRecord::Base
     started && !complete
   end
   
+  def in_qa
+    false
+    # TODO logic here 
+  end
+  
   def overdue
     Date.today > deadline
    end

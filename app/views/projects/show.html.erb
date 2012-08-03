@@ -17,9 +17,7 @@
 		</div>
 		<div class="milestone today" style="left:<%= @project.percent_of_time_left.to_i %>%;">
 			<%= render :partial => 'shared/calendar_date', :locals => {:date => Date.today} %>
-			<p>
-				<%= @project.days_left %> Days until finish.
-			</p>
+			<p><%= @project.days_left %> Days until finish.</p>
 		</div>
 		<div class="milestone finish" style="right:0px;">
 			<%= render :partial => 'shared/calendar_date', :locals => {:date => @project.deadline} %>

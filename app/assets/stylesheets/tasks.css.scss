@@ -6,6 +6,12 @@
 
 .task {
 	
+	.task-name{
+	  img{
+	    vertical-align:middle;
+	  }
+	}
+	
 	.user{
 		.user-name{
 		}
@@ -19,10 +25,26 @@
 	.description{		
 	}
 		
-	
+
 		
 }
 
+.task.complete{
+   // border-color:green;
+    @include background-image(linear-gradient( #dbf2d7, #c4dbc1 ));
+   // opacity: .25;
+  }
+  
+.task.overrun{
+  // border-color:green;
+   
+  }
+  
+.task.overdue{
+    .deadline{
+      color: #a21414 !important;
+    } 
+  }
 
 
 

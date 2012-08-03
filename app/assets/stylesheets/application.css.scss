@@ -68,33 +68,48 @@ body {
   
 }
 
-#user_fold{
+#user_fold {
 	background: #333;
 	height: 48px;
 }
 
-#top_fold{
-  	background: #f1f4f8;
-  	padding: 20px;
+
+#top_fold {
+	background: #f1f4f8;
+	padding: 20px;
 	overflow:auto;	
 	@include box-shadow(#999 0px 2px 5px);
 	position: relative;
 }
 
-#main_fold{
+
+#main_fold {
 	overflow: auto;
 }
 
-#footer_fold{
+
+#footer_fold {
 	background: #CAD9DF;
 	height: 24px;
 	bottom: 0px;
-	
+}
+
+
+.polabox {
+  border: 3px solid #FFF;
+  @include background-image(linear-gradient(#EFEFEF, #D3D3D3));
+  @include single-box-shadow(#AAA, 0, 2px, 5px)
+ }
+
+
+.bold{
+  font-weight:bold;
 }
 
 .clear {
-	height: 100%;
+	clear:both;
 }
+
 
 .left {
   float:left;

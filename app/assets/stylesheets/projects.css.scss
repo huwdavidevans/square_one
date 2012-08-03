@@ -7,18 +7,13 @@
 @import "colours-mixins";
 @import "fancy-buttons";
 
-
-
-
 .calendar {
    margin:0 auto;
    text-align: center;
    font-size: 14px;
-   
    .month {
      //font-weight: bold;
-   }
-   
+   }   
    .date {
       font-size: 2em;
    }
@@ -89,32 +84,59 @@
     margin: 0 0 30px 0;
     a {
       color: $action-link-subtle-grey;
-      text-decoration: none;
+      text-decoration: none; 
+      
     }
     
     a:hover {
       color: darken($action-link-subtle-grey, 20);  
     }
     clear:both;
+    
+    ul li{
+      float:left;
+      margin: 0 5px ;
+      .last{
+        margin-right: 0px
+      }
+    }
+    
+    
+    .selected{
+      a {
+        color: #333;       
+      }
+      height: 36px;
+      background: url('project_square_split_point.png') no-repeat center bottom;
+      }
+   
 	}
 	
-	.details {
-		margin:10px;
-		font-size:14px;
-		color: darken($action-link-subtle-grey, 30);
-		.metric {
-			color: $project-link-colour-blue;
-		}
+	.split{
+	  min-height: 100px;
+	  background: #f0f0f0 url('project_square_split.png') repeat-x;
+	  .split_end{
+	  height: 8px;
+    background: #f0f0f0 url('project_square_split_end.png') repeat-x;
+	  
 	}
-	
-  	.activity {
-	
-	}
-	
+	  
+	  .details {
+	    	     
+	   }
+  
+    .activity {
+      display:none;
+    }
+  
     .admin {
-	
+      display:none;  
+   }
+	  
 	}
-
+	
+	
+	
   	.users {
   		position:relative;
   		bottom: 0px;
@@ -131,15 +153,11 @@
 
 .demoBox { 
   width: 180px;
-  height: 200px;
+  min-height: 200px;
   margin: 10px 0 20px ;
   }
   
-.polabox {
-  border: 3px solid #FFF;
-  @include background-image(linear-gradient(#EFEFEF, #D3D3D3));
-  @include single-box-shadow(#AAA, 0, 2px, 5px)
- }
+
 
 
 
@@ -311,16 +329,116 @@
   			
   		}
   		
-  		#metrics {
-  		  padding: 20px;
-  		  width: 180px;
-        min-height: 250px;
-  		}
-  		
+
   	}
   
   }
 }
+
+
+
+.centre{
+  text-align: center;
+}
+
+
+.pSquare #metrics {
+        padding: 20px 0;
+ }
+
+	#metrics {
+
+        padding: 20px 20px 20px 0;
+        width: 200px;
+        margin: 0 auto;
+        font-size:12px;
+        color: #444;
+        
+        #dev-time {
+        }
+        
+        #dev-tasks {
+        }
+        
+        .section {
+          margin:10px;
+        }
+        
+          h3 {
+            color: #444;
+            text-align: center;
+            font-size: 15px;
+            letter-spacing: 3px;
+            margin: 10px;
+          }
+        
+          .piechart {
+            width:48px;
+            height:48px;
+            margin: 0 15px 0 0;
+          }
+          
+          .rundown {
+            min-height: 48px;
+            width:110px;
+            .collection {
+              
+              color: inherit;
+            }
+            .bold{
+              margin-right:5px;
+            }      
+          }
+          
+          .over {
+            color: $over;
+          }
+          
+          .under {
+            color: $under;
+          }
+          
+          .total {
+            color: $total;
+          }
+        
+          .not_started {
+            color: darken($not_started, 30);
+          }
+          
+          .in_progress {
+            color: $in_progress;
+          }
+          
+          .in_qa {
+            color: darken($in_qa, 5);
+          }
+          
+          .completed {
+            color: darken($completed, 10);
+          }
+        
+          
+          .standout{
+            font-size: 1.25em;
+            font-weight: bold;
+          }
+          
+          hr {
+             border: 0;
+             border-top: 1px solid #CCC;
+             height: 1px;
+             background-color: #EFEFEF;
+            width: 80%;
+          }
+  		}
+  		
+
+
+
+
+
+
 
 
 

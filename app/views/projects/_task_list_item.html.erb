@@ -1,4 +1,4 @@
-<div class="task polabox">
+<div class="task polabox<%= " complete" if task.complete %><%= " overrun" if task.overrun %><%= " overdue" if task.overdue %> ">
 	
 	<div class="deadline left">
 		<%= render :partial => 'shared/calendar_date', :locals => { :date => task.deadline }  %>
@@ -6,6 +6,7 @@
 	
 	<div class="details left">
 		<div class="task-name">
+			<%= image_tag "tasks/complete_tick.png" if task.complete%>
 			<%= link_to(task.name, task) %>
 		</div>
 		<div class="user">
@@ -24,16 +25,18 @@
 		<%= link_to(image_tag('actions/destroy_btn_16.png', {:title => "Delete Task"}), task, method: :delete, data: { confirm: 'Are you sure?' }) %>
 	</div>
 	
+	<% if task.started %>	
 	<div class="time right">
 		<a href="#">
 		<canvas id="time-<%=task.id%>" width="40" height="40">
-			<%= (task.work_percent_spent * 100).round %>% of allocated time used
+			<%= (task.work_percent_spent * 100).round %> % of allocated time used
 		</canvas>
 		</a>	
 		<script type="text/javascript">
-		$(function(){drawTaskPie("time-<%=task.id%>", <%=task.work_percent_spent%>) } );		
+			$(function(){drawTaskPie("time-<%=task.id%>", <%=task.work_percent_spent%>) } );		
 		</script>		
 	</div>
+	<% end %>
 	
 	
 </div>
