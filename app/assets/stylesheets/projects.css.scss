@@ -187,6 +187,7 @@
 		
 		.timeline {
 			position: relative;
+			
 			.tl {
 				position: absolute;
 				background: url('milestones_timeline.png') repeat-x center;
@@ -200,11 +201,27 @@
 				text-align: center;
 				position: absolute	;
 				width: 90px;
+				
+				.date {
+				color: #ADADAD;
+					font-weight: bold;
+					text-shadow: white 0 2px 2px;
+				}
+				
+				.description {
+				color: #ADADAD;
+					font-weight: bold;
+					text-shadow: white 0 2px 2px;
+				}
+				
 				.point{
 					width:32px;
 					margin: 0 auto;
 				}
 			}
+			
+			
+			
 			
 			
 		}

@@ -13,13 +13,13 @@
 				</div>
 				
 				<div class="ms" style="left:<%= project.percent_of_time_left.to_i %>%;">
-					<div><%= Date.today.strftime('%a %d %b') %></div>
+					<div class="date"><%= Date.today.strftime('%a %d %b') %></div>
 					<div class="point"><%= image_tag "milestone_circle.png" %></div>
 					<div class="description"><%= project.days_left %> Days until deadline	</div>
 				</div>
 				
 				<div class="ms" style="right:0px;">
-					<div><%= project.deadline.strftime('%a %d %b') %></div>
+					<div class="date"><%= project.deadline.strftime('%a %d %b') %></div>
 					<div class="point"><%= image_tag "milestone_circle.png" %></div>
 					<div class="description">Project Finish</div>
 				</div>
