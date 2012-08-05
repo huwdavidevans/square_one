@@ -12,10 +12,12 @@
 			<div id="user_fold"></div>
 			
 			<div id="top_fold">
-				<%= yield :top %>
+				
+					<%= yield :top %>
+				
 			</div>
 			
-			<% if flash  %>
+			<% if flash %>
 			
 			<div id="notify_fold">				
 			 <% flash.each do |key, value| %>
@@ -23,14 +25,13 @@
 			      <%= value %>
 			    </div>
 			  <% end %>
-			  
 			</div>
-			
-			
 			<%end%>
 			
 			<div id="main_fold">
-				<%= yield %>
+				<div class="fixed">
+					<%= yield %>
+				</div>
 			</div>
 			
 			<div class="clear"> </div>

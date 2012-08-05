@@ -158,15 +158,13 @@
   }
   
 
-
-
-
-
-
+.deets{
+	
+	
+}
 
 
 .project {
-
 	
 	.code {
 		color: $action-link-subtle-grey;
@@ -182,9 +180,34 @@
 	
 	#milestones {
 		position: relative;
-		min-height: 120px;
-		border: 1px dashed $action-link-subtle-grey;
-		margin: 10px 0px;
+		height: 100px;
+		width: 100%;
+		margin: 20px 0;
+	//	background: url('ricepaper.png');
+		
+		.timeline {
+			position: relative;
+			.tl {
+				position: absolute;
+				background: url('milestones_timeline.png') repeat-x center;
+				height: 32px;
+				width: 870px;
+				top: 14px;
+				left: 45px;
+			}
+			
+			.ms {
+				text-align: center;
+				position: absolute	;
+				width: 90px;
+				.point{
+					width:32px;
+					margin: 0 auto;
+				}
+			}
+			
+			
+		}
 		
 		.milestone {
 			position:absolute;	
@@ -346,93 +369,94 @@
         padding: 20px 0;
  }
 
-	#metrics {
+#metrics {
 
-        padding: 20px 20px 20px 0;
-        width: 200px;
-        margin: 0 auto;
-        font-size:12px;
-        color: #444;
-        
-        #dev-time {
-        }
-        
-        #dev-tasks {
-        }
-        
-        .section {
-          margin:10px;
-        }
-        
-          h3 {
-            color: #444;
-            text-align: center;
-            font-size: 15px;
-            letter-spacing: 3px;
-            margin: 10px;
-          }
-        
-          .piechart {
-            width:48px;
-            height:48px;
-            margin: 0 15px 0 0;
-          }
-          
-          .rundown {
-            min-height: 48px;
-            width:110px;
-            .collection {
-              
-              color: inherit;
-            }
-            .bold{
-              margin-right:5px;
-            }      
-          }
-          
-          .over {
-            color: $over;
-          }
-          
-          .under {
-            color: $under;
-          }
-          
-          .total {
-            color: $total;
-          }
-        
-          .not_started {
-            color: darken($not_started, 30);
-          }
-          
-          .in_progress {
-            color: $in_progress;
-          }
-          
-          .in_qa {
-            color: darken($in_qa, 5);
-          }
-          
-          .completed {
-            color: darken($completed, 10);
-          }
-        
-          
-          .standout{
-            font-size: 1.25em;
-            font-weight: bold;
-          }
-          
-          hr {
-             border: 0;
-             border-top: 1px solid #CCC;
-             height: 1px;
-             background-color: #EFEFEF;
-            width: 80%;
-          }
-  		}
-  		
+      padding: 20px 20px 20px 0;
+      width: 200px;
+      margin: 0 auto;
+      font-size:12px;
+      color: #444;
+      
+      #dev-time {
+      }
+      
+      #dev-tasks {
+      }
+      
+      .section {
+        margin:10px;
+      }
+      
+      h3 {
+         color: #444;
+         text-align: center;
+         font-size: 15px;
+         letter-spacing: 3px;
+         margin: 10px;
+       }
+     
+       .piechart {
+         width:48px;
+         height:48px;
+         margin: 0 15px 0 0;
+       }
+       
+       .rundown {
+         min-height: 48px;
+         width:110px;
+         
+		.collection {
+           color: inherit;
+         }
+
+         .bold{
+           margin-right:5px;
+         }      
+       }
+       
+       .over {
+         color: $over;
+       }
+       
+       .under {
+         color: $under;
+       }
+       
+       .total {
+         color: $total;
+       }
+     
+       .not_started {
+         color: darken($not_started, 30);
+       }
+       
+       .in_progress {
+         color: $in_progress;
+       }
+       
+       .in_qa {
+         color: darken($in_qa, 5);
+       }
+       
+       .completed {
+         color: darken($completed, 10);
+       }
+       
+       .standout{
+         font-size: 1.25em;
+         font-weight: bold;
+       }
+       
+       hr {
+          border: 0;
+          border-top: 1px solid #CCC;
+          height: 1px;
+          background-color: #EFEFEF;
+		  width: 80%;
+       }
+
+	}
+		
 
 
 

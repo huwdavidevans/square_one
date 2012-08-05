@@ -3,17 +3,23 @@
 
 
 <% content_for :top do %>
-	<h2>
-		<%= link_to 'Home', projects_path %> &gt;
-		<%= link_to  @task.project.name, project_path(@task.project) %> &gt;
-		<%= @task.name %> :
-		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
-	</h2>
+
+<div class="fixed">
+	
+	<ul class="crumbtrail">
+		<li class="home"><%= link_to image_tag('crumb_home.png', {:title => "Edit Task"}), projects_path %></li>
+		<li class="project"><%= link_to  @task.project.name, project_path(@task.project) %></li>
+		<li class="task end"><%= @task.name %></li>
+	</ul>
+	<div class="clear"></div>
+	
+	<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
+	
 	
 	<div class="description">
 		<%= @task.description %>
 	</div>
-	
+</div>
 <% end %>
 
 <div id="wood_board">
@@ -21,7 +27,7 @@
 	<div id="activity_list" class="left">
 		
 		<% classArr = ["", "right_of_line"] %>
-		<% toggle = 0 %>
+		<% toggle = 1 %>
 		<% recent_date = Date.today %>
 		
 		<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>

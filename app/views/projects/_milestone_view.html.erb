@@ -1,0 +1,30 @@
+<div id="milestones" >
+	
+	<div class="fixed">
+		
+			<div class="timeline">
+				
+				<div class="tl"> </div>
+				
+				<div class="ms" style="left:0px;">
+					<div class="date"><%= project.created_at.strftime('%a %d %b') %></div>
+					<div class="point"><%= image_tag "milestone_circle.png" %></div>
+					<div class="description">Project Start</div>
+				</div>
+				
+				<div class="ms" style="left:<%= project.percent_of_time_left.to_i %>%;">
+					<div><%= Date.today.strftime('%a %d %b') %></div>
+					<div class="point"><%= image_tag "milestone_circle.png" %></div>
+					<div class="description"><%= project.days_left %> Days until deadline	</div>
+				</div>
+				
+				<div class="ms" style="right:0px;">
+					<div><%= project.deadline.strftime('%a %d %b') %></div>
+					<div class="point"><%= image_tag "milestone_circle.png" %></div>
+					<div class="description">Project Finish</div>
+				</div>
+				
+			</div>
+			
+	</div>
+</div>

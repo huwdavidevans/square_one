@@ -27,14 +27,18 @@ body {
 }
 
 
-.square_one {
+.fixed {
 	width:960px;
 	margin: 0 auto;
+	position:relative;
+	
+}
+
+.square_one {
 	position:relative;
 	text-shadow: 0 1px 0px #FFF;
 	@include box-shadow(#CCC 0px 2px 4px);
 	z-index: 100;
-		
 }
 
 #notify_fold {
@@ -76,10 +80,10 @@ body {
 
 #top_fold {
 	background: #f1f4f8;
-	padding: 20px;
-	overflow:auto;	
+//	overflow:auto;	
 	@include box-shadow(#999 0px 2px 5px);
 	position: relative;
+	z-index: 1;
 }
 
 
@@ -98,7 +102,7 @@ body {
 .polabox {
   border: 3px solid #FFF;
   @include background-image(linear-gradient(#EFEFEF, #D3D3D3));
-  @include single-box-shadow(#AAA, 0, 2px, 5px)
+  @include single-box-shadow(#AAA, 0, 2px, 5px);
  }
 
 
@@ -110,6 +114,55 @@ body {
 	clear:both;
 }
 
+ul.crumbtrail{
+	
+//	margin: 20px 0;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	display:block;
+	
+	li {
+		padding: 0 20px 0 10px;
+		float:left;
+		min-width:36px;
+		min-height: 36px;
+		line-height: 36px;
+		font-size: 24px;
+		
+		img {
+			vertical-align: middle;
+		}
+		
+		a {
+			color:inherit;
+			text-decoration:none;
+		}
+		a:hover{
+			text-decoration: underline;
+		}
+	}
+	
+	li.home {
+		padding:0 10px;
+		line-height:30px;
+		background: #436076  url('crumb_home_project.png') no-repeat right;
+	}
+	li.project{
+		color:  #397799;
+		background: #d2e1ee url('crumb_project_task.png') no-repeat right;
+	}
+	li.task{
+		color: #58666e;
+		background-color: #e2e2e2; 
+	}
+	
+	li.end {
+		background-image: none;
+		@include border-right-radius(36px); 
+		padding-right:20px;
+		
+	}
+	
+}
 
 .left {
   float:left;
