@@ -201,3 +201,18 @@ function showDetails(id){
 	
 }
 
+
+function showActivity(id){
+	
+	var project = $('#project-'+id);
+	$('#project-'+id+' > .actions > ul > li').removeClass("selected");
+	$('#project-'+id+' > .actions > ul > li#activity_action').addClass("selected");
+	
+	$('#project-'+id+' > .split').removeClass("hidden");
+	$('#project-'+id+' > .split > div').addClass("hidden");		
+	$('#project-'+id+' > .split > #activity').removeClass("hidden");
+	$('#project-'+id+' > .split > .split_end').removeClass("hidden");
+	
+	
+}
+

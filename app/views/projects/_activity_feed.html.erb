@@ -1,0 +1,36 @@
+<% outerBreak = 0 %>
+<% count = 0 %>
+
+<% project.activity.first(3).each do |day| %>
+	<%  break if count == limit && limit != 0 %>
+  <h3 class="day"><%=   day[0].strftime('%a %d %b') %></h3>
+  <% day[1].each do |activity|%>
+	<%  break if count == limit && limit != 0 %>
+    <% type = activity.class.name.underscore %>
+    <div class="dev-list-activity">
+
+    	<div class="avatar left">
+	   	 <%= image_tag activity.user.avatar.url(:teeny), :size => "16x16", :alt=> activity.user.name, :title => activity.user.name %>
+		    <div class="icon">
+		    <%= image_tag "#{type}.png", :size => "16x16" %>
+		    </div>
+	    </div>
+
+	    <div class="details left">
+	    	<% if type == 'time_log' %>
+		    <span class="bold"><%= activity.time_string %></span>
+		    <%end%>
+		    in <%= link_to(activity.task.name, task_path(activity.task, :anchor => "#{type}-#{activity.id}"), :title=>activity.body[0..100]) %>
+	    </div>
+	
+	    <div class="clear"></div>
+	
+    </div>
+
+	<% count += 1 %>
+	
+  <% end -%>
+
+<hr />
+
+<% end %>

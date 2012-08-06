@@ -15,7 +15,9 @@
 	
 	
 	<p class="code">
-		 <%= @project.code %> : <%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %>
+		 <%= @project.code %> : 
+		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %> :
+		<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 	</p>
 	
 	<p class="description">

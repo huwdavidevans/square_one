@@ -24,12 +24,12 @@
 				<%= link_to_function "DETAILS", "showDetails(#{project.id})" %>				
 			</li>
 			
-			<li>
-				<%= link_to 'EDIT', edit_project_path(project) %>&#09;
+			<li id="activity_action">
+				<%= link_to_function "ACTIVITY", "showActivity(#{project.id})" %>
 			</li>
 			
 			<li class="last">
-				<%= link_to 'DELETE', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+				<%= link_to 'EDIT', edit_project_path(project) %>
 			</li>
 			
 		</ul>
@@ -44,7 +44,12 @@
 			<%= render :partial => 'task_metrics', :locals => {:project => project} %>
 		</div>
 		
-		<div class="activity hidden"></div>
+		<div id="activity" class="activity hidden">
+			<div id="dev-activity" class="section">
+			<%= render :partial => 'activity_feed', :locals=> {:project => project, :limit => 4}%>
+			</div>
+			
+		</div>
 		
 		<div class="admin hidden"></div>
 		
