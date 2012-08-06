@@ -74,16 +74,26 @@ body {
 
 #user_fold {
 	background: #333;
-	height: 48px;
+	height: 30px;
+	padding: 5px;
 }
 
 
 #top_fold {
 	background: #f1f4f8;
-//	overflow:auto;	
+	overflow:auto;	
 	@include box-shadow(#999 0px 2px 5px);
 	position: relative;
 	z-index: 1;
+	
+	 
+  .description {
+    margin:5px 0; 
+    font-size: 14px;
+    line-height: 18px;
+    color: #566067;
+  }
+  
 }
 
 

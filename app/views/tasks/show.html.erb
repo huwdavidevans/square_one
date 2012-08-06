@@ -10,16 +10,17 @@
 		<li class="home"><%= link_to image_tag('crumb_home.png', {:title => "Edit Task"}), projects_path %></li>
 		<li class="project"><%= link_to  @task.project.name, project_path(@task.project) %></li>
 		<li class="task end"><%= @task.name %></li>
+		<div class="clear"></div>
 	</ul>
-	<div class="clear"></div>
 	
 	<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
-	
 	
 	<div class="description">
 		<%= @task.description %>
 	</div>
+	
 </div>
+
 <% end %>
 
 <div id="wood_board">
