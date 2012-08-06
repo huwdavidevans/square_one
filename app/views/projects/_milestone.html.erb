@@ -1,0 +1,7 @@
+<% side = 'left:'%>
+<% side = 'right:' if type == 'finish' %>
+<div class="milestone<%= " today" if date == Date.today %>" style="<%= side %><%= percent %>%;">
+	<div class="date"><%= date.strftime('%a %d %b') %></div>
+	<div class="point"><%= image_tag "milestone_#{type}.png" %></div>
+	<div class="details"><%= details %></div>
+</div>

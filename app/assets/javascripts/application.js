@@ -177,7 +177,6 @@ function drawTaskPie(divID, slicePercent) {
 			if(slicePercent > 0) {
 				drawPi(myDiv, '0d', slicePercent+'%', 5, colour);				
 			} else if (slicePercent == 1) {
-				console.log("baddy")
 				drawPi(myDiv, '0%', '1%', 5, colArray[colArray.length-1]);
 			}
 	       ctx.drawImage(clockFace, 0, 0);

@@ -1,30 +1,14 @@
-<div id="milestones" >
-	
-	<div class="fixed">
-		
-			<div class="timeline">
-				
-				<div class="tl"> </div>
-				
-				<div class="ms" style="left:0px;">
-					<div class="date"><%= project.created_at.strftime('%a %d %b') %></div>
-					<div class="point"><%= image_tag "milestone_circle.png" %></div>
-					<div class="description">Project Start</div>
-				</div>
-				
-				<div class="ms" style="left:<%= project.percent_of_time_left.to_i %>%;">
-					<div class="date"><%= Date.today.strftime('%a %d %b') %></div>
-					<div class="point"><%= image_tag "milestone_circle.png" %></div>
-					<div class="description"><%= project.days_left %> Days until deadline	</div>
-				</div>
-				
-				<div class="ms" style="right:0px;">
-					<div class="date"><%= project.deadline.strftime('%a %d %b') %></div>
-					<div class="point"><%= image_tag "milestone_circle.png" %></div>
-					<div class="description">Project Finish</div>
-				</div>
-				
+<div id="milestones" >	
+	<div class="fixed">		
+			<div class="timeline">				
+				<div class="tl"> </div>	
+				<%= render :partial => 'milestone', :locals => {:type => 'start', :date => project.created_at, :details => "Project Start", :percent => 0}%>
+				<% if project.overdue %>
+					<%= render :partial => 'milestone', :locals => {:type => 'clear', :date => Date.today, :details => "OVERDUE BY #{pluralize(project.days_left.abs, 'day').upcase}", :percent => 50}%>
+				<% else %>
+					<%= render :partial => 'milestone', :locals => {:type => 'diamond', :date => Date.today, :details => "#{project.days_left} Days until deadline", :percent => project.percent_of_time_left.to_i}%>
+				<% end %>
+				<%= render :partial => 'milestone', :locals => {:type => 'finish', :date => project.deadline, :details => "Project Finish", :percent => 0}%>
 			</div>
-			
 	</div>
 </div>
