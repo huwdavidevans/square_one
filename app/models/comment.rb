@@ -13,7 +13,5 @@ class Comment < ActiveRecord::Base
   
   attr_accessible :user_id, :task_id, :project_id, :in_reply_to, :body
   
-  
-  
     
 end

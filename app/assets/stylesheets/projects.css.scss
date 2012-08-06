@@ -384,10 +384,19 @@
       }
       
       #dev-tasks {
+                }
+                
+      #dev-activity{
+        
+      
       }
       
       .section {
         margin:10px;
+      }
+      
+      .polabox {
+        margin-bottom: 20px;
       }
       
       h3 {
@@ -455,17 +464,54 @@
           border-top: 1px solid #CCC;
           height: 1px;
           background-color: #EFEFEF;
-		  width: 80%;
+		      width: 80%;
        }
 
 	}
-		
 
 
 
+.dev-list-task {
+  img{
+    margin: 0 10px 0 5px;
+  }
+  vertical-align: top;
+  line-height: 20px;
+}
 
 
-
-
-
-
+.dev-list-activity {
+        min-height: 40px;
+        .avatar{
+          width: 16px;
+          margin: 0 10px 0 0;
+          position:relative;
+          border: 2px white solid;
+          @include border-radius(5px);
+          @include box-shadow(#999 0px 1px 3px);
+      
+          img {
+            vertical-align:middle;
+          }
+      
+          .icon {
+            position:absolute;
+            bottom: -10px;
+            right: -4px;
+          }
+      
+        }
+        
+        .details {
+          line-height: 16px;
+          width:144px;
+          
+          a{
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+        
+      }

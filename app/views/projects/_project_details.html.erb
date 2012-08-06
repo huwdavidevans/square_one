@@ -2,19 +2,40 @@
 
 <div class="polabox">
 	
-	<div id="dev-time" class="section">		
+	<div id="dev-time" class="section">
 		<%= render :partial => 'development_metrics', :locals => {:project => project} %>
 	</div>
-	
 	<hr/>
 	
 	<div id="dev-tasks" class="section">
-	<%= render :partial => 'task_metrics', :locals => {:project => project} %>
+		<%= render :partial => 'task_metrics', :locals => {:project => project} %>
 	</div>
-	
 	<hr/>
 	
-	<p> <%= pluralize project.tasks_overrun.length, 'task' %> Over-run </p>
-	<p> <%= pluralize project.tasks_overdue.length, 'task' %> Over-due </p>
+	
+	<% if project.tasks_overrun.length > 0 %>
+	<div id="dev-overrun" class="section">
+		<h3><%= pluralize project.tasks_overrun.length, 'task' %> Over-run</h3>
+		<% project.tasks_overrun.each do |task| %>
+			<div class="dev-list-task">
+				<%= image_tag task.user.avatar.url(:teeny), :title => task.user.name %> <%= task.name %>
+			</div>
+		<% end %>
+	</div>
+	<% end %>
+	
+	
+	
+	<% if project.tasks_overdue.length > 0 %>
+	<div id="dev-overdue" class="section">
+		<h3> <%= pluralize project.tasks_overdue.length, 'task' %> Over-due</h3>
+		<% project.tasks_overdue.each do |task| %>
+			<div class="dev-list-task">
+				<%= image_tag task.user.avatar.url(:teeny), :title => task.user.name %> <%= task.name %>
+			</div>
+		<% end %>
+	</div>
+	<% end %>
+	
 	
 </div>

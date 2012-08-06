@@ -142,6 +142,15 @@ class Project < ActiveRecord::Base
     "assets/projects/bookmark_#{type}.png"    
   end
   
+    
+  def activity
+    activityArray = []
+    tasks.each do |task|  
+      activityArray += task.activity
+    end
+    activityArray.sort_by(&:created_at).reverse!.group_by{ |a| a.created_at.to_date }
+  end
+  
   
   
   

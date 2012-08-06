@@ -75,6 +75,8 @@ class Task < ActiveRecord::Base
      work_days_spent > work_days
    end
   
+
+  
   
   private
   
@@ -85,6 +87,10 @@ class Task < ActiveRecord::Base
   def clear_work_days
      self.supplied_work_days = nil
   end
+  
+  
+  
+  
   
 end
 
