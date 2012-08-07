@@ -3,12 +3,15 @@
 			<div class="timeline">				
 				<div class="tl"> </div>	
 				<%= render :partial => 'milestone', :locals => {:type => 'start', :date => project.created_at, :details => "Project Start", :percent => 0}%>
+				
+				<%= render :partial => 'milestone', :locals => {:type => 'finish', :date => project.deadline, :details => "Project Finish", :percent => 0}%>
+					
 				<% if project.overdue %>
 					<%= render :partial => 'milestone', :locals => {:type => 'clear', :date => Date.today, :details => "OVERDUE BY #{pluralize(project.days_left.abs, 'day').upcase}", :percent => 50}%>
 				<% else %>
 					<%= render :partial => 'milestone', :locals => {:type => 'diamond', :date => Date.today, :details => "#{project.days_left} Days until deadline", :percent => project.percent_of_time_left.to_i}%>
 				<% end %>
-				<%= render :partial => 'milestone', :locals => {:type => 'finish', :date => project.deadline, :details => "Project Finish", :percent => 0}%>
+
 			</div>
 	</div>
 </div>

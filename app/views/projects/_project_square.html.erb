@@ -44,11 +44,10 @@
 			<%= render :partial => 'task_metrics', :locals => {:project => project} %>
 		</div>
 		
-		<div id="activity" class="activity hidden">
-			<div id="dev-activity" class="section">
+		<div id="activity" class="hidden">
+			<div class="square_wrapper">
 			<%= render :partial => 'activity_feed', :locals=> {:project => project, :limit => 4}%>
 			</div>
-			
 		</div>
 		
 		<div class="admin hidden"></div>

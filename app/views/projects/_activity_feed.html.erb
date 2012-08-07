@@ -16,9 +16,9 @@
 		    </div>
 	    </div>
 
-	    <div class="details left">
+	    <div class="details left <%= type %>">
 	    	<% if type == 'time_log' %>
-		    <span class="bold"><%= activity.time_string %></span>
+		    <span class="type"><%= activity.time_string %></span>
 		    <%end%>
 		    in <%= link_to(activity.task.name, task_path(activity.task, :anchor => "#{type}-#{activity.id}"), :title=>activity.body[0..100]) %>
 	    </div>

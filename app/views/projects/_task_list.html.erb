@@ -3,11 +3,11 @@
 
 <div class="filter">
 	<div class="buttons">
-		<a href='#'>ALL</a>
-		<a href='#'>IN PROGRESS</a>
-		<a href='#'>IN QA</a>
-		<a href='#'>COMPLETED</a>
-		<a href='#'>NOT STARTED</a>
+		<a href='#' class="first">ALL <%="(#{@project.tasks.length})"%></a>
+		<a href='#'>IN PROGRESS <%= "(#{@project.tasks_in_progress})" if @project.tasks_in_progress > 0 %></a>
+		<a href='#'>IN QA <%= "(#{@project.tasks_in_qa})" if @project.tasks_in_qa > 0 %></a>
+		<a href='#'>COMPLETED <%= "(#{@project.tasks_completed})" if @project.tasks_completed > 0 %></a>
+		<a href='#' class="last">NOT STARTED <%= "(#{@project.tasks_not_started})" if @project.tasks_not_started > 0 %></a>
 	</div>
 	<div class="indicator"><hr/></div>
 </div>
