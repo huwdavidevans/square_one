@@ -74,8 +74,15 @@ body {
 
 #user_fold {
 	background: #333;
-	height: 30px;
+	height: 32px;
 	padding: 5px;
+	
+    color: #FFF;
+    text-shadow: 0 2px 2px #000;
+	a{
+	  color:inherit;
+	}
+	
 }
 
 

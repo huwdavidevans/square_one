@@ -283,7 +283,7 @@
 
   			
   			.filter{
-				font-size: 16px;
+				font-size: 12px;
   			   margin: 20px 0;
   			   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   			   text-align:justify;
@@ -508,6 +508,8 @@
 }
 
 #activity{
+  //overflow:hidden;
+  //height:100px;
 	.details{
 		width: 200px;
 	}

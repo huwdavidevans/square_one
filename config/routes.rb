@@ -1,4 +1,7 @@
 SquareOne::Application.routes.draw do
+
+  match 'login', :to => "access/login"
+
   resources :comments
 
   resources :time_logs

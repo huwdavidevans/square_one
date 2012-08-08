@@ -185,19 +185,41 @@ function drawTaskPie(divID, slicePercent) {
 }
 
 
+var detailsOpen = []
+var activityOpen = []
 
-
-function showDetails(id){
+function showTab(id, tabName){
+	console.log(id, tabName)
+	var tabArray;
 	
-	var project = $('#project-'+id);
+	switch (tabName){
+		case 'metrics':
+			tabArray = detailsOpen;
+		break;
+		case 'activity':
+			tabArray = activityOpen;
+		break;
+	}
+	
+	var project = $('#project-'+id);		
+	$('#project-'+id+' > .split > div').addClass("hidden");	
 	$('#project-'+id+' > .actions > ul > li').removeClass("selected");
-	$('#project-'+id+' > .actions > ul > li#details_action').addClass("selected");
 	
-	$('#project-'+id+' > .split').removeClass("hidden");
-	$('#project-'+id+' > .split > div').addClass("hidden");		
-	$('#project-'+id+' > .split > #metrics').removeClass("hidden");
-	$('#project-'+id+' > .split > .split_end').removeClass("hidden");
-	
+	if (tabArray[id] == true) {
+		$('#project-'+id+' > .split').addClass("hidden");	
+		$('#project-'+id+' > .split > #'+tabName).addClass("hidden");
+		$('#project-'+id+' > .split > .split_end').addClass("hidden");
+		detailsOpen[id] = false;		
+		activityOpen[id] = false;		
+	} else {
+		$('#project-'+id+' > .actions > ul > li#'+tabName+'_action').addClass("selected");			
+		$('#project-'+id+' > .split').removeClass("hidden");	
+		$('#project-'+id+' > .split > #'+tabName).removeClass("hidden");
+		$('#project-'+id+' > .split > .split_end').removeClass("hidden");
+		detailsOpen[id] = false;		
+		activityOpen[id] = false;	
+		tabArray[id] = true;
+	}
 	
 }
 
@@ -212,7 +234,6 @@ function showActivity(id){
 	$('#project-'+id+' > .split > div').addClass("hidden");		
 	$('#project-'+id+' > .split > #activity').removeClass("hidden");
 	$('#project-'+id+' > .split > .split_end').removeClass("hidden");
-	
 	
 }
 

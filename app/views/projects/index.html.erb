@@ -1,13 +1,14 @@
-<% @page_title = "Root" %>
+<% @page_title = "Root" %> <h1>Listing projects</h1>
+<%= link_to 'New Project', new_project_path, :class => 'button' %>
 
-<h1>Listing projects</h1>
 
 <div id="projects">
-<% @projects.each do |project| %>
-  <%= render(:partial => 'project_square', :locals => {:project => project})%>
-<% end %>
+	
+	<% @projects.each do |project| %>
+		<%= render(:partial => 'project_square', :locals => {:project => project})%>
+	<% end %>
+	
 </div>
 
-<br />
 
-<%= link_to 'New Project', new_project_path %>
+<br />

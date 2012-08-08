@@ -20,24 +20,24 @@
 	<div class="actions">
 		<ul>
 			
-			<li id="details_action">
-				<%= link_to_function "DETAILS", "showDetails(#{project.id})" %>				
+			<li id="metrics_action">
+				<%= link_to_function "DETAILS", "showTab(#{project.id}, 'metrics')" %>				
 			</li>
 			
 			<li id="activity_action">
-				<%= link_to_function "ACTIVITY", "showActivity(#{project.id})" %>
+				<%= link_to_function "ACTIVITY", "showTab(#{project.id}, 'activity')" %>
 			</li>
 			
 			<li class="last">
 				<%= link_to 'EDIT', edit_project_path(project) %>
 			</li>
-			
 		</ul>
 	</div>
 	
 	
 	
-	<div class="split hidden">		
+	<div class="split hidden">	
+			  	
 		<div id="metrics" class="details hidden">
 			<%= render :partial => 'development_metrics', :locals => {:project => project} %>
 			<hr/>

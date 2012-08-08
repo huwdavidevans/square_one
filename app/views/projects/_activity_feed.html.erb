@@ -3,7 +3,9 @@
 
 <% project.activity.first(3).each do |day| %>
 	<%  break if count == limit && limit != 0 %>
-  <h3 class="day"><%=   day[0].strftime('%a %d %b') %></h3>
+ <!--  <h3 class="day"><%=   day[0].strftime('%a %d %b') %></h3> -->
+<!--   <h3 class="day"><%=   time_ago_in_words day[0] %> ago </h3> -->
+  <h3 class="day"><%= days_ago day[0] %> </h3>
   <% day[1].each do |activity|%>
 	<%  break if count == limit && limit != 0 %>
     <% type = activity.class.name.underscore %>

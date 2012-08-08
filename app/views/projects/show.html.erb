@@ -5,17 +5,14 @@
 
 <div class="fixed">
 	
-		<ul class="crumbtrail">
-			<li class="home"><%= link_to image_tag('crumb_home.png', {:title => "Edit Task"}), projects_path %></li>
-			<li class="project end"><%= @project.name %></li>
-			<div class="clear"></div>
-		</ul>
-		
-	
-	
+	<ul class="crumbtrail">
+		<li class="home"><%= link_to image_tag('crumb_home.png', {:title => "Edit Task"}), projects_path %></li>
+		<li class="project end"><%= @project.name %></li>
+		<div class="clear"></div>
+	</ul>
 	
 	<p class="code">
-		 <%= @project.code %> : 
+		<%= @project.code %> : 
 		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %> :
 		<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 	</p>

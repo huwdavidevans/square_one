@@ -1,0 +1,12 @@
+<h1>Log in</h1>
+
+<%= form_tag(:action => 'attempt_login' ) do %>	
+
+	<div> User: <%= text_field_tag :username  %> </div>
+	<div> Password : <%= password_field_tag :password %> </div>
+	
+	<div class="form-buttons">
+		<%= submit_tag("Login") %>
+	</div>
+	
+<% end %>

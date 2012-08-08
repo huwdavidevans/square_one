@@ -87,7 +87,18 @@ class User < ActiveRecord::Base
     @del_avatar = value
   end
   
+  def self.authenticate(username="", password="")
+     user = User.find_by_username(username)
+     if user && user.password_match?(password)
+       return user
+     else
+       return false
+     end
+  end
   
+  def password_match?(pswd="")
+    password == User.hash(pswd, salt)
+  end
     
   private  
   

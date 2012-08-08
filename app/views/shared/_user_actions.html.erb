@@ -1,0 +1,2 @@
+<%= image_tag current_user.avatar.url(:tiny) %> <%= current_user.name %>
+		<%= link_to("log out", :controller => 'access', :action=>'logout') if session[:user_id]  %>
