@@ -12,9 +12,13 @@
 	</ul>
 	
 	<p class="code">
-		<%= @project.code %> : 
+		<%= @project.code %>
+		<% if current_user.is_admin?  %>
+		: 
 		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %> :
 		<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end -%>
+	
 	</p>
 	
 	<p class="description">

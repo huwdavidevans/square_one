@@ -1,6 +1,6 @@
 <div class="fixed">
 	
-	<div class="left" ><%= image_tag "so_toplogo.png" %></div>
+	<div class="left" ><%= link_to image_tag "so_toplogo.png" , :controller => :project, :action => :index%></div>
 	
 	<div class="right">
 		<%= form_tag(:controller => 'access', :action => 'switch')  do  %>	

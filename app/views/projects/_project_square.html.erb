@@ -18,19 +18,21 @@
 	</div>
 	
 	<div class="actions">
-		<ul>
-			
-			<li id="metrics_action">
+		<ul>			
+			<li id="metrics_action" class="">
 				<%= link_to_function "DETAILS", "showTab(#{project.id}, 'metrics')" %>				
 			</li>
 			
-			<li id="activity_action">
+			<li id="activity_action" class="<%= "last" unless current_user.is_admin? %>"> 
 				<%= link_to_function "ACTIVITY", "showTab(#{project.id}, 'activity')" %>
 			</li>
 			
-			<li class="last">
-				<%= link_to 'EDIT', edit_project_path(project) %>
+			<% if current_user.is_admin? %>
+			<li id="admin_action" class="last">
+				<%= link_to_function "ADMIN", "showTab(#{project.id}, 'admin')" %>				
 			</li>
+			<% end -%>
+			
 		</ul>
 	</div>
 	
@@ -38,7 +40,7 @@
 	
 	<div class="split hidden">	
 			  	
-		<div id="metrics" class="details hidden">
+		<div id="metrics" class="hidden">
 			<%= render :partial => 'development_metrics', :locals => {:project => project} %>
 			<hr/>
 			<%= render :partial => 'task_metrics', :locals => {:project => project} %>
@@ -50,7 +52,13 @@
 			</div>
 		</div>
 		
-		<div class="admin hidden"></div>
+		<% if current_user.is_admin? %>
+		<div id="admin" class="hidden">
+			<div class="square_wrapper">
+				<%= link_to 'EDIT', edit_project_path(project) %>
+			</div>
+		</div>
+		<% end -%> 
 		
 		<div class="split_end"></div>
 	</div>

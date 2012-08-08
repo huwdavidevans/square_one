@@ -1,1 +1,1 @@
-<div class="new_activity">	<%= link_to 'Log Time', new_time_log_path(:task_id => @task.id), :class => 'button'%>	<%= link_to 'Post Comment', new_comment_path(:task_id => @task.id), :class => 'button'%></div>
+<div class="new_activity">	<% if current_user == @task.user  %>	<%= link_to 'Log Time', new_time_log_path(:task_id => @task.id), :class => 'button'%>	<% end -%>	<%= link_to 'Post Comment', new_comment_path(:task_id => @task.id), :class => 'button'%></div>

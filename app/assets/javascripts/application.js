@@ -187,53 +187,46 @@ function drawTaskPie(divID, slicePercent) {
 
 var detailsOpen = []
 var activityOpen = []
+var adminOpen = []
 
-function showTab(id, tabName){
-	console.log(id, tabName)
+function showTab(id, tabName) {
 	var tabArray;
-	
-	switch (tabName){
+
+	switch (tabName) {
 		case 'metrics':
 			tabArray = detailsOpen;
-		break;
+			break;
 		case 'activity':
 			tabArray = activityOpen;
-		break;
+			break;
+		case 'admin':
+			tabArray = adminOpen;
+			break;
 	}
 	
-	var project = $('#project-'+id);		
-	$('#project-'+id+' > .split > div').addClass("hidden");	
-	$('#project-'+id+' > .actions > ul > li').removeClass("selected");
-	
-	if (tabArray[id] == true) {
-		$('#project-'+id+' > .split').addClass("hidden");	
-		$('#project-'+id+' > .split > #'+tabName).addClass("hidden");
-		$('#project-'+id+' > .split > .split_end').addClass("hidden");
-		detailsOpen[id] = false;		
-		activityOpen[id] = false;		
+	function clearAll(){
+		detailsOpen[id] = false;
+		adminOpen[id] = false;
+		activityOpen[id] = false;
+	}
+
+	var project = $('#project-' + id);
+	$('#project-' + id + ' > .split > div').addClass("hidden");
+	$('#project-' + id + ' > .actions > ul > li').removeClass("selected");
+
+	if(tabArray[id] == true) {
+		$('#project-' + id + ' > .split').addClass("hidden");
+		$('#project-' + id + ' > .split > #' + tabName).addClass("hidden");
+		$('#project-' + id + ' > .split > .split_end').addClass("hidden");
+		clearAll();
 	} else {
-		$('#project-'+id+' > .actions > ul > li#'+tabName+'_action').addClass("selected");			
-		$('#project-'+id+' > .split').removeClass("hidden");	
-		$('#project-'+id+' > .split > #'+tabName).removeClass("hidden");
-		$('#project-'+id+' > .split > .split_end').removeClass("hidden");
-		detailsOpen[id] = false;		
-		activityOpen[id] = false;	
+		$('#project-' + id + ' > .actions > ul > li#' + tabName + '_action').addClass("selected");
+		$('#project-' + id + ' > .split').removeClass("hidden");
+		$('#project-' + id + ' > .split > #' + tabName).removeClass("hidden");
+		$('#project-' + id + ' > .split > .split_end').removeClass("hidden");
+		clearAll();
 		tabArray[id] = true;
 	}
-	
-}
 
-
-function showActivity(id){
-	
-	var project = $('#project-'+id);
-	$('#project-'+id+' > .actions > ul > li').removeClass("selected");
-	$('#project-'+id+' > .actions > ul > li#activity_action').addClass("selected");
-	
-	$('#project-'+id+' > .split').removeClass("hidden");
-	$('#project-'+id+' > .split > div').addClass("hidden");		
-	$('#project-'+id+' > .split > #activity').removeClass("hidden");
-	$('#project-'+id+' > .split > .split_end').removeClass("hidden");
-	
 }
 

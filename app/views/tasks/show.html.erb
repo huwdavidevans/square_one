@@ -13,7 +13,11 @@
 		<div class="clear"></div>
 	</ul>
 	
+	
+	<% if current_user.is_admin?  %>
 	<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
+	<% end -%>
+	
 	
 	<div class="description">
 		<%= @task.description %>

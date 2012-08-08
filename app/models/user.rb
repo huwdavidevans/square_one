@@ -100,6 +100,10 @@ class User < ActiveRecord::Base
     password == User.hash(pswd, salt)
   end
     
+  def is_admin?
+    level == 2
+  end
+    
   private  
   
     
