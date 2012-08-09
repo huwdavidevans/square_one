@@ -1,22 +1,13 @@
-<%= form_for(@comment) do |f| %>
 <%= render(:partial => 'shared/form_errors', :locals => {:object => @comment})%>
 
+<% @comment.user_id = current_user.id %>
+<%= f.hidden_field :user_id  %>
+<%= f.hidden_field :task_id %>
 
 <div>
-	<%= f.label :user_id, "User" %> :
-	<%= f.select(:user_id, @task.project.users.collect {|r| [r.name, r.id]}) %>
+	<%= f.text_area :body, :size => '50x5'%>
 </div>
 
-<div>
-	<%= f.label :task_id %> : <%= @task.name %>
-	<%= f.hidden_field :task_id %> 
+<div class="actions">
+	<%= f.submit %>
 </div>
-
-<div>
-	<%= f.text_area :body %>
-</div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

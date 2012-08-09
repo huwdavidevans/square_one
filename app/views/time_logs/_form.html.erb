@@ -1,15 +1,8 @@
-<%= render(:partial => 'shared/form_errors', :locals => {:object => @time_log})%>	
+<%= render(:partial => 'shared/form_errors', :locals => {:object => @time_log})%>
 
-
-<div>
-	<%= f.label :user_id, @task.user.name %> :
-	<%= f.select(:user_id, @task.project.users.collect {|r| [r.name, r.id]})	 %>
-</div>
-
-<div>
-	<%= f.label :task_id %> : <%= @task.name %>
-	<%= f.hidden_field :task_id %> 
-</div>
+<% @time_log.user_id = current_user.id %>
+<%= f.hidden_field :user_id  %>
+<%= f.hidden_field :task_id %>
 
 <div>
 	<%= f.label :supplied_hours, "Hours" %> :
@@ -18,17 +11,13 @@
 	<%= f.select(:supplied_minutes, (0..59).to_a, :selected => @time_log.minutes_i || 0) %>
 </div>
 
-
 <%= fields_for @comment do |c| %>
-	<div>
-		Comment : </br>
-		<%= c.text_area :body %>
-	</div>
-
+<div>
+	Comment : </br>
+	<%= c.text_area :body, :size => '50x5' %>
+</div>
 <% end %>
 
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="actions">
+	<%= f.submit %>
+</div>

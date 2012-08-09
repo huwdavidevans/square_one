@@ -181,6 +181,40 @@ ul.crumbtrail{
 	
 }
 
+
+
+.form {
+  h2{
+    color: $completed;
+  }
+  background: white;
+  @include box-shadow(#999 0px 2px 8px);
+  @include border-radius(5px);
+  padding: 20px;
+  margin: 10px auto;
+  
+  .field {  
+  margin-right:20px;
+  
+  .label{
+    
+    @include gill-sans;
+    font-size:18px;
+    //font-weight:bold;
+    color: #666;
+    margin: 10px 0;
+  }
+  .description{
+    color: #999;
+    font-size:13px;
+    margin: 5px 0;
+  }
+  
+}
+  
+}
+
+
 .left {
   float:left;
 }
