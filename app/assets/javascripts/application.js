@@ -230,3 +230,18 @@ function showTab(id, tabName) {
 
 }
 
+
+
+function toggleNewForm(type){
+	
+	if ( $("#new-"+type+"-button").hasClass('hidden') ){
+		$("#new-"+type+"-form").addClass('hidden');
+		$("#new-"+type+"-button").removeClass('hidden');
+	} else {
+		$("#new-"+type+"-form").removeClass('hidden');
+		$("#new-"+type+"-button").addClass('hidden');
+	}
+
+	
+	
+}

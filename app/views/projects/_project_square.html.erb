@@ -18,18 +18,19 @@
 	</div>
 	
 	<div class="actions">
+		<% current_user.is_admin? ? numActions = 3 : numActions = 2 %>
 		<ul>			
-			<li id="metrics_action" class="">
-				<%= link_to_function "DETAILS", "showTab(#{project.id}, 'metrics')" %>				
+			<li id="metrics_action" style="width:<%= (200/numActions).to_i %>px">
+				<%= link_to_function image_tag('psq_a_metrics.png', :alt=>"Details", :title=>"Details" ), "showTab(#{project.id}, 'metrics')" %>				
 			</li>
 			
-			<li id="activity_action" class="<%= "last" unless current_user.is_admin? %>"> 
-				<%= link_to_function "ACTIVITY", "showTab(#{project.id}, 'activity')" %>
+			<li id="activity_action" style="width:<%= (200/numActions).to_i %>px"> 
+				<%= link_to_function image_tag('psq_a_activity.png', :alt=>"Activity", :title=>"Activity" ), "showTab(#{project.id}, 'activity')" %>
 			</li>
 			
 			<% if current_user.is_admin? %>
-			<li id="admin_action" class="last">
-				<%= link_to_function "ADMIN", "showTab(#{project.id}, 'admin')" %>				
+			<li id="admin_action" style="width:<%= (200/numActions).to_i %>px">
+				<%= link_to_function image_tag('psq_a_admin.png', :alt=>"Admin", :title=>"Admin" ), "showTab(#{project.id}, 'admin')" %>				
 			</li>
 			<% end -%>
 			

@@ -1,15 +1,20 @@
 <% @page_title = "Root" %> <h1>Listing projects</h1>
 
 
-<%= link_to 'New Project', new_project_path, :class => 'button'  if current_user.is_admin? %>
-
+<% if current_user.is_admin?  %>
+<%= link_to_function 'New Project', 'toggleNewForm("project")',:class => 'button', :id=> 'new-project-button'  %>
+<div id="new-project-form" class="form hidden">
+	<div class="right"><%= link_to_function 'close', 'toggleNewForm("project")' %></div>
+	<h2>New Project</h2>
+	<% @project = Project.new %>
+	<%= render 'form' %>
+</div>
+<% end -%>
 
 <div id="projects">
-	
 	<% @projects.each do |project| %>
 		<%= render(:partial => 'project_square', :locals => {:project => project})%>
 	<% end %>
-	
 </div>
 
 

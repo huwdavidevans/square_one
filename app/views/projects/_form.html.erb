@@ -1,38 +1,52 @@
 <%= form_for(@project) do |f| %>
+<%= render(:partial => 'shared/form_errors', :locals => {:object => @project})%>
+<div class="field left ">
+	<p class="label">Project Name:</p>
+	<%= f.text_field :name, :size=> 80 %>
+	<p class="description">
+		Enter a clear memorable name for the project (required)
+	</p>
+</div>
 
-  <%= render(:partial => 'shared/form_errors', :locals => {:object => @project})%>
-
-
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :deadline %><br />
-    <%= f.date_select :deadline %>
-  </div>
-
-	
-  <div class="field">
-  	<th>Project Type</th>
-	<td><%= f.select(:project_type_id, ProjectType.all.collect {|r| [r.name, r.id]}) %></td>
-  </div>
+<div class="field left">
+	<p class="label">Short Code:</p> 
+	<%= f.text_field :code, :size=> 10 %>
+	<p class="description">
+		Enter a code to identify this project
+	</p>
+</div>
+<div class="clear"></div>
 
 
+<div class="field left">
+	<p class="label">Project Type:</p>
+	<%= f.select(:project_type_id, ProjectType.all.collect {|r| [r.name, r.id]}) %>
+	<p class="description">
+		Who is it for?
+	</p>
+</div>
 
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
+<div class="field left ">
+	<p class="label">Deadline:</p>
+	<%= f.date_select :deadline, :order => [:day, :month, :year], :start_year => Date.today.year, :end_year => Date.today.year + 1, :default => 1.month.from_now%>
+	<p class="description">
+		When is it due?
+	</p>
+</div>
+<div class="clear"></div>
+
+
+<div class="field">
+	<p class="label">Description:</p>
+	<%= f.text_area :description, :size=> "80x10" %>
+	<p class="description">
+		This description will cover the development, teaching objectives and target audience. 
+	</p>
+</div>
+
+
+
+
 
 
 

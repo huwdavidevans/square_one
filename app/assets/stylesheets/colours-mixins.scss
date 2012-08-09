@@ -21,3 +21,7 @@ $total: #3399CC;
 	@include box-shadow(#CCC 0px 2px 8px);
 	padding:10px;
 }
+
+@mixin gill-sans{
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
