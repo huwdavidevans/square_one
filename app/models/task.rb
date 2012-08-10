@@ -11,8 +11,15 @@ class Task < ActiveRecord::Base
   has_many :comments
   has_many :time_logs
   
+  attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days
+ 
+  scope :started, joins(:time_logs).uniq    
+  scope :not_started, where("id NOT IN (SELECT task_id FROM time_logs)")
+  scope :in_progress, started.where(:complete => false)
+  scope :completed, started.where(:complete => true)
+  scope :overdue, where('deadline < ?', Date.today)
+  scope :overrun, where('work_minutes <  (SELECT SUM(time_minutes) from time_logs where task_id = tasks.id) ')
   
-  attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days  
  
   def work_days
     work_minutes / MINUTES_IN_WORK_DAY
@@ -47,7 +54,7 @@ class Task < ActiveRecord::Base
   end
   
   def work_percent_spent
-    work_days_spent / work_days
+    work_days_spent / (work_days.nonzero? || 1)
   end
   
   def activity

@@ -19,11 +19,19 @@
 
 <div class="filter">
 	<div class="buttons">
-		<a href='#' class="first">ALL <%="(#{@project.tasks.length})"%></a>
-		<a href='#'>IN PROGRESS <%= "(#{@project.tasks_in_progress})" if @project.tasks_in_progress > 0 %></a>
-		<a href='#'>IN QA <%= "(#{@project.tasks_in_qa})" if @project.tasks_in_qa > 0 %></a>
-		<a href='#'>COMPLETED <%= "(#{@project.tasks_completed})" if @project.tasks_completed > 0 %></a>
-		<a href='#' class="last">NOT STARTED <%= "(#{@project.tasks_not_started})" if @project.tasks_not_started > 0 %></a>
+		
+		<a href='#' class="first">ALL <%="(#{ @tasks.length })"%></a>
+		
+		<a href='#'>IN PROGRESS <%= "(#{ @tasks.in_progress.length  })" if @project.tasks_in_progress > 0 %></a>
+		
+		<a href='#'>IN QA <%=
+		# "(#{ @tasks.in_qa.length })" if @tasks.in_qa.length > 0 
+		%></a>
+		
+		<a href='#'>COMPLETED <%= "(#{ @tasks.completed.length})" if @tasks.completed.length > 0 %></a>
+		
+		<a href='#' class="last">NOT STARTED <%= "(#{ @tasks.not_started.length })" if @tasks.not_started.length > 0 %></a>
+		
 	</div>
 	<div class="indicator"><hr/></div>
 </div>
