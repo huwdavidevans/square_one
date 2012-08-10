@@ -98,8 +98,9 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-    @task = Task.find(params[:id])
     
+    @task = Task.find(params[:id])
+    @project = @task.project
     @task.destroy
 
     respond_to do |format|
