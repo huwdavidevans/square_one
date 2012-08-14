@@ -20,6 +20,10 @@
   @include fancy-button(#91dc3d, 14px, 4px, 1px);
 }
 
+.big {
+  font-size: 18px;
+}
+
 body {
   background: url("handmadepaper.png");
 }
@@ -90,6 +94,7 @@ body {
     font-size: 14px;
     line-height: 18px;
     color: #566067;
+    margin-bottom: 20px;
   }
 }
 

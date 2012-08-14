@@ -5,6 +5,24 @@ class TasksController < ApplicationController
   
   before_filter :find_project
   
+  
+  
+  def mark_complete
+    
+    @task = Task.find(params[:id])
+      @task.complete = true
+      
+      if @task.save        
+        format.html { redirect_to @task, notice: 'Task Completed.' }
+        format.json { render json: @task }
+      else
+        format.html { redirect_to @task, error: 'Task Not Completed.' }
+        format.json { render json: @task }
+      end
+      
+      
+  end
+  
   def index
     @tasks = Task.all
 
@@ -83,16 +101,14 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    @task = Task.find(params[:id])
-    
+    @task = Task.find(params[:id])    
       if @task.update_attributes(params[:task])
         flash[:success] = "Task updated."
         redirect_to(:action => 'show', :id => @task.id)
       else
         flash[:error] = "Task not updated."
         render('edit')
-      end
-      
+      end      
   end
 
   # DELETE /tasks/1

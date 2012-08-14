@@ -59,7 +59,6 @@
 			</div>
 		</div>
 		<h2 class="day">TASK ADDED : <%= @task.created_at.strftime("%A #{@task.deadline.day.ordinalize} %B %Y") %></h2>
-		
 
 	</div>
 
@@ -118,6 +117,10 @@
 
 		</div>
 
+		<div class="centre">
+		
+			<%= link_to 'MARK COMPLETE', @task, :method => :mark_complete, :confirm=>"Are you sure?", :class=>'big button' %>
+		</div>
 	</div>
 </div>
 
