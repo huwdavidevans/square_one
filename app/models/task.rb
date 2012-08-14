@@ -21,6 +21,11 @@ class Task < ActiveRecord::Base
   scope :overrun, where('work_minutes <  (SELECT SUM(time_minutes) from time_logs where task_id = tasks.id) ')
   
  
+  validates :name, :presence => true, :length => { :minimum => 5 }
+  validates :deadline, :presence => true
+  validates :project_id, :presence => true
+  validates :user_id, :presence => true
+ 
   def work_days
     work_minutes / MINUTES_IN_WORK_DAY
   end
@@ -83,6 +88,21 @@ class Task < ActiveRecord::Base
    end
   
 
+  def status   
+   if complete
+     str = "Completed"    
+   elsif in_progress       
+     str = "In Progress"
+   elsif !started
+     str = "Not Started"
+   elsif in_qa
+     str = "In QA"
+   end
+    str
+  end
+  
+  
+  
   
   
   private

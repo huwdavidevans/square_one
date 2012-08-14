@@ -20,13 +20,13 @@
 			</div>
 			
 			<% if flash %>
-			
 			<div id="notify_fold">				
 			 <% flash.each do |key, value| %>
 			    <div class="<%= flash_class(key) %>">			     
 			      <%= value %>
 			    </div>
 			  <% end %>
+			  <%= yield :notify %>
 			</div>
 			<%end%>
 			

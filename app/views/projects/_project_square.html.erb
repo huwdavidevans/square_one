@@ -10,7 +10,7 @@
 		</div>
 		<div class="right">
 			<div class="ribbon" style="background: url(<%= project.ribbonURL %>) no-repeat scroll top left;">
-				<div class="deadline">
+				<div class="deadline<%= " #{project.project_type.name.downcase}" %>">
 					<%= render :partial => 'shared/calendar_date', :locals => {:date => project.deadline} %>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 	<div class="split hidden">	
 			  	
 		<div id="metrics" class="hidden">
-			<%= render :partial => 'development_metrics', :locals => {:project => project} %>
+			<%= render :partial => 'shared/development_metrics', :locals => {:project => project} %>
 			<hr/>
 			<%= render :partial => 'task_metrics', :locals => {:project => project} %>
 		</div>

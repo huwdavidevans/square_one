@@ -1,73 +1,123 @@
 <% @page_title = "#{@task.project.name} > #{@task.name}" %>
 <% @page_class = 'task' %>
 
-
 <% content_for :top do %>
 
 <div class="fixed">
-	
+
 	<ul class="crumbtrail">
-		<li class="home"><%= link_to image_tag('crumb_home.png', {:title => "Edit Task"}), projects_path %></li>
-		<li class="project"><%= link_to  @task.project.name, project_path(@task.project) %></li>
-		<li class="task end"><%= @task.name %></li>
+		<li class="home">
+			<%= link_to image_tag('crumb_home.png', {:title => "Edit Task"}), projects_path %>
+		</li>
+		<li class="project">
+			<%= link_to  @task.project.name, project_path(@task.project) %>
+		</li>
+		<li class="task end">
+			<%= @task.name %>
+		</li>
 		<div class="clear"></div>
 	</ul>
-	
-	
+
 	<% if current_user.is_admin?  %>
 	<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_task_path(@task) ) %>
 	<% end -%>
-	
-	
+
 	<div class="description">
 		<%= @task.description %>
 	</div>
-	
+
 </div>
 
 <% end %>
 
 <div id="wood_board">
-	
+
 	<div id="activity_list" class="left">
-		
 		<% classArr = ["", "right_of_line"] %>
 		<% toggle = 1 %>
 		<% recent_date = Date.today %>
-		
 		<h2 class="day"><%= recent_date.strftime("%A %d %B") %></h2>
 		<%= render :partial => 'new_activity_buttons' %>
+
 		<div class="seperator">
-		<% @task.activity.each do |a| %>
-		
+			<% @task.activity.each do |a| %>
 			<% if a.created_at.to_date < recent_date %>
-				</div>
-				<h2 class="day"><%= a.created_at.strftime("%A %d %B") %></h2>					
-				<div class="seperator">
-				<% recent_date = a.created_at.to_date %>
+		</div>
+		<h2 class="day"><%= a.created_at.strftime("%A %d %B") %></h2>
+		<div class="seperator">
+			<% recent_date = a.created_at.to_date %>
 			<% end %>
-			
 			<% toggle == 0 ? toggle = 1 : toggle = 0 %>
-			<% my_type = a.class.name.underscore() %>				
+			<% my_type = a.class.name.underscore() %>
 			<%= render :partial => 'activity_item', :locals => {:type => my_type, :item => a, :my_class => classArr[toggle]} %>
-			
-		<% end %>
+			<% end %>
 		</div>
-	
-	</div>
-	
-	<div id="metrics" class="left">
-		<div class="polabox">
-			<p>Deadline: <%= @task.deadline.strftime("%A %d %B %Y") %></p>
-			<p>Days til deadline: <%= @task.days_left %></p>
-			<p>User: <%= image_tag(@task.user.avatar.url(:teeny), {:title => @task.user.name}) %> <%= @task.user.name %></p>
-			<p>Days Allocated: <%= @task.work_days %></p>
-			<p>Days Spent: <%= @task.work_days_spent %></p>
-			<p>Percentage of Time used: <%= @task.work_percent_spent %></p>
+
+		<div class="timepoint" style="height: 20px;">
+			<div class="pointer start">
+				<%= image_tag 'milestone_start.png' %>
+			</div>
 		</div>
+		<h2 class="day">TASK ADDED : <%= @task.created_at.strftime("%A #{@task.deadline.day.ordinalize} %B %Y") %></h2>
 		
+
+	</div>
+
+	<div id="metrics" class="left">
+
+		<div class="polabox">
+			<div class="details">
+				<h3>TASK DETAILS</h3>
+				<div class="avatar left">
+					<%= image_tag(@task.user.avatar.url(:tiny), {:title => @task.user.name}) %>
+				</div>
+
+				<div class="user left">
+					<div class="user-role">
+						Assigned to:
+					</div>
+					<div class="user-name">
+						<%= @task.user.name %>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<hr />
+
+			<% if @task.started %>
+			<div class="details">
+				<%= render :partial => 'shared/development_metrics', :locals => {:project => @task} %>
+			</div>
+			<hr/>
+			<% end -%>
+
+			<div class="details">
+
+				<h3>DEADLINE</h3>
+				<div class="date">
+					<%= @task.deadline.strftime("%A #{@task.deadline.day.ordinalize} %B %Y") %>
+				</div>
+
+				<% if @task.overdue %>
+				<p>
+					This task is <span class="over">overdue</span> by <span class="bold"><%= @task.days_left.abs %> days.</span>
+				</p>
+				<% else %>
+				<p>
+					This task is due in <span class="bold"><%= @task.days_left %> days.</span>
+				</p>
+				<% end %>
+
+			</div>
+
+			<div class="corner-ribbon">
+				<p class="bold">
+					<%= image_tag "ribbon_#{@task.status.gsub(/( )/, '_').downcase}.png" %>
+				</p>
+			</div>
+
+		</div>
+
 	</div>
 </div>
-	
-
 

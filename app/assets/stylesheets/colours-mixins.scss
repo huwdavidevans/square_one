@@ -11,6 +11,13 @@ $under: darken($completed, 10);
 $over: darken($in_progress, 10);
 $total: #3399CC;
 
+$rib-ngfl: #0A6D2E;
+$rib-wjec: #0083A3;
+$rib-generic: #CCCCCC;
+$rib-cilt: #284B24;
+$rib-cpd: #A26304;
+$rib-dfes: #6D4545;
+
 @mixin letterpress($color) {
     text-shadow: 0 -1px 0 darken($color, 40%), 0 1px 0 lighten($color, 15%)
   }

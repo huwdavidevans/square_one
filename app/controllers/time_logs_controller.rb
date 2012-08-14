@@ -28,9 +28,7 @@ class TimeLogsController < ApplicationController
   # GET /time_logs/new.json
   def new
     @time_log = TimeLog.new(:task_id => @task.id, :user_id => @task.user.id, :time_minutes => 0 )
-    @comment = Comment.new()
-    
-    
+    @comment = Comment.new()    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @time_log }
@@ -40,6 +38,7 @@ class TimeLogsController < ApplicationController
   # GET /time_logs/1/edit
   def edit
     @time_log = TimeLog.find(params[:id])
+    @comment = Comment.find_by_id(@time_log.comment_id)
   end
 
 

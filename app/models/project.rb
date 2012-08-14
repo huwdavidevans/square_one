@@ -8,7 +8,12 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   
   
-  def total_work_days
+  validates :name, :presence => true, :length => { :minimum => 5 }
+  validates :project_type_id, :presence => true
+  validates :deadline, :presence => true
+  
+  
+  def work_days
     total = 0;    
     tasks.each do |t|
       total += t.work_days
@@ -38,7 +43,7 @@ class Project < ActiveRecord::Base
   
   
   def work_days_left
-    total_work_days.to_f - work_days_spent
+    work_days.to_f - work_days_spent
   end
   
   
@@ -52,7 +57,7 @@ class Project < ActiveRecord::Base
   end
   
   def work_percent_spent
-    total_work_days > 0 ? work_days_spent / total_work_days : 0
+    work_days > 0 ? work_days_spent / work_days : 0
   end
   
   
@@ -62,11 +67,11 @@ class Project < ActiveRecord::Base
   
   
   def overrun
-    work_days_spent > total_work_days
+    work_days_spent > work_days
   end
   
   def work_days_over
-    work_days_spent - total_work_days
+    work_days_spent - work_days
   end
   
   
