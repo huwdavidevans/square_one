@@ -16,9 +16,21 @@ class ApplicationController < ActionController::Base
     end
   end
  
- def confirm_is_admin
-    User.find_by_id(session[:user_id]).is_admin?
+  def confirm_is_admin
+    unless User.find_by_id(session[:user_id]).is_admin?
+      flash[:error] = "Authorisation Error"
+      redirect_no_auth
+      false
+    end
   end
  
+ 
+ private
+ 
+ def redirect_no_auth
+    redirect_to :back
+  rescue ActionController::RedirectBackError
+    redirect_to projects_path   
+ end
  
 end
