@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   belongs_to :project_type 
       
   has_many :tasks
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users, :uniq => true
   
   
   validates :name, :presence => true, :length => { :minimum => 5 }
@@ -156,7 +156,10 @@ class Project < ActiveRecord::Base
     activityArray.sort_by(&:created_at).reverse!.group_by{ |a| a.created_at.to_date }
   end
   
-  
+  def add_user(attributes)
+      @new_user = User.find_by_id(attributes[:id]) unless attributes[:id] == nil
+      self.users << @new_user unless @new_user == nil
+  end
   
   
 end

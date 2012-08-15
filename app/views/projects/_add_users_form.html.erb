@@ -1,0 +1,15 @@
+<%	@project = Project.find_by_id(params[:id])  %>
+<%= form_for(@project) do |f| %>
+	<%= render(:partial => 'shared/form_errors', :locals => {:object => @project})%>	
+	<% current_users = @project.users(:select => :id).collect(&:id) %>
+	<% users_table = Arel::Table.new(:users) %>
+	
+	<%= fields_for "new_user" do |u| %>
+   		 <%= u.select(:id, User.where(users_table[:id].not_in current_users).collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %>	 
+	<% end %>
+	
+	<div class="actions">
+	    <%= f.submit %>
+	</div>  
+	
+<% end %>

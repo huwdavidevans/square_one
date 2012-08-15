@@ -83,4 +83,21 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def add_user    
+    @project = Project.find(params[:id])
+    @project.add_user(params[:new_user])
+    
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end   
+  end
+  
 end

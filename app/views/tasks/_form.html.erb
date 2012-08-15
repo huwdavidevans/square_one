@@ -1,7 +1,7 @@
 <%= render(:partial => 'shared/form_errors', :locals => {:object => @task})%>	
 
   <div class="field">
-  	<p class="label">User: <%= f.select(:user_id, User.all.collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %></td>
+  	<p class="label">User: <%= f.select(:user_id, @project.users.all.collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %></td>
 	</p>
 	 <p class="description">
 		The person responsible for completing the task

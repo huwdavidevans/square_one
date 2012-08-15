@@ -18,7 +18,8 @@ SquareOne::Application.routes.draw do
       get 're_open'
     end
   end
-  resources :projects
+  
+  resources :projects 
   
 
   # The priority is based upon order of creation:

@@ -1,7 +1,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   
-  has_and_belongs_to_many :projects
+  has_and_belongs_to_many :projects, :uniq => true
   has_many :tasks
   
   attr_accessor :supplied_password, :del_avatar

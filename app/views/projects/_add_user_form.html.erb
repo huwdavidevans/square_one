@@ -1,0 +1,22 @@
+<%	#@project = Project.find_by_id(params[:id]) 
+%>
+<% current_users = @project.users(:select => :id).collect(&:id) %>
+<% users_table = Arel::Table.new(:users) %>
+
+<% if current_users.length > 0
+	new_users = User.where(users_table[:id].not_in current_users) 
+ else
+ 	new_users = User.all 
+ end  %>
+
+<% if new_users.length > 0 %>
+	<%= form_for(@project, :url => {:controller => :projects, :action => :add_user, :id => @project.id} ) do |f| %>
+		<%= render(:partial => 'shared/form_errors', :locals => {:object => @project})%>
+		<%= fields_for "new_user" do |u| %>
+			<%= u.select(:id, new_users.collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %>
+		<% end %>
+		<div class="actions">
+			<%= f.submit "Add User" %>
+		</div>
+	<% end %>
+<% end %>
