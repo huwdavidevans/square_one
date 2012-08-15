@@ -12,7 +12,8 @@ class Comment < ActiveRecord::Base
   has_many :in_reply_to, :through => :in_reply_to_association, :source => :comment
   
   validates :user_id, :presence => true
-  validates :body, :presence => true, :length => { :minimum => 5  }
+  validates :body, :presence => true, :length => { :minimum => 5, :message => "You must enter a comment." }
+ 
   
   attr_accessible :user_id, :task_id, :project_id, :in_reply_to, :body
   

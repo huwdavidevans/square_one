@@ -118,8 +118,12 @@
 		</div>
 
 		<div class="centre">
-		
-			<%= link_to 'MARK COMPLETE', @task, :method => :mark_complete, :confirm=>"Are you sure?", :class=>'big button' %>
+			<% if !@task.complete %>
+				<%= link_to 'MARK COMPLETE', url_for( :controller => "tasks", :action => "mark_complete", :id => @task.id ), :class=>'big button' %>
+			<% end -%>
+			<% if current_user.is_admin? && @task.complete %>
+				<%= link_to 'RE-OPEN', @task, :method => :mark_complete, :confirm=>"Are you sure?", :class=>'big button' %>
+			<% end -%>	
 		</div>
 	</div>
 </div>

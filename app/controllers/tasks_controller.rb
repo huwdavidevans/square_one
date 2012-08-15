@@ -8,19 +8,17 @@ class TasksController < ApplicationController
   
   
   def mark_complete
-    
     @task = Task.find(params[:id])
-      @task.complete = true
-      
-      if @task.save        
-        format.html { redirect_to @task, notice: 'Task Completed.' }
+    @task.complete = true
+      if @task.save 
+        flash[:success] = "Task Completed."
+        format.html { redirect_to @task}
         format.json { render json: @task }
       else
-        format.html { redirect_to @task, error: 'Task Not Completed.' }
+        flash[:error] = "Task Not Completed."
+        format.html { redirect_to @task }
         format.json { render json: @task }
       end
-      
-      
   end
   
   def index

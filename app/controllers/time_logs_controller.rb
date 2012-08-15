@@ -38,7 +38,7 @@ class TimeLogsController < ApplicationController
   # GET /time_logs/1/edit
   def edit
     @time_log = TimeLog.find(params[:id])
-    @comment = Comment.find_by_id(@time_log.comment_id)
+    @comment = Comment.find_by_time_log_id(@time_log.id)
   end
 
 
@@ -47,9 +47,12 @@ class TimeLogsController < ApplicationController
   # POST /time_logs.json
   def create
     
-    @time_log = TimeLog.new(params[:time_log], :task_id => @task.id, :user_id => @task.user.id)
+    @time_log = TimeLog.new(params[:time_log])
     @comment = Comment.new(params[:comment])
+    @comment.user_id = @task.user_id
     @time_log.comment = @comment
+    
+   # puts YAML::dump(@time_log)
     
     respond_to do |format|
       if @time_log.save

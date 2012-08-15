@@ -8,14 +8,17 @@ class TimeLog < ActiveRecord::Base
   before_validation :hours_to_minutes
   
   attr_accessor :supplied_minutes, :supplied_hours
-  attr_accessible :user_id, :task_id, :comment_id, :time_minutes, :supplied_hours, :supplied_minutes  
+  attr_accessible :user_id, :task_id, :time_minutes, :supplied_hours, :supplied_minutes  
 
   validates :time_minutes, :numericality => {:greater_than => 0, :message => "You must enter a time." } 
   validates :user_id, :presence => true 
-  validates :comment_id, :presence => {:message => "You must enter a comment." }
- 
+  
   def body
-    comment.body
+    if comment
+      comment.body
+    else
+      "No comment available"
+    end 
   end
  
   def minutes_i
