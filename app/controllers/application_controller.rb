@@ -16,7 +16,9 @@ class ApplicationController < ActionController::Base
     end
   end
  
- 
+ def confirm_is_admin
+    User.find_by_id(session[:user_id]).is_admin?
+  end
  
  
 end

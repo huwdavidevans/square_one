@@ -10,8 +10,14 @@ SquareOne::Application.routes.draw do
 
   resources :todo_lists
 
-  resources :tasks
-
+  resources :tasks do
+    member do
+      get 'mark_complete'
+    end
+    member do
+      get 're_open'
+    end
+  end
   resources :projects
   
 

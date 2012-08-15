@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
   has_many :comments
   has_many :time_logs
   
-  attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days
+  attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days, :complete
  
   scope :started, joins(:time_logs).uniq    
   scope :not_started, where("id NOT IN (SELECT task_id FROM time_logs)")
@@ -107,8 +107,8 @@ class Task < ActiveRecord::Base
   
   private
   
-  def work_days_to_minutes
-    self.work_minutes = supplied_work_days.to_i * MINUTES_IN_WORK_DAY
+  def work_days_to_minutes    
+     self.work_minutes = supplied_work_days.to_i * MINUTES_IN_WORK_DAY if supplied_work_days
   end
   
   def clear_work_days

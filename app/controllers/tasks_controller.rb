@@ -3,23 +3,43 @@ class TasksController < ApplicationController
   # GET /tasks.json
   
   
-  before_filter :find_project
   
+  before_filter :find_project
+  before_filter :confirm_is_admin, :except => [:index, :mark_complete]
   
   
   def mark_complete
     @task = Task.find(params[:id])
-    @task.complete = true
-      if @task.save 
+    respond_to do |format|
+      if @task.update_attributes(:complete => 1)
         flash[:success] = "Task Completed."
-        format.html { redirect_to @task}
+        format.html { redirect_to @task }
         format.json { render json: @task }
       else
         flash[:error] = "Task Not Completed."
         format.html { redirect_to @task }
         format.json { render json: @task }
       end
+    end
   end
+  
+  
+  def re_open
+    @task = Task.find(params[:id])
+    respond_to do |format|
+      if  @task.update_attributes(:complete => 0)
+        flash[:success] = "Task Reopened."
+        format.html { redirect_to @task }
+        format.json { render json: @task }
+      else
+        flash[:error] = "Task Not reopened."
+        format.html { redirect_to @task }
+        format.json { render json: @task }
+      end
+    end
+  end
+
+  
   
   def index
     @tasks = Task.all
