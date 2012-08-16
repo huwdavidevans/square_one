@@ -33,8 +33,21 @@
 			<%= item.body %>
 		</div>
 		
-		<div class="actions hidden">
-			<%= link_to "reply", new_comment_path %>
+		
+		<% if type == "time_log" 
+				@comment = item.comment
+			 else 
+			 	@comment = item
+			 end %>	
+			 
+		<div id="replies-<%=@comment.id%>">
+			<%= @comment.replies.length %> Replies
+			
+			
+		</div>
+		
+		<div class="actions">
+			<%= link_to 'reply', {:controller=>:comments, :action=>:new_reply, :task_id => @task.id, :id => @comment.id}, :class => 'button', :id=> 'new-user-button', :remote => true  %>
 		</div>
 		
 		

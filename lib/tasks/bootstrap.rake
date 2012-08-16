@@ -133,7 +133,36 @@ namespace :bootstrap do
     
   end
 
-
+  desc "Add Dan and Hywel"
+  task :dan_hywel => :environment do
+      u = User.new
+      u.first_name = "Danielle"
+      u.last_name = "Griffiths"
+      u.username = "griffd" 
+      u.screen_name = "Dan G"
+      u.email = "danielle.griffiths@ngfl-cymru.org.uk"
+      u.title = "Development Team Coordinator"
+      u.description = ""
+      u.level = 2
+      u.active = true
+      u.supplied_password = 'ngfl1234'
+      u.avatar = File.open("public/users/avatars/danielle.jpg")
+      u.save
+      
+      u = User.new
+      u.first_name = "Hywel"
+      u.last_name = "Jones"
+      u.username = "joneshy" 
+      u.screen_name = "Hywel J"
+      u.email = "hywel.jones@ngfl-cymru.org.uk"
+      u.title = "Development Team Coordinator"
+      u.description = ""
+      u.level = 2
+      u.active = true
+      u.supplied_password = 'ngfl1234'
+      u.avatar = File.open("public/users/avatars/hywel.jpg")
+      u.save
+  end
 
   desc "Run all bootstrapping tasks"
   task :all => [:default_user_roles, :default_user, :extra_users, :add_test_projects, :add_project_types]

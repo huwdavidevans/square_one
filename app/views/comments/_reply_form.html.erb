@@ -1,0 +1,13 @@
+<h2>Reply</h2>
+<%= form_for(:reply, :url => {:controller => :comments, :action => :create_reply, :task_id => @task.id, :comment_id => @original_comment.id} , :remote => true ) do |f| %>
+
+	<%= render(:partial => 'shared/form_errors', :locals => {:object => @reply})%>	
+	<% @reply.user_id = current_user.id %>	
+	<%= f.hidden_field :user_id %>	
+	<%= f.text_area :body, :size => '25x3'%>
+	
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	
+<% end -%>

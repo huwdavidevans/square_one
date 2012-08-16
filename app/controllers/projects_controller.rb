@@ -1,4 +1,8 @@
 class ProjectsController < ApplicationController
+  
+  
+  before_filter :confirm_is_admin, :except => [:index, :show]
+  
   # GET /projects
   # GET /projects.json
   def index
@@ -96,6 +100,7 @@ class ProjectsController < ApplicationController
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }

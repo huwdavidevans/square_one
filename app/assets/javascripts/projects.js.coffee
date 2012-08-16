@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$(document).ready ->
-  $(".activity").hover (->
-    $(this).find(".actions").removeClass "hidden"
-  ), ->
-    $(this).find(" .actions").addClass "hidden"
+# $(document).ready ->
+  # $(".activity").hover (->
+    # $(this).find(".actions").removeClass "hidden"
+  # ), ->
+    # $(this).find(" .actions").addClass "hidden"

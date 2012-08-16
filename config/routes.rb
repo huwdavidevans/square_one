@@ -1,8 +1,12 @@
 SquareOne::Application.routes.draw do
 
   match 'login', :to => "access/login"
+  
+  root :to => "projects#index"
+  
 
-  resources :comments
+  resources :comments do
+  end
 
   resources :time_logs
 

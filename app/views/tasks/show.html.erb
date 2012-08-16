@@ -58,7 +58,7 @@
 				<%= image_tag 'milestone_start.png' %>
 			</div>
 		</div>
-		<h2 class="day">TASK ADDED : <%= @task.created_at.strftime("%A #{@task.deadline.day.ordinalize} %B %Y") %></h2>
+		<h2 class="day">TASK ADDED : <%= @task.created_at.strftime("%A #{@task.created_at.day.ordinalize} %B %Y") %></h2>
 
 	</div>
 

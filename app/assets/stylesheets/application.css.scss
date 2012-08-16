@@ -240,3 +240,19 @@ ul.crumbtrail {
     font-size: 14px;
   } 
 }
+
+
+#login {
+  width: 300px;
+  margin: 40px auto;  
+  .fields {
+    margin:20px;
+    p {
+      margin:20px 0;
+    }
+    .label{
+      text-align: left;
+      margin-right:10px;
+    }
+  }
+}

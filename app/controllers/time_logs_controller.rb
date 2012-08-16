@@ -1,6 +1,7 @@
 class TimeLogsController < ApplicationController
   
   before_filter :find_task
+  before_filter :confirm_is_admin, :except => [:show, :new, :create]
   
   # GET /time_logs
   # GET /time_logs.json

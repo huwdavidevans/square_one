@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   
   before_filter :find_task
+  before_filter :confirm_is_admin, :except => [:show, :new, :create]
+ 
     
   # GET /comments
   # GET /comments.json
@@ -28,11 +30,6 @@ class CommentsController < ApplicationController
   end
 
 
-
-
-
-
-
   # GET /comments/new
   # GET /comments/new.json
   def new
@@ -45,10 +42,6 @@ class CommentsController < ApplicationController
       format.json { render json: @comment }
     end
   end
-
-
-
-
 
 
   # GET /comments/1/edit
@@ -105,7 +98,33 @@ class CommentsController < ApplicationController
   end
   
   
+  def new_reply
+    @original_comment = Comment.find_by_id(params[:id])
+    @reply = Comment.new()    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
   
+ def create_reply
+    @original_comment = Comment.find_by_id(params[:comment_id])
+    @reply = Comment.new(params[:reply])
+    @original_comment.replies << @reply
+    respond_to do |format|
+      if @original_comment.save
+        flash[:success] = "Reply added"
+        format.js
+        format.html { redirect_to @task }
+        format.json { head :no_content }
+      else
+        flash[:error] = "Reply not successful"
+        format.html { redirect_to @task }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   
   private
 

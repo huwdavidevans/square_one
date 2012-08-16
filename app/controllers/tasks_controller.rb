@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   
   before_filter :find_project
-  before_filter :confirm_is_admin, :except => [:index, :show, :mark_complete]
+  before_filter :confirm_is_admin, :except => [:show, :mark_complete]
   
   
   def mark_complete
