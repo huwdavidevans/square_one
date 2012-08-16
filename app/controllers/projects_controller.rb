@@ -2,9 +2,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    
     @projects = Project.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -16,22 +14,20 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @tasks = Task.where(:project_id => @project.id)
-    
-      respond_to do |format|
+    respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
     end
-    
   end
 
   # GET /projects/new
   # GET /projects/new.json
   def new
     @project = Project.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
+      format.js
     end
   end
 
@@ -44,7 +40,6 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -60,7 +55,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
-
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -77,18 +71,15 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-
     respond_to do |format|
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
   end
 
-
-  def add_user    
+  def add_user
     @project = Project.find(params[:id])
     @project.add_user(params[:new_user])
-    
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -97,7 +88,7 @@ class ProjectsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
-    end   
+    end
   end
-  
+
 end

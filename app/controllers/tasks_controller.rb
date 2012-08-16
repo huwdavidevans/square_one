@@ -113,6 +113,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    @project = @task.project
   end
 
   # PUT /tasks/1
@@ -130,12 +131,10 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
-  def destroy
-    
+  def destroy    
     @task = Task.find(params[:id])
     @project = @task.project
     @task.destroy
-
     respond_to do |format|
       format.html { redirect_to @project}
       format.json { head :no_content }
