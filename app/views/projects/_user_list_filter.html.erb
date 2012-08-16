@@ -1,6 +1,6 @@
 <div id="userList">
 	<h2><%= "Users".upcase %></h2>
-<!-- 	<h3>Role Name</h3> -->
+	<!-- 	<h3>Role Name</h3> -->
 	<% project.users.each do |user| %>
 		<div class="user">
 			<div class="avatar left"><%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %></div>
@@ -12,8 +12,14 @@
 	<% end %>
 	<hr />
 	
-	<span style="font-size: 12px; color:#666;">Add new User..</span>
-	<%= render :partial => 'add_user_form'	%>
+	
+	
+	<% if current_user.is_admin?  %>
+		<div id = "add-new-user">
+			<%= link_to 'Add New User', new_user_project_path, :class => 'button', :id=> 'new-user-button', :remote => true  %>
+		</div>
+	<% end -%>
+	
 	
 	
 </div>

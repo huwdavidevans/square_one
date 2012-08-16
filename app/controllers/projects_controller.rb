@@ -76,7 +76,19 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def new_user    
+    @project = Project.find(params[:id])
+    if @project.users.length == 0
+      @users_available = User.all
+    else
+      @users_available = User.not_involved_in(@project)
+    end
+    respond_to do |format|
+      format.js
+    end
+  end  
+  
   def add_user
     @project = Project.find(params[:id])
     @project.add_user(params[:new_user])

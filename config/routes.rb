@@ -12,14 +12,18 @@ SquareOne::Application.routes.draw do
 
   resources :tasks do
     member do
-      get 'mark_complete'
+      get :mark_complete
     end
     member do
-      get 're_open'
+      get :re_open
     end
   end
   
-  resources :projects 
+  resources :projects do
+    member do
+      get :new_user
+    end
+  end
   
 
   # The priority is based upon order of creation:
