@@ -10,7 +10,7 @@
  end  %>
 
 <% if new_users.length > 0 %>
-	<%= form_for(@project, :url => {:controller => :projects, :action => :add_user, :id => @project.id} ) do |f| %>
+	<%= form_for(@project, :url => {:controller => :projects, :action => :add_user, :id => @project.id}, :remote => true ) do |f| %>
 		<%= render(:partial => 'shared/form_errors', :locals => {:object => @project})%>
 		<%= fields_for "new_user" do |u| %>
 			<%= u.select(:id, new_users.collect {|r| ["#{r.first_name} #{r.last_name} : (#{r.username})" , r.id]}) %>

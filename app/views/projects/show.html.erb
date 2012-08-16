@@ -42,7 +42,17 @@
 	
 	<div id="details" class="left">
 		<div id="tasks" class="left">
+			
+			<h2>TASKS</h2>
+
+			<% if current_user.is_admin?  %>			
+				<div id="add-new-task">
+					<%= link_to '+ Add Task', new_task_path(:project_id => @project.id), :class => 'button', :id=> 'new-task-button', :remote => true  %>
+				</div>
+			<% end -%>
+			
 			<%= render :partial => 'task_list', :locals => {:project => @project} %>
+			
 		</div>
 		<div id="metrics" class="right">
 			<%= render :partial => 'project_details', :locals => {:project => @project}  %>

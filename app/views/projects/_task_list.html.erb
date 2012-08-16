@@ -1,22 +1,3 @@
-<h2>TASKS</h2>
-
-
-<% if current_user.is_admin?  %>
-<%= link_to_function '+ Add Task', 'toggleNewForm("task")',:class => 'button', :id=> 'new-task-button'  %>
-<div id="new-task-form" class="form hidden">
-	<div class="right">
-		<%= link_to_function 'close', 'toggleNewForm("task")' %>
-	</div>
-	<h2>New Task</h2>
-	<% @project = project %>
-	<% @task = Task.new()%>
-	<%= form_for(:task, :url => {:controller => :tasks, :action => 'create', :project_id => @project.id}) do |f| %>
-	<%= render(:partial => 'tasks/form', :locals => {:f => f}) %>
-	<% end %>
-</div>
-<% end -%>
-
-
 <div class="filter">
 	<div class="buttons">
 		
