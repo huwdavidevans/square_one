@@ -25,4 +25,16 @@ module ApplicationHelper
     str
   end
   
+  
+  def sort_by (column, title = nil)
+    title ||= column.titleize
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    link_to title, {:sort => column, :direction => direction}
+  end
+   
+  def filter_by (state, title = nil)
+    title ||= state.titleize
+    link_to title, {:state => state}
+  end
+   
 end

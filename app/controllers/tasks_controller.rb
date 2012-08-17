@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  # GET /tasks
-  # GET /tasks.json
+
+  helper_method :sort_column, :sort_direction
   
   before_filter :find_project
   before_filter :confirm_is_admin, :except => [:show, :mark_complete]
@@ -40,8 +40,9 @@ class TasksController < ApplicationController
   
   
   def index
-    @tasks = Task.all
-
+    @all_tasks = Task.scoped
+    @tasks = filtered_tasks.order(sort_column + " " + sort_direction)
+   
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -49,13 +50,6 @@ class TasksController < ApplicationController
   end
   
   
-  # def index  
-  #     @tasks = Task.order("tasks.deadline DESC").where(:project_id => @project.id)
-  #     respond_to do |format|
-  #       format.html # index.html.erb
-  #       format.json { render json: @tasks }
-  #     end    
-  #   end
 
 
   # GET /tasks/1
@@ -145,9 +139,21 @@ class TasksController < ApplicationController
   private
   
   def find_project
-    if params[:project_id]
+    if params[:project_id]  
       @project = Project.find_by_id(params[:project_id])
     end 
+  end  
+  
+  def filtered_tasks
+     %w[not_started completed in_progress].include?(params[:state]) ? @all_tasks.send(params[:state].to_sym) : @all_tasks 
+  end
+  
+  def sort_column
+    Task.column_names.include?(params[:sort]) ? params[:sort] : "deadline"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 

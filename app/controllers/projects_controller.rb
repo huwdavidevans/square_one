@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   
-  
+  helper_method :sort_column, :sort_direction  
   before_filter :confirm_is_admin, :except => [:index, :show]
   
   # GET /projects
@@ -17,7 +17,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @tasks = Task.where(:project_id => @project.id)
+    @all_tasks = Task.where(:project_id => @project.id)
+    @tasks = filtered_tasks.order(sort_column + " " + sort_direction)
+    #@tasks_by_activity = Task.where(:project_id => @project.id).includes(:time_logs, :comments).order('comments.created_at desc')
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -105,7 +108,21 @@ class ProjectsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
-    end
+    end    
+  end
+  
+  private
+  
+  def filtered_tasks
+     %w[not_started completed in_progress].include?(params[:state]) ? @all_tasks.send(params[:state].to_sym) : @all_tasks 
+  end
+  
+  def sort_column
+    Task.column_names.include?(params[:sort]) ? params[:sort] : "deadline"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

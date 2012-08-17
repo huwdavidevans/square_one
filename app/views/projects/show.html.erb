@@ -41,7 +41,7 @@
 	</div>
 	
 	<div id="details" class="left">
-		<div id="tasks" class="left">
+		<div id="task-list" class="left">
 			
 			<h2>TASKS</h2>
 
@@ -51,7 +51,7 @@
 				</div>
 			<% end -%>
 			
-			<%= render :partial => 'task_list', :locals => {:project => @project} %>
+			<%= render :partial => 'tasks/task_list', :locals => {:project => @project} %>
 			
 		</div>
 		<div id="metrics" class="right">

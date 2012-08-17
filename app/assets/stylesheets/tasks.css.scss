@@ -6,6 +6,70 @@
 @import "colours-mixins";
 @import "fancy-buttons";
 
+
+#task-list {
+        padding: 20px;
+        min-height: 210px;
+        min-width: 475px;
+        .filter {
+          font-size: 12px;
+          margin: 20px 0;
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+          text-align: justify;
+          .buttons {
+            a {
+              color: $action-link-subtle-grey;
+              text-decoration: none;
+              margin-left: 1em;
+            }
+            .first {
+              margin-left: 0;
+            }
+          }
+        }
+        .task {
+          margin: 10px auto;
+          overflow: auto;
+          .deadline {
+            margin: 10px;
+            color: #666;
+            font-weight: bold;
+          }
+          .details {
+            margin: 10px 10px 10px 0;
+            min-width: 300px;
+            .task-name {
+              a {
+                color: #333;
+                font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+                text-decoration: none;
+              }
+              margin-bottom: 7px;
+            }
+            .user {
+              .avatar {}
+              .screen-name {
+                color: #666;
+                font-size: 11px;
+                line-height: 16px;
+                margin-left: 6px;
+              }
+            }
+          }
+          .admin {
+            margin: 10px auto;
+          }
+          .time {
+            margin: 10px;
+            width: 40px;
+            height: 40px;
+            //background: #234873;
+        
+          }
+        }
+    }
+
+
 .task {
   .task-name {
     img {
