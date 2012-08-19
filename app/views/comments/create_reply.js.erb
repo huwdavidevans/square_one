@@ -1,1 +1,5 @@
-$('#replies-<%= @reply.in_reply_to.id %>').html("<%= 'New replies' %>");
+$('#replies-<%= @original_comment.id %> > #actions').html("<%= escape_javascript(link_to 'reply', {:controller=>:comments, :action=>:new_reply, :id => @original_comment.id}, :class => 'button', :id=> 'new-user-button', :remote => true  
+) %>");
+
+
+$('#replies-<%= @original_comment.id %> > #reply-list').html("<%= escape_javascript(render :partial => 'tasks/reply_list', :locals => {:comment => @original_comment}) %>");

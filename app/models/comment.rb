@@ -12,8 +12,8 @@ class Comment < ActiveRecord::Base
   has_one :in_reply_to, :through => :in_reply_to_association, :source => :comment
   
   validates :user_id, :presence => true
-  validates :body, :presence => true, :length => { :minimum => 5, :message => "You must enter a comment." }
- 
+  #validates :body, :presence => true, :length => { :minimum => 5, :message => "You must enter a comment." }
+  #TODO validate from time_logs with before_create
   
   attr_accessible :user_id, :task_id, :project_id, :in_reply_to, :body
   

@@ -1,25 +1,31 @@
 <div id="userList">
 	<h2><%= "Users".upcase %></h2>
 	<!-- 	<h3>Role Name</h3> -->
+	
+	<%= link_to "All", {} if !@filtered_user.nil? %>
 	<% project.users.each do |user| %>
-		<div class="user">
+		<div class="user<%= " selected" if user == @filtered_user %>">
 			<div class="avatar left"><%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %></div>
 			<div class="details">
-				<div class="name"> <%= user.name %></div>
-				<div class="summary"><%= project.tasks.where("user_id = #{user.id} && complete = 1").length%> of <%= project.tasks.where("user_id = #{user.id}").length  %> Tasks Completed</div>				
+				<div class="name"> <%= link_to user.name, {:user_id => user.id}%></div>
+			
+					<ul class="summary">
+						
+						<li> <%= user_filter_by user.id, :completed, "#{project.tasks.where('user_id = ? && complete = 1', user.id).length} of #{ project.tasks.where('user_id = ?', user.id).length }  Tasks Completed" %></li>		
+					
+					</ul>	
+					
+			
+								
 			</div>		
 		</div>
 	<% end %>
 	<hr />
-	
-	
 	
 	<% if current_user.is_admin?  %>
 		<div id = "add-new-user">
 			<%= link_to 'Add New User', new_user_project_path, :class => 'button', :id=> 'new-user-button', :remote => true  %>
 		</div>
 	<% end -%>
-	
-	
 	
 </div>

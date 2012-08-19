@@ -205,6 +205,9 @@
       width: 185px;
       padding: 20px;
       #userList {
+		.selected{
+			background: white;
+		}
         .user {
           overflow: auto;
           margin: 15px 0;
@@ -305,13 +308,15 @@
     font-size: 1.25em;
     font-weight: bold;
   }
-  hr {
-    border: 0;
-    border-top: 1px solid #CCC;
-    height: 1px;
-    background-color: #EFEFEF;
-    width: 80%;
-  }
+
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  height: 1px;
+  background-color: #EFEFEF;
+  width: 80%;
 }
 
 .dev-list-task {
@@ -326,13 +331,8 @@
   font-size: 12px;
   color: #666;
   padding: 10px;
-  hr {
-    border: 0;
-    border-top: 1px solid #CCC;
-    height: 1px;
-    background-color: #EFEFEF;
-    width: 80%;
-  }
+
+
   h3 {
     margin: 10px 0;
     color: #AAA;

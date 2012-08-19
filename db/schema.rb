@@ -9,7 +9,7 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's <span class="bold">ly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120815084500) do
 
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120815084500) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "comment_replies", ["comment_id", "reply_id"], :name => "index_comment_replies_on_comment_id_and_reply_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -30,15 +32,6 @@ ActiveRecord::Schema.define(:version => 20120815084500) do
     t.datetime "updated_at",  :null => false
     t.integer  "time_log_id"
   end
-
-  create_table "comments_replies", :id => false, :force => true do |t|
-    t.integer  "comment_id"
-    t.integer  "reply_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "comments_replies", ["comment_id", "reply_id"], :name => "index_comments_replies_on_comment_id_and_reply_id"
 
   create_table "project_types", :force => true do |t|
     t.string   "name"

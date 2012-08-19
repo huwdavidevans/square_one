@@ -18,6 +18,10 @@ $rib-cilt: #284B24;
 $rib-cpd: #A26304;
 $rib-dfes: #6D4545;
 
+$time_log_colour: #3d86c2;
+$comment_colour: #FFA500;
+$reply_colour: darken($comment_colour, 5);
+
 @mixin letterpress($color) {
     text-shadow: 0 -1px 0 darken($color, 40%), 0 1px 0 lighten($color, 15%)
   }

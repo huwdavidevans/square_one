@@ -1,82 +1,55 @@
+<% type == "time_log" ? @comment = item.comment : @comment = item %>
 <div class="timepoint  <%= my_class %>">
 	
-<div class="activity <%= type %>" id="<%= type %>-<%=item.id%>">
-<a name="<%= type %>-<%=item.id%>"></a>	
-	<div class="avatar left">
-		<%= image_tag item.user.avatar.url(:thumb) %>
-		<div class="icon">
-			<%= image_tag "#{type}.png" %>
-		</div>
-	</div>
-	
-	<div class="details left">
-		
-		<div class="description">			
-			<%= item.user.first_name %> 
-			<% if type == 'time_log' %>
-			logged <span class="type"><%= item.time_string %></span>
-			<% elsif type == 'comment'%>
-			posted a <span class="type">comment</span>
-			<%end%>
-		</div>
-		
-		<div class="time">
-			<% if item.created_at.to_date == Date.today %>
-				<strong><%= distance_of_time_in_words(Time.now, item.created_at).gsub('about ','') %></strong> ago
-			<% elsif %>
-				at <strong><%= item.created_at.strftime("%H:%M")%></strong>
-			<% end %>
-			</span>
-		</div>
-		
-		<div class="body">
-			<%= item.body %>
-		</div>
-		
-		
-		<% if type == "time_log" 
-				@comment = item.comment
-			 else 
-			 	@comment = item
-			 end %>	
-			 
-		<div id="replies-<%=@comment.id%>">
-			<%= @comment.replies.length %> Replies
-			
-			
-		</div>
-		
-		<div class="actions">
-			<%= link_to 'reply', {:controller=>:comments, :action=>:new_reply, :task_id => @task.id, :id => @comment.id}, :class => 'button', :id=> 'new-user-button', :remote => true  %>
-		</div>
-		
-		
-	</div>
-	
-	<% if type == 'comment' && !item.replies.empty? %>
-			<div class="replies">
-				<% item.replies.each do |reply| %>
-					<hr />
-					
-					<div class="left">
-						<%= image_tag reply.user.avatar.url(:teeny) %>						
-					</div>
-					<div class="time">
-						<%= reply.user.name %> replied 
-						<% if reply.created_at.to_date == Date.today %>
-							<%= distance_of_time_in_words(Time.now, reply.created_at).gsub('about ','') %> ago
-						<% elsif %>
-							at <%= reply.created_at.strftime("%H:%M on %a %d %b %Y" )%>
-						<% end %>
-						</span>
-					</div>
-
-					<p><%= reply.body %></p>
-				<% end %>
+	<div class="activity <%= type %>" id="<%= type %>-<%=item.id%>">
+	<a name="<%= type %>-<%=item.id%>"></a>	
+		<div class="avatar left">
+			<%= image_tag item.user.avatar.url(:thumb) %>
+			<div class="icon">
+				<%= image_tag "#{type}.png" %>
 			</div>
-		<% end %>
-				
-</div>
+		</div>
+	
+
+		<div class="details left">
+		
+			<div class="description">			
+				<%= item.user.first_name %> 
+				<% if type == 'time_log' %>
+				logged <span class="type"><%= item.time_string %></span>
+				<% elsif type == 'comment'%>
+				posted a <span class="type">comment</span>
+				<%end%>
+			</div>
+		
+
+			<div class="time">
+				<% if item.created_at.to_date == Date.today %>
+					<span class="bold"><%= distance_of_time_in_words(Time.now, item.created_at).gsub('about ','') %></span> ago
+				<% elsif %>
+					at <span class="bold"><%= item.created_at.strftime("%H:%M")%></span>
+				<% end %>
+				</span>
+			</div>
+		
+			<div class="body">
+				<%= item.body %>
+			</div>
+			
+		</div>
+	
+		<div id="replies-<%= @comment.id %>">
+			<div id="reply-list">
+				<%= render :partial => 'tasks/reply_list', :locals => {:comment => @comment} %>
+			</div>
+			<div id="actions" class="actions right">
+				<%= link_to 'reply', {:controller=>:comments, :action=>:new_reply, :task_id => @task.id, :id => @comment.id}, :class => 'button', :id=> 'new-user-button', :remote => true  %>
+			</div>
+		</div>
+	
+
+	
+	</div>
 
 	<div class="pointer">
 		<%= image_tag 'timeline-point.png' %>

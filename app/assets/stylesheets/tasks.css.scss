@@ -221,6 +221,10 @@
   background: white;
   @include border-radius(5px);
   @include box-shadow(#999999 0px 1px 6px);
+	.time {
+    font-size: 13px;
+    color: #999;
+  }
   .details {
     width: 230px;
     .description {
@@ -228,10 +232,7 @@
       margin: 20px 0 5px;
       font-size: 15px;
     }
-    .time {
-      font-size: 13px;
-      color: #999;
-    }
+    
     .body {
       margin: 10px 0 20px;
       font-size: 12px;
@@ -239,14 +240,47 @@
       line-height: 1.25em;
     }
   }
-  .replies {
-    padding: 0px 20px 20px 20px;
+	
+	.actions {
+		margin:10px;
+	}
+
+  #reply-list {
     clear: left;
-    background: #e7e7e7;
+	
+	.odd {
+		background: #FFFCDD;
+	}	
+	.even {
+		background: #FFFEEF;
+	}
+	hr {
+		margin: 0;
+		border: 0;
+		border-top: 1px solid #FFF0C0;
+		height: 1px;
+		background-color: #FFFEEE;
+		width: 100%;
+	  }
+	.reply {
+		padding: 20px;
+		.icon {
+			border: none;
+			margin-right: 8px;
+		}
+		.username{
+			color: $reply_colour;
+		}
+		.time {
+			line-height:20px;
+		}
+		p {
+			font-size:12px;
+			line-height: 16px;
+		}
+	}	
   }
-  strong {
-    font-weight: bold;
-  }
+
 }
 
 .hidden {
@@ -256,14 +290,14 @@
 .comment {
   .type {
     font-weight: bold;
-    color: orange;
+    color: $comment_colour;
   }
 }
 
 .time_log {
   .type {
     font-weight: bold;
-    color: #3d86c2;
+    color: $time_log_colour;
   }
 }
 

@@ -12,6 +12,7 @@ class TimeLog < ActiveRecord::Base
 
   validates :time_minutes, :numericality => {:greater_than => 0, :message => "You must enter a time." } 
   validates :user_id, :presence => true 
+  validates :comment, :presence => true
   
   def body
     if comment

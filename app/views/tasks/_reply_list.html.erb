@@ -1,0 +1,20 @@
+<% if !comment.replies.empty? %>
+	<% comment.replies.each do |reply| %>
+		<hr />
+		<div class="reply <%= cycle("odd", "even") -%>">						
+			<div class="icon left">
+				<%= image_tag reply.user.avatar.url(:teeny) %>						
+			</div>
+			<div class="time left">
+				<span class="username bold"><%= reply.user.name %></span> replied 
+				<% if reply.created_at.to_date == Date.today %>
+					<span class="bold"><%= distance_of_time_in_words(Time.now, reply.created_at).gsub('about ','') %></span> ago
+				<% elsif %>
+					at <span class="bold"><%= reply.created_at.strftime("%H:%M on %a %d %b %Y" )%></span>
+				<% end %>
+			</div>
+			<div class="clear"></div>
+			<p><%= reply.body %></p>
+		</div>
+	<% end %>
+<% end %>

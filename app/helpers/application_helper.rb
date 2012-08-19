@@ -36,5 +36,10 @@ module ApplicationHelper
     title ||= state.titleize
     link_to title, {:state => state}
   end
+     
+  def user_filter_by (user, state, title = nil)
+    title ||= state.titleize
+    link_to title, {:state => state, :user_id => user }
+  end
    
 end

@@ -1,1 +1,1 @@
-$('#replies-<%= @original_comment.id %>').html("<%= escape_javascript(render 'comments/reply_form') %>");
+$('#replies-<%= @original_comment.id %> > #actions').html("<%= escape_javascript(render 'comments/reply_form') %>");

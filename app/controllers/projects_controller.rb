@@ -17,10 +17,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @all_tasks = Task.where(:project_id => @project.id)
-    @tasks = filtered_tasks.order(sort_column + " " + sort_direction)
+    @all_tasks = Task.where(:project_id => @project.id)    
+    @filtered_user = User.find_by_id(filtered_user_id)
+    @tasks = @all_tasks.send(filtered_task_state).by_user(filtered_user_id).order(sort_column + " " + sort_direction)    
+    
+    #@tasks = filtered_tasks.order(sort_column + " " + sort_direction)
     #@tasks_by_activity = Task.where(:project_id => @project.id).includes(:time_logs, :comments).order('comments.created_at desc')
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -113,8 +116,12 @@ class ProjectsController < ApplicationController
   
   private
   
-  def filtered_tasks
-     %w[not_started completed in_progress].include?(params[:state]) ? @all_tasks.send(params[:state].to_sym) : @all_tasks 
+  def filtered_task_state
+     %w[not_started completed in_progress].include?(params[:state]) ? params[:state].to_sym : :scoped 
+  end
+  
+  def filtered_user_id
+    @all_tasks.all(:select => :user_id).collect(&:user_id).uniq.include?( params[:user_id].to_i ) ? params[:user_id].to_i  :  nil
   end
   
   def sort_column

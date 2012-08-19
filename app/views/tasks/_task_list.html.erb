@@ -27,9 +27,7 @@
 
 <div class="clear"></div>
 <% if @tasks.length	> 0 %>
-
 	<% @tasks.each do |task| %>
 		<%= render :partial => 'tasks/task_list_item', :locals => {:task => task} %>
 	<% end %>
-	
 <% end %>
