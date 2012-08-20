@@ -25,6 +25,7 @@ module ApplicationHelper
     str
   end
   
+ 
   
   def sort_by (column, title = nil)
     title ||= column.titleize
@@ -32,14 +33,13 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}
   end
    
-  def filter_by (state, title = nil)
+  def filter_by (title = nil, input_hash)
     title ||= state.titleize
-    link_to title, {:state => state}
-  end
-     
-  def user_filter_by (user, state, title = nil)
-    title ||= state.titleize
-    link_to title, {:state => state, :user_id => user }
+    output_hash = {}
+    output_hash[:state] = input_hash[:state] if !input_hash[:state].nil?
+    output_hash[:user_id] = input_hash[:user_id] if !input_hash[:user_id].nil?
+    output_hash[:sort] = params[:sort] if !params[:sort].nil?    
+    link_to title, output_hash, :remote => true
   end
    
 end

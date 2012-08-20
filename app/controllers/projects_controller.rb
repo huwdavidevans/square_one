@@ -17,18 +17,24 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @all_tasks = Task.where(:project_id => @project.id)    
+    @all_tasks = Task.where(:project_id => @project.id)
+    
     @filtered_user = User.find_by_id(filtered_user_id)
-    @tasks = @all_tasks.send(filtered_task_state).by_user(filtered_user_id).order(sort_column + " " + sort_direction)    
     
-    #@tasks = filtered_tasks.order(sort_column + " " + sort_direction)
+    @user_tasks = @all_tasks.by_user(filtered_user_id).order(sort_column + " " + sort_direction)    
+    @tasks = @user_tasks.send(filtered_task_state) 
+  
     #@tasks_by_activity = Task.where(:project_id => @project.id).includes(:time_logs, :comments).order('comments.created_at desc')
-    
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
-    end
+      format.js
+    end    
   end
+
+
+
 
   # GET /projects/new
   # GET /projects/new.json

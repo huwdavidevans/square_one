@@ -16,6 +16,7 @@ class Task < ActiveRecord::Base
   scope :started, joins(:time_logs).uniq    
   scope :not_started, where("tasks.id NOT IN (SELECT task_id FROM time_logs)")
   scope :in_progress, started.where(:complete => false)
+  scope :in_qa, scoped
   scope :completed, started.where(:complete => true)
   scope :overdue, where('tasks.deadline < ?', Date.today)
   scope :overrun, where('tasks.work_minutes <  (SELECT SUM(time_minutes) from time_logs where task_id = tasks.id) ')

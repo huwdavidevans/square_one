@@ -1,26 +1,55 @@
 <div id="userList">
-	<h2><%= "Users".upcase %></h2>
-	<!-- 	<h3>Role Name</h3> -->
 	
+	<h2><%= "Users".upcase %></h2>
+	<!-- <h3>Role Name</h3> -->
 	<%= link_to "All", {} if !@filtered_user.nil? %>
-	<% project.users.each do |user| %>
-		<div class="user<%= " selected" if user == @filtered_user %>">
+	<% @project.users.each do |user| %>
+		<div class="user <%= cycle("odd", "even")%> <%= "selected" if user == @filtered_user %>">
+			
 			<div class="avatar left"><%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %></div>
+			
 			<div class="details">
-				<div class="name"> <%= link_to user.name, {:user_id => user.id}%></div>
-			
-					<ul class="summary">
-						
-						<li> <%= user_filter_by user.id, :completed, "#{project.tasks.where('user_id = ? && complete = 1', user.id).length} of #{ project.tasks.where('user_id = ?', user.id).length }  Tasks Completed" %></li>		
+				
+				<div class="name"> <%= filter_by user.name, {:user_id => user.id} %></div>
+				
+					<% if user == @filtered_user %>
 					
-					</ul>	
+						<ul class="summary">
+							<li class="<%= " selected" if params[:state].nil? %>">
+								<%= filter_by "All tasks (#{@tasks.length})", {:user_id => user.id} %>
+							</li>
+							<!-- <li><%=
+							# filter_by "#{pluralize @tasks.in_qa.length, 'task'} in qa", {:user_id => user.id, :state => :in_qa }
+							%></li> -->
+							<li class="not_started<%= " selected" if params[:state] == "not_started" %>">
+								<%= filter_by "#{pluralize @tasks.not_started.length, 'task'} not started", {:user_id => user.id, :state => :not_started } %>
+							</li>
+							<li class="in_progress<%= " selected" if params[:state] == "in_progress" %>">
+								<%= filter_by "#{pluralize @tasks.in_progress.length, 'task'} in progress", {:user_id => user.id, :state => :in_progress } %>
+							</li>
+							<li class="completed<%= " selected" if params[:state] == "completed" %>">
+								<%= filter_by "#{pluralize @tasks.completed.length, 'task'} completed", {:user_id => user.id, :state => :completed } %>
+							</li>
+						</ul>
 					
-			
+					<% else %>
+					
+						<div class="summary">
+							<% @this_user_tasks = @all_tasks.by_user(user.id) %>
+							<span title="Total Tasks"><%= @this_user_tasks.length %></span> : 
+							<span title="Not Started" class="not_started"><%= @this_user_tasks.not_started.length %></span> 
+							<span title="In Progress" class="in_progress"><%= @this_user_tasks.in_progress.length %></span> 
+							<span title="In QA" class="in_qa"><%= @this_user_tasks.in_qa.length %></span> 
+							<span title="Completed" class="completed"><%= @this_user_tasks.completed.length %></span>
+						</div>
+					
+					<% end -%>
 								
 			</div>		
 		</div>
+		<hr />
 	<% end %>
-	<hr />
+
 	
 	<% if current_user.is_admin?  %>
 		<div id = "add-new-user">

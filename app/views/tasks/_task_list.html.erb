@@ -1,33 +1,6 @@
-
-<div class="filter">
-	<div class="buttons"></div>
-	<div class="left" style="width:200px;">
-		<ul>
-			<li> <%= sort_by "deadline" %>		</li>
-			<li> <%= sort_by "user_id", "User" %>		</li>
-			<li> <%= sort_by "created_at", "Date Added" %>		</li>
-			<li> <%= sort_by "name", "Task Name" %>		</li>
-		</ul>
-	</div>
-	
-	<div class="left" style="width:200px;">
-		<ul>
-			<li> <%= filter_by :all, "ALL (#{ @all_tasks.length })"%>	</li>
-			<li> <%= filter_by :in_progress, "IN PROGRESS (#{ @all_tasks.in_progress.length })" if @all_tasks.in_progress.length > 0 %>	</li>	
-			<li> <%= filter_by :completed, "COMPLETED (#{ @all_tasks.completed.length })" if @all_tasks.completed.length > 0 %></li>		
-			<li> <%= filter_by :not_started, "NOT STARTED(#{ @all_tasks.not_started.length })" if @all_tasks.not_started.length > 0 %></li>
-		</ul>
-	</div>
-	<div class="indicator">
-		<hr/>
-	</div>
-</div>
-
-
-
-<div class="clear"></div>
 <% if @tasks.length	> 0 %>
 	<% @tasks.each do |task| %>
 		<%= render :partial => 'tasks/task_list_item', :locals => {:task => task} %>
 	<% end %>
 <% end %>
+

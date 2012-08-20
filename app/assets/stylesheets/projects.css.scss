@@ -202,21 +202,36 @@
     @include background-image(linear-gradient(#efefef, #D3D3D3));
     #controls {
       min-height: 250px;
-      width: 185px;
-      padding: 20px;
+      width: 225px;
+      // padding: 20px ;
       #userList {
-		.selected{
-			background: white;
-		}
+        margin: 20px 0 20px 20px;
+    		.selected{
+    			// background: url("handmadepaper.png");
+    		}
+    		
+    		.odd {
+         
+        } 
+        .even {
+          background: #F0F0F0;
+        }
+    		 hr { 
+            margin: 0 auto;
+            width: 100%;
+          }
         .user {
           overflow: auto;
-          margin: 15px 0;
+          // margin: 15px 0;
           color: $heading-grey;
-          min-height: 35px;
+          min-height: 32px;
+          padding: 10px; 
+         
           .avatar {
             margin-right: 5px;
           }
           .details {
+            float:left;
             margin-left: 5px;
             line-height: 16px;
             .name {
@@ -227,13 +242,23 @@
               font-size: 11px;
             }
           }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+          .selected {
+            font-weight:bold;
+          }
         }
       }
     }
     #details {
       background: url("handmadepaper.png");
       @include single-box-shadow(#aaaaaa, -2px, 0px, 4px, false, false);
-      
+     
     }
   }
 }
@@ -283,33 +308,36 @@
       margin-right: 5px;
     }
   }
-  .over {
-    color: $over;
-  }
-  .under {
-    color: $under;
-  }
-  .total {
-    color: $total;
-  }
-  .not_started {
-    color: darken($not_started, 30);
-  }
-  .in_progress {
-    color: $in_progress;
-  }
-  .in_qa {
-    color: darken($in_qa, 5);
-  }
-  .completed {
-    color: darken($completed, 10);
-  }
-  .standout {
-    font-size: 1.25em;
-    font-weight: bold;
-  }
+  
 
 }
+
+.over {
+  color: $over;
+}
+.under {
+  color: $under;
+}
+.total {
+  color: $total;
+}
+.not_started {
+  color: darken($not_started, 30);
+}
+.in_progress {
+  color: $in_progress;
+}
+.in_qa {
+  color: darken($in_qa, 5);
+}
+.completed {
+  color: darken($completed, 10);
+}
+.standout {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
 
 hr {
   border: 0;

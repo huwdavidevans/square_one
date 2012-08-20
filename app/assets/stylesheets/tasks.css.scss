@@ -11,16 +11,31 @@
         padding: 20px;
         min-height: 210px;
         min-width: 475px;
-        .filter {
-          font-size: 12px;
+        
+        #filter {
+          font-size: 16px;
           margin: 20px 0;
           font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
           text-align: justify;
+          
+          hr {
+            
+            width: 100%;
+            
+          }
+          
           .buttons {
-            a {
-              color: $action-link-subtle-grey;
-              text-decoration: none;
+            
+            li {
+              float:left;
               margin-left: 1em;
+            }
+            .selected a {
+              color:black !important;
+            }          
+            a {
+              color: #BBB;
+              text-decoration: none;              
             }
             .first {
               margin-left: 0;

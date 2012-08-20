@@ -1,0 +1,2 @@
+<%= form_tag(@project, :remote => true, :method => :get, :class=>'right') do %><%= hidden_field_tag :user_id, params[:user_id]%>
+<%= hidden_field_tag :state, params[:state]%>sort by: <%= select_tag(:sort, options_for_select({"Deadline"=>"deadline", "User"=>"user_id", "Date Added"=>"created_at", "Task Name"=>"name"}, params[:sort]), :onchange => "javascript: this.form.sort_submit.click();" )%><%= submit_tag "Submit", :id=> "sort_submit", :name => nil, :hidden=> true%> <% end %>
