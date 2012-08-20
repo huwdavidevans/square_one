@@ -16,19 +16,19 @@
 					
 						<ul class="summary">
 							<li class="<%= " selected" if params[:state].nil? %>">
-								<%= filter_by "All tasks (#{@tasks.length})", {:user_id => user.id} %>
+								<%= filter_by "All tasks (#{@user_tasks.length})", {:user_id => user.id} %>
 							</li>
 							<!-- <li><%=
-							# filter_by "#{pluralize @tasks.in_qa.length, 'task'} in qa", {:user_id => user.id, :state => :in_qa }
+							# filter_by "#{pluralize @user_tasks.in_qa.length, 'task'} in qa", {:user_id => user.id, :state => :in_qa }
 							%></li> -->
 							<li class="not_started<%= " selected" if params[:state] == "not_started" %>">
-								<%= filter_by "#{pluralize @tasks.not_started.length, 'task'} not started", {:user_id => user.id, :state => :not_started } %>
+								<%= filter_by "#{pluralize @user_tasks.not_started.length, 'task'} not started", {:user_id => user.id, :state => :not_started } %>
 							</li>
 							<li class="in_progress<%= " selected" if params[:state] == "in_progress" %>">
-								<%= filter_by "#{pluralize @tasks.in_progress.length, 'task'} in progress", {:user_id => user.id, :state => :in_progress } %>
+								<%= filter_by "#{pluralize @user_tasks.in_progress.length, 'task'} in progress", {:user_id => user.id, :state => :in_progress } %>
 							</li>
 							<li class="completed<%= " selected" if params[:state] == "completed" %>">
-								<%= filter_by "#{pluralize @tasks.completed.length, 'task'} completed", {:user_id => user.id, :state => :completed } %>
+								<%= filter_by "#{pluralize @user_tasks.completed.length, 'task'} completed", {:user_id => user.id, :state => :completed } %>
 							</li>
 						</ul>
 					

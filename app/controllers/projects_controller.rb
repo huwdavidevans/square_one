@@ -108,6 +108,10 @@ class ProjectsController < ApplicationController
   def add_user
     @project = Project.find(params[:id])
     @project.add_user(params[:new_user])
+    
+    
+    @all_tasks = Task.where(:project_id => @project.id)
+    
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
