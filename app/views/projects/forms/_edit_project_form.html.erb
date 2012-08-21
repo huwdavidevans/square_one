@@ -1,4 +1,4 @@
 <div id="edit-project-form" class="form">
 	<h2>Edit Project</h2>
-	<%= render 'projects/forms/form' %>
+	<%= render 'projects/forms/form' %>			<% if !@project.new_record? %>	<h2>Manage Users</h2>	<% @project.users.each do |user| %>		<div id="user-<%=user.id%>" class="user <%= cycle("odd", "even")%>">						<div class="avatar left">				<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>			</div>					<div class="name"> <%= user.name %> </div>			<div >				<% if Task.where(:project_id => @project.id).by_user(user.id).length == 0 %>				<%= link_to "remove user from project", {:action=>:remove_user, :id => @project.id, :user_id=>user.id }, :remote=>true %>				<% end -%>			</div>						<div class="clear"></div>		</div>	<% end -%>				<div id="add-new-user">		<%= link_to 'Add New User', new_user_project_path, :class => 'button', :id=> 'new-user-button', :remote => true  %>	</div>		<% end -%>	
 </div>

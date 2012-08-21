@@ -93,6 +93,19 @@ class ProjectsController < ApplicationController
     end
   end
   
+  
+  def remove_user    
+    @project = Project.find(params[:id])
+    @del_user = User.find_by_id(params[:user_id])
+    @project.users.delete(@del_user)
+    @project.save
+    
+    respond_to do |format|
+      format.js
+      format.html { redirect_to edit_project_path(@project) }
+    end
+  end  
+  
   def new_user    
     @project = Project.find(params[:id])
     if @project.users.length == 0
@@ -104,6 +117,11 @@ class ProjectsController < ApplicationController
       format.js
     end
   end  
+  
+  
+  
+  
+  
   
   def add_user
     @project = Project.find(params[:id])
