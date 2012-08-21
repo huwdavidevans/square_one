@@ -23,8 +23,17 @@ class ApplicationController < ActionController::Base
       false
     end
   end
- 
- 
+  
+  
+  def confirm_is_user_or_admin    
+    unless User.find_by_id(session[:user_id]).is_admin? || Task.find(params[:id]).user == User.find_by_id(session[:user_id])
+      flash[:error] = "Authorisation Error"
+      redirect_no_auth
+      false
+    end
+  end
+  
+  
  private
  
  def redirect_no_auth

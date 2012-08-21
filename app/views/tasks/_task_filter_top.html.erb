@@ -1,26 +1,10 @@
-<div class="buttons">
-		<% @filtered_user ? user_id = @filtered_user.id : user_id = 0 %>
-		<ul>
-			<li class="first <%= " selected" if params[:state].nil? %>">
-				<%= filter_by "ALL (#{@user_tasks.length})", {:user_id => user_id} %>
-			</li>
-			<% if @user_tasks.not_started.length > 0 %>
-			<li class="not_started<%= " selected" if params[:state] == "not_started" %>">
-				<%= filter_by "NOT STARTED (#{@user_tasks.not_started.length})", {:user_id => user_id, :state => :not_started } %>			</li>
-			<% end -%>
-
-			<% if @user_tasks.in_progress.length > 0 %>
-			<li class="in_progress<%= " selected" if params[:state] == "in_progress" %>">
-				<%= filter_by "IN PROGRESS (#{@user_tasks.in_progress.length})", {:user_id => user_id, :state => :in_progress } %>			</li>
-			<% end -%>
-
-			<% if @user_tasks.completed.length > 0 %>
-			<li class="completed<%= " selected" if params[:state] == "completed" %>">
-				<%= filter_by "COMPLETED (#{@user_tasks.completed.length})", {:user_id => user_id, :state => :completed } %>			</li>			<% end -%>
-
-			<div class="clear"></div>
+<div class="buttons">
+	
+		<% @filtered_user ? user_id = @filtered_user.id : user_id = 0 %>				<div class="indicator-line">				<%= image_tag('task_list_seperator.png', :size=>"475x11") %>		</div>				
+		<ul>			<%= render :partial => 'tasks/task_filter_button', :locals=> {:state => :all, :user_id => user_id} %>
+			<%= render :partial => 'tasks/task_filter_button', :locals=> {:state => :not_started, :user_id => user_id} %>
+			<%= render :partial => 'tasks/task_filter_button', :locals=> {:state => :in_progress, :user_id => user_id} %>
+			<%= render :partial => 'tasks/task_filter_button', :locals=> {:state => :completed, :user_id => user_id} %>
+			<div class="clear"></div>
 		</ul>
 	</div>
-	<div class="indicator">
-		<hr/>
-	</div>

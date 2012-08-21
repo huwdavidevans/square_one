@@ -1,0 +1,26 @@
+<%
+	if state == :all
+		this_selected = params[:state].nil? || params[:state] == ""
+		numTasks = @user_tasks.length
+	else
+		this_selected = (params[:state] == state.to_s)
+		numTasks = @user_tasks.send(state).length
+	end	
+	active = (numTasks > 0)
+	label = "#{state.to_s.titleize} (#{numTasks})"
+	img_url = "task_filters/#{state.to_s}_task_btn"
+	if numTasks == 0
+	  img_url += "_inactive"
+	elsif this_selected
+	  img_url += "_selected"
+	end
+	img_url += ".png"
+%>
+
+
+<li class="<%= state %> <%= "selected" if this_selected %>">
+	<% if active %>		<%= filter_by image_tag(img_url), {:user_id => user_id, :state => state } %>
+	<% else %>
+		<%= image_tag(img_url) %>
+	<% end %>
+	<div class="count"><%= numTasks %></div>	<%= image_tag('task_list_indicator.png', :class =>"indicator") if this_selected %></li>

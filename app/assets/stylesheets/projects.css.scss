@@ -206,6 +206,12 @@
       // padding: 20px ;
       #userList {
         margin: 20px 0 20px 20px;
+        
+        
+        .user.deselected {
+           color: #999;
+         }
+            
     		.selected{
     			// background: url("handmadepaper.png");
     		}

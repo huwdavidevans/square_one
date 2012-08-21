@@ -4,7 +4,7 @@
 	<!-- <h3>Role Name</h3> -->
 	<%= link_to "All", {} if !@filtered_user.nil? %>
 	<% @project.users.each do |user| %>
-		<div class="user <%= cycle("odd", "even")%> <%= "selected" if user == @filtered_user %>">
+		<div class="user <%= cycle("odd", "even")%> <%= "selected" if user == @filtered_user %> <%= "deselected" if @filtered_user && user != @filtered_user%>">
 			
 			<div class="avatar left"><%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %></div>
 			

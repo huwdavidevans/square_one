@@ -111,9 +111,7 @@ class Task < ActiveRecord::Base
    end
     str
   end
-  
-  
-  
+
   
   
   private

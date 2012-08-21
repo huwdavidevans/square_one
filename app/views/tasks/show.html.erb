@@ -83,12 +83,12 @@
 			</div>
 			<hr />
 
-			<% if @task.started %>
+			
 			<div class="details">
 				<%= render :partial => 'shared/development_metrics', :locals => {:project => @task} %>
 			</div>
 			<hr/>
-			<% end -%>
+			
 
 			<div class="details">
 
@@ -118,7 +118,9 @@
 		</div>
 
 		<div class="centre">
-			<% if !@task.complete %>
+			
+			
+			<% if !@task.complete && ( current_user.is_admin? || current_user == @task.user )%>
 				<%= link_to 'MARK COMPLETE', mark_complete_task_path( @task ), :class=>'big button' %>
 			<% end -%>
 			<% if current_user.is_admin? && @task.complete %>

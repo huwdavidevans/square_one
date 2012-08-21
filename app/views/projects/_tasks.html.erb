@@ -1,37 +1,21 @@
-			
-			<h2><%= "#{@filtered_user.first_name}'s".upcase if @filtered_user%> TASKS</h2>
+<h2><%= "#{@filtered_user.first_name}'s".upcase if @filtered_user%> TASKS <%= ": #{current_filter_state}" if !current_filter_state.empty? %></h2>
 
-			
+<% if current_user.is_admin?  %>
+<div id="add-new-task">
+	<%= link_to '+ Add Task', new_task_path(:project_id => @project.id), :class => 'button', :id=> 'new-task-button', :remote => true  %>
+</div>
+<% end -%>
 
-			<% if current_user.is_admin?  %>			
+<div id="filter">
+	<%= render :partial => 'tasks/task_filter_top' %>
+</div>
+<div class="clear"></div>
 
-				<div id="add-new-task">
+<div id="sort">
+	<%= render :partial => 'tasks/task_sort_form' %>
+</div>
+<div class="clear"></div>
 
-					<%= link_to '+ Add Task', new_task_path(:project_id => @project.id), :class => 'button', :id=> 'new-task-button', :remote => true  %>
-
-				</div>
-
-			<% end -%>
-
-			
-
-			<div id="sort">
-			  <%= render :partial => 'tasks/task_sort_form' %>
-			</div>
-
-			
-			<div class="clear"></div>
-
-			<div id="filter">
-			  <%= render :partial => 'tasks/task_filter_top' %>
-			</div>
-
-			
-
-			<div class="clear"></div>
-
-			
-
-			<div id="list">
-			  <%= render :partial => 'tasks/task_list' %>
-			</div>	
+<div id="list">
+	<%= render :partial => 'tasks/task_list' %>
+</div>

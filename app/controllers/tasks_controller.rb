@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   
   before_filter :find_project
   before_filter :confirm_is_admin, :except => [:show, :mark_complete]
+  before_filter :confirm_is_user_or_admin, :only => [:mark_complete]
   
   
   def mark_complete

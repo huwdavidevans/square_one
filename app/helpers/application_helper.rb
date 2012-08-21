@@ -25,7 +25,11 @@ module ApplicationHelper
     str
   end
   
- 
+  def current_filter_state
+    if params[:state].nil? || params[:state] != ""
+      params[:state].to_s.titleize
+    end
+  end
   
   def sort_by (column, title = nil)
     title ||= column.titleize
@@ -39,7 +43,7 @@ module ApplicationHelper
     output_hash[:state] = input_hash[:state] if !input_hash[:state].nil?
     output_hash[:user_id] = input_hash[:user_id] if !input_hash[:user_id].nil?
     output_hash[:sort] = params[:sort] if !params[:sort].nil?    
-    link_to title, output_hash, :remote => true
+    link_to title, output_hash, :remote => true, :title => output_hash[:state].to_s.titleize
   end
    
 end

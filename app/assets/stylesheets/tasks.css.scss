@@ -11,6 +11,11 @@
         padding: 20px;
         min-height: 210px;
         min-width: 475px;
+
+        #sort {
+          font-size: 13px;
+          color: #666;
+        }
         
         #filter {
           font-size: 16px;
@@ -18,18 +23,50 @@
           font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
           text-align: justify;
           
-          hr {
-            
-            width: 100%;
-            
+          hr {            
+            width: 100%;            
           }
           
           .buttons {
+            position:relative;
+            .indicator-line{
+              position:absolute;
+              top:58px
+            }
             
             li {
+              position:relative;
               float:left;
               margin-left: 1em;
+              height: 70px;
+              
+              
+              .count {
+                @include border-radius(20px);
+                position: absolute;
+                top: 40px;
+                right: 0;
+                height: 16px;
+                width: 16px;
+                background: white;
+                text-align: center;
+                font-size: 12px;
+                border: #999 2px solid;
+                line-height: 14px;
+              }
+
             }
+            
+            li.selected {              
+             // background: url('task_list_indicator2.png') no-repeat bottom center;              
+              img.indicator{
+                display: block;
+                margin: 0 auto;
+                position: relative;
+              }
+            }
+            
+            
             .selected a {
               color:black !important;
             }          
