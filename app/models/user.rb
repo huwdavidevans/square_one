@@ -18,7 +18,11 @@ class User < ActiveRecord::Base
  # scope :named, lambda{ |usrnm| where(:username => usrnm)}
   scope :sorted, order("user.first_name ASC, user.last_name ASC")
   scope :not_involved_in, lambda { |project| { :conditions => ['id not in (?)', project.users.select(&:id).collect(&:id)] }}
-
+   
+  
+  def self.id_exists_in(ids)  
+    where(['user.id IN (?)', ids]).scoped if ids.any?
+  end
   
   # For Paperclip
   has_attached_file :avatar, 

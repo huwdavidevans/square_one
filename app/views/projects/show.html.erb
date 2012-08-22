@@ -14,8 +14,8 @@
 	<p class="code">
 		<%= @project.code %>
 		<% if current_user.is_admin?  %>
-		<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %> :
-		<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %> :
+			<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end -%>
 	</p>
 	
@@ -23,7 +23,7 @@
 		<%= @project.description %>
 	</p>
 		
-</div>
+	</div>
 	
 	<%= render :partial => 'milestone_view', :locals => {:project => @project} %>	
 	<div class="clear"></div>
@@ -31,18 +31,14 @@
 <% end %>
 
 
-<div class="grey_board">
-	
+<div class="grey_board">	
 	<div id="controls" class="left">
 		<%= render :partial => 'user_list_filter', :locals => {:project => @project} %>
 	</div>
-	
-	<div id="details" class="left">
-		
+	<div id="details" class="left">		
 		<div id="task-list" class="left">					
 		<%= render :partial => 'tasks' %>
-		</div>
-		
+		</div>		
 		<div id="metrics" class="right">
 			<%= render :partial => 'project_details', :locals => {:project => @project}  %>
 			<%= render :partial => 'project_activity', :locals => {:project => @project}  %>

@@ -5,6 +5,7 @@
 	<% @project.users.each do |user| %>
 		<div class="user <%= cycle("odd", "even")%> <%= "selected" if user == @filtered_user %> <%= "deselected" if @filtered_user && user != @filtered_user%>">
 			
+			<%= image_tag 'user-point.png', :class => 'user_pointer'  if user == @filtered_user  %>
 			<div class="avatar left"><%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %></div>
 			
 			<div class="details">
@@ -30,6 +31,7 @@
 								<%= filter_by "#{pluralize @user_tasks.completed.length, 'task'} completed", {:user_id => user.id, :state => :completed } %>
 							</li>
 						</ul>
+					
 					
 					<% else %>
 					

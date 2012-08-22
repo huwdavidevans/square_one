@@ -6,12 +6,26 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @all_projects = Project.all
+    
+    if params[:users] && !params[:users].empty?
+     @filtered_users = params[:users].split(/,/).map { |s| s.to_i }    
+    else
+     @filtered_users = User.all.collect(&:id)
+    end    
+   # @projects = Project.joins(:users) & User.id_exists_in(@filtered_users)
+    @projects = Project.joins(:users).where('user_id IN (?)', @filtered_users)  
+    
+        
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
     end
   end
+  
+  
+  
+  
 
   # GET /projects/1
   # GET /projects/1.json

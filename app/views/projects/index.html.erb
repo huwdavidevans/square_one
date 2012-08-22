@@ -14,25 +14,9 @@
 
 <div class="grey_board">
 	<div id="controls" class="left">
-		<% @filtered_user = User.new %>
+		
 		<div id="userList">
-			<% User.all.each do |user| %>
-			<div class="user <%= cycle("odd", "even")%> <%= "selected" if user == @filtered_user %> <%= "deselected" if @filtered_user && user != @filtered_user %>">
-				<div class="avatar left">
-					<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>
-				</div>
-				<div class="details">
-					<div class="name">
-						<%= filter_by user.name, {:user_id => user.id} %>
-					</div>
-					<div class="summary">
-						<%= user.projects.length %> projects
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<hr />
-			<% end -%>
+			<%= render :partial => 'project_user_filter' %>
 		</div>
 	</div>
 	

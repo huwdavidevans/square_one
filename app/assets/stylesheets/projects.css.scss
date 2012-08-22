@@ -134,11 +134,17 @@
   }
 }
 
+
+.toggle{
+  margin-right: 6px;
+  height: 30px;
+}
+
 #projects {
   width: 735px;
   background: url('cork_1.png');
   @include single-box-shadow(#aaaaaa, -2px, 0px, 4px, false, false);
-     
+  position: relative;
 }
 
 .demoBox {
@@ -199,74 +205,89 @@
   .ct {
     margin: 0;
   }
-  #main_fold {
-    #grey_board {}
+  
+  #main_fold {    
+    #grey_board {}    
     background: #D3D3D3;
     @include background-image(linear-gradient(#efefef, #D3D3D3));
+    
     #controls {
       min-height: 250px;
-      width: 225px;
-      // padding: 20px ;
+      width: 225px;   
+      
       #userList {
-        margin: 20px 0 20px 20px;
-        
-        
-        .user.deselected {
-           color: #999;
-         }
-            
-    		.selected{
-    			// background: url("handmadepaper.png");
-    		}
-    		
-    		.odd {
-         
-        } 
-        .even {
-          background: #F0F0F0;
-        }
-    		 hr { 
-            margin: 0 auto;
-            width: 100%;
-          }
-        .user {
-          overflow: auto;
-          // margin: 15px 0;
-          color: $heading-grey;
-          min-height: 32px;
-          padding: 10px; 
-         
-          .avatar {
-            margin-right: 5px;
-          }
-          .details {
-            float:left;
-            margin-left: 5px;
-            line-height: 16px;
-            .name {
-              font-weight: bold;
-              font-size: 14px;
-            }
-            .summary {
-              font-size: 11px;
-            }
-          }
-          a {
-            color: inherit;
-            text-decoration: none;
-          }
-          a:hover {
-            text-decoration: underline;
-          }
-          .selected {
-            font-weight:bold;
-          }
-        }
+        margin: 20px 0;        
       }
+      
+      .user.deselected {
+         color: #999;
+       }
+          
+      .user.selected{
+        position: relative;        
+        img.user_pointer{
+          position: absolute;
+          right: 0px;
+          z-index:1;
+        }
+        // background: url("handmadepaper.png");
+      }
+        
+      .odd {
+      } 
+      
+      .even {
+        background: #F0F0F0;
+      }
+      
+      hr { 
+        margin: 0 auto;
+        width: 100%;
+      }
+      
+      .user {
+        overflow: auto;
+        color: $heading-grey;
+        min-height: 32px;
+        padding: 10px 0; 
+       
+        .avatar {
+          margin-right: 5px;
+        }
+        .details {
+          float:left;
+          margin-left: 5px;
+          line-height: 16px;
+          .name {
+            font-weight: bold;
+            font-size: 14px;
+          }
+          .summary {
+            font-size: 11px;
+          }
+        }
+        
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+        
+        a:hover {
+          text-decoration: underline;
+        }
+        
+        .selected {
+          font-weight:bold;
+        }
+        
+      }
+      
     }
+    
     #details {
       background: url("handmadepaper.png");
       @include single-box-shadow(#aaaaaa, -2px, 0px, 4px, false, false);
+      position: relative;
      
     }
   }
