@@ -16,6 +16,17 @@
 @import "colours-mixins";
 @import "fancy-buttons";
 
+
+a.x_button{
+  text-decoration:none;
+  font-size: 26px;
+}
+  
+a:hover.x_button{
+  color:red;
+}
+  
+
 .button {
   @include fancy-button(#91dc3d, 14px, 4px, 1px);
 }

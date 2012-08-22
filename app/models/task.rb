@@ -21,12 +21,12 @@ class Task < ActiveRecord::Base
   scope :overdue, where('tasks.deadline < ?', Date.today)
   scope :overrun, where('tasks.work_minutes <  (SELECT SUM(time_minutes) from time_logs where task_id = tasks.id) ')
   
-#  scope :by_user, lambda {|userid| where(["tasks.user_id = #{userid}"])} 
+  # scope :by_user, lambda {|userid| where(["tasks.user_id = #{userid}"])} 
  
   validates :name, :presence => true, :length => { :minimum => 5 }
   validates :deadline, :presence => true
   validates :project_id, :presence => true
-  validates :user_id, :presence => true
+  #validates :user_id, :presence => true
   
   
   def self.by_user(user_id)

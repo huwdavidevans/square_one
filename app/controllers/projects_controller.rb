@@ -119,14 +119,9 @@ class ProjectsController < ApplicationController
   end  
   
   
-  
-  
-  
-  
   def add_user
     @project = Project.find(params[:id])
     @project.add_user(params[:new_user])
-    
     
     @all_tasks = Task.where(:project_id => @project.id)
     

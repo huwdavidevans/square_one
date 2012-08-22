@@ -1,15 +1,50 @@
-<% @page_title = "Root" %> <h1>Listing projects</h1>
+<% @page_title = "Root" %>
+<% @page_class = 'project' %>
 
-<% if current_user.is_admin?  %>
-	<div id = "add-new-project">
-		<%= link_to 'New Project', new_project_path, :class => 'button', :id=> 'new-project-button', :remote => true  %>
+<% content_for :top do %>
+	<div class="fixed">
+		<ul class="crumbtrail">
+			<li class="home"><%= link_to image_tag('crumb_home.png'), projects_path %></li>
+			<li class="project end">Listing projects</li>
+			<div class="clear"></div>
+		</ul>
 	</div>
-<% end -%>
+	<div class="clear"></div>	
+<% end %>
 
-<div id="projects">
-	<% @projects.each do |project| %>
-	<%= render(:partial => 'project_square', :locals => {:project => project})%>
-	<% end %>
+<div class="grey_board">
+	<div id="controls" class="left">
+		<% @filtered_user = User.new %>
+		<div id="userList">
+			<% User.all.each do |user| %>
+			<div class="user <%= cycle("odd", "even")%> <%= "selected" if user == @filtered_user %> <%= "deselected" if @filtered_user && user != @filtered_user %>">
+				<div class="avatar left">
+					<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>
+				</div>
+				<div class="details">
+					<div class="name">
+						<%= filter_by user.name, {:user_id => user.id} %>
+					</div>
+					<div class="summary">
+						<%= user.projects.length %> projects
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<hr />
+			<% end -%>
+		</div>
+	</div>
+	
+	<div id="projects" class="left">				
+		<% if current_user.is_admin?  %>
+			<div id = "add-new-project">
+				<%= link_to 'New Project', new_project_path, :class => 'button', :id=> 'new-project-button', :remote => true  %>
+			</div>
+		<% end -%>
+		<% @projects.each do |project| %>
+			<%= render(:partial => 'project_square', :locals => {:project => project})%>
+		<% end %>
+	</div>	
+	<br />	
 </div>
-
-<br />

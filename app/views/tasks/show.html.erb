@@ -67,8 +67,12 @@
 		<div class="polabox">
 			<div class="details">
 				<h3>TASK DETAILS</h3>
-				<div class="avatar left">
+				<div class="avatar left">					
+					<% if @task.user %>
 					<%= image_tag(@task.user.avatar.url(:tiny), {:title => @task.user.name}) %>
+					<% else %>
+					<%= image_tag("/users/avatars/default/tiny.png", {:title => "Not Allocated"}) %>			
+					<% end -%>					
 				</div>
 
 				<div class="user left">
@@ -76,7 +80,11 @@
 						Assigned to:
 					</div>
 					<div class="user-name">
-						<%= @task.user.name %>
+						<% if @task.user %>
+						<%=  @task.user.name %>
+						<% else %>
+						<%= "Not Allocated" %>			
+						<% end -%>					
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -119,10 +127,10 @@
 
 		<div class="centre">
 			
-			
 			<% if !@task.complete && ( current_user.is_admin? || current_user == @task.user )%>
 				<%= link_to 'MARK COMPLETE', mark_complete_task_path( @task ), :class=>'big button' %>
 			<% end -%>
+			
 			<% if current_user.is_admin? && @task.complete %>
 				<%= link_to 'RE-OPEN', re_open_task_path( @task ), :class=>'big button' %>
 				

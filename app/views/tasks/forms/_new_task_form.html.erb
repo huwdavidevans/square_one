@@ -1,6 +1,6 @@
-<div id="new-task-form" class="form">	
-	<h2>New Task</h2>
-	<%= form_for(@task, :url => {:controller => :tasks, :action => 'create', :project_id => @project.id}) do |f| %>
-	<%= render(:partial => 'tasks/forms/form', :locals => {:f => f}) %>
+<div id="new-task-form" class="form">	<% if @task.new_record? %>	<div class="right">		<%= link_to "×", project_path(@project), :remote=>true, :class=>"x_button"%>	</div>		<%end%>
+	<h2>New Task</h2>	<div class="clear"></div>
+	<%= form_for(@task, :url => {:controller => :tasks, :action => 'create', :project_id => @project.id}) do |f| %>
+	<%= render(:partial => 'tasks/forms/form', :locals => {:f => f}) %>
 	<% end %>
 </div>

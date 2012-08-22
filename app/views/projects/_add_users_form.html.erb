@@ -1,6 +1,9 @@
 <%	@project = Project.find_by_id(params[:id])  %>
+
 <%= form_for(@project) do |f| %>
+
 	<%= render(:partial => 'shared/form_errors', :locals => {:object => @project})%>	
+	
 	<% current_users = @project.users(:select => :id).collect(&:id) %>
 	<% users_table = Arel::Table.new(:users) %>
 	

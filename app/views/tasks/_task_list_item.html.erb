@@ -10,11 +10,19 @@
 			<%= link_to(task.name, task) %>
 		</div>
 		<div class="user">
-			<div class="avatar left">
-				<%= image_tag(task.user.avatar.url(:teeny), :size => "15x15") %>
+			<div class="avatar left">				
+				<% if task.user %>
+				<%= image_tag(task.user.avatar.url(:teeny), :size => "15x15")%>
+				<% else %>
+				<%= image_tag("/users/avatars/default/teeny.png", :size => "15x15")%>				
+				<% end -%>
 			</div>
-			<div class="screen-name left" >
+			<div class="screen-name left" >				
+				<% if task.user %>
 				<%= task.user.name %>
+				<% else %>
+				Not Allocated		
+				<% end -%>				
 			</div>
 		</div>
 	</div>

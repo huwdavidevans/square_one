@@ -1,5 +1,4 @@
 <div id="userList">
-	
 	<h2><%= "Users".upcase %></h2>
 	<!-- <h3>Role Name</h3> -->
 	<%= link_to "All", {} if !@filtered_user.nil? %>
@@ -51,7 +50,7 @@
 	<% end %>
 
 	
-	<% if current_user.is_admin?  %>
+	<% if current_user.is_admin? &&  User.not_involved_in(@project).length > 0 %>
 		<div id = "add-new-user">
 			<%= link_to 'Add New User', new_user_project_path, :class => 'button', :id=> 'new-user-button', :remote => true  %>
 		</div>
