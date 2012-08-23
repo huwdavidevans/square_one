@@ -1,12 +1,35 @@
 <% selected = @filtered_types.include?(project_type.id) %>
 <div class="project_type <%= cycle("odd", "even")%> <%= selected ? "selected" : "deselected" %> ">
-	<div class="toggle left">
-		<% if selected %>
-			<%= link_to image_tag('user_check_selected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(','), :type=>project_type.id, :types=>@filtered_types.join(',')}, :remote=>true %>		<% else %>			<%= link_to image_tag('user_check_deselected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(','), :type=>project_type.id, :types=>@filtered_types.join(',')}, :remote=>true %>		<% end -%>	</div>
+	<div class="toggle left">		
+		<%= form_tag(toggle_projects_path, :remote => true, :method => :get) do %>
+			<%= hidden_field_tag 'type', project_type.id %>
+			<% @filtered_types.each do |i| %>
+			  <%= hidden_field_tag 'types[]', i %>
+			<% end %>		
+			<% @filtered_users.each do |i| %>
+			  <%= hidden_field_tag 'users[]', i %>
+			<% end %>
+			<% if selected %>
+				<%= submit_tag "submit", :type => :image, :src => "assets/user_check_selected.png" %>			<% else %>
+				<%= submit_tag "submit", :type => :image, :src => "assets/user_check_deselected.png" %>			<% end -%>		
+		<% end -%>	</div>
 	<div class="icon left" >
 	<%= image_tag "projects/bookmark_#{project_type.name.downcase.underscore}_mini.png" %> 	</div>
 	<div class="name">
-		<%= link_to project_type.name, {:controller=>'projects', :action=>'index', :users=>@filtered_users.join(','), :types=>project_type.id }, :remote=>true %>
+		
+		<%= form_tag(projects_path, :remote => true, :method => :get) do %>
+			<% @filtered_users.each do |i| %>
+			  <%= hidden_field_tag 'users[]', i %>
+			<% end %>
+			<%= hidden_field_tag 'types[]', project_type.id %>
+			<%= submit_tag "submit", :id=>"type-submit-#{project_type.id}", :hidden=>true %>
+			<%= link_to project_type.name, "#", :onclick=>"$('#type-submit-#{project_type.id}').click();" %>	
+		<% end -%>
+		
+		
+		<%= 
+		#link_to project_type.name, {:controller=>'projects', :action=>'index', :users=>@filtered_users.join(','), :types=>project_type.id }, :remote=>true 
+		%>
 	</div>
 	<div class="clear"></div>
 </div>

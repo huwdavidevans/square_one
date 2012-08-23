@@ -1,0 +1,11 @@
+<%= form_tag(projects_path, :remote => true, :method => :get, :class=>'right') do %>
+
+<% @filtered_types.each do |i| %>
+  <%= hidden_field_tag 'types[]', i %>
+<% end %>
+
+<% @filtered_users.each do |i| %>
+  <%= hidden_field_tag 'users[]', i %>
+<% end %>sort by: <%= select_tag(:sort, options_for_select({"Deadline"=>"deadline", "Date Added"=>"created_at", "Project Name"=>"name"}, params[:sort]), :onchange => "javascript: this.form.sort_submit.click();" )%>
+<%= submit_tag "Submit", :id=> "sort_submit", :name => nil, :hidden=> true%> 
+<% end %>

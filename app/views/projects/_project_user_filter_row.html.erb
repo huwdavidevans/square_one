@@ -1,13 +1,10 @@
 <% selected = @filtered_users.include?(user.id) %><div class="user <%= cycle("odd", "even") %> <%= selected ? "selected" : "deselected" %> ">	
-	<div class="toggle left" id="toggle_<%= user.id %>">		<% if selected %>
-			<%= link_to image_tag('user_check_selected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(','), :user=>user.id, :types=>@filtered_types.join(',') }, :remote=>true %>
-		<% else %>			<%= link_to image_tag('user_check_deselected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(","), :user=>user.id, :types=>@filtered_types.join(',') }, :remote=>true %>
-		<% end -%>	</div>
+	<div class="toggle left" id="toggle_<%= user.id %>">		<%= form_tag(toggle_projects_path, :remote => true, :method => :get, :class=>'right') do %>			<%= hidden_field_tag 'user', user.id %>			<% @filtered_types.each do |i| %>			  <%= hidden_field_tag 'types[]', i %>			<% end %>					<% @filtered_users.each do |i| %>			  <%= hidden_field_tag 'users[]', i %>			<% end %>			<% if selected %>				<%= submit_tag "submit", :type => :image, :src => "assets/user_check_selected.png" %>			<% else %>				<%= submit_tag "submit", :type => :image, :src => "assets/user_check_deselected.png" %>			<% end -%>				<% end -%>	</div>
 	<div class="avatar left">
 		<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>	</div>
 	<div class="details">
-		<div class="name">
-			<%= link_to user.name, {:controller=>'projects', :users=>user.id , :types=>@filtered_types.join(',')}, :remote=>true %>
+		<div class="name">						<%= form_tag(projects_path, :remote => true, :method => :get) do %>				<% @filtered_types.each do |i| %>				  <%= hidden_field_tag 'types[]', i %>				<% end %>				<%= hidden_field_tag 'users[]', user.id %>				<%= submit_tag "submit", :id=>"user-submit-#{user.id}", :hidden=>true %>				<%= link_to user.name, "#", :onclick=>"$('#user-submit-#{user.id}').click();" %>				<% end -%>			
+						
 		</div>
 		<div class="summary">
 			<%= user.projects.length %> projects

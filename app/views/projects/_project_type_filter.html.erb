@@ -9,7 +9,18 @@
 	<div class="icon left">
 	<%= image_tag "projects/bookmark_mini.png" %> </div>
 	<div class="name">
-		<%= link_to 'All Types', {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(',')}, :remote=>true %>
+		
+		<%= form_tag(projects_path, :remote => true, :method => :get) do %>
+			<% @filtered_users.each do |i| %>
+			  <%= hidden_field_tag 'users[]', i %>
+			<% end %>
+			<%= submit_tag "submit", :id=>"type-submit-all", :hidden=>true %>
+			<%= link_to "All Types", "#", :onclick=>"$('#type-submit-all').click();" %>	
+		<% end -%>
+		
+		<%= 
+		#link_to 'All Types', {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(',')}, :remote=>true 
+		%>
 	</div>
 	<div class="clear"></div>
 </div>
