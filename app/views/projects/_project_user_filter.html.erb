@@ -4,10 +4,14 @@
 
 
 <% User.all.each do |user| %><% selected = @filtered_users.include?(user.id) %>
-
-<div class="user <%= cycle("odd", "even")%> <%= selected ? "selected" : "deselected" %> ">	<div class="toggle left" id="toggle_<%= user.id %>">		<% if selected %>			<%= image_tag 'user_check_selected.png' %>		<% else %>			<%= image_tag 'user_check_deselected.png' %>		<% end -%>	</div>
+<div class="user <%= cycle("odd", "even")%> <%= selected ? "selected" : "deselected" %> ">	
+	<div class="toggle left" id="toggle_<%= user.id %>">		<% if selected %>
+			<%= link_to image_tag('user_check_selected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(','), :toggle=>user.id }, :remote=>true %>
+			<% else %>			<%= link_to image_tag('user_check_deselected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(","), :toggle=>user.id }, :remote=>true %>
+		<% end -%>	</div>
+	
 	<div class="avatar left">
-		<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>	</div>
+		<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>	</div>
 	<div class="details">
 		<div class="name">
 			<%= link_to user.name, {:controller=>'projects',  :users=>user.id } %>
@@ -16,7 +20,7 @@
 			<%= user.projects.length %> projects
 		</div>
 	</div>
-	<div class="clear"></div>
+	<div class="clear"></div>
 </div>
 <hr />
 <% end -%>

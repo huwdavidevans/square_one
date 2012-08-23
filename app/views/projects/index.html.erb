@@ -13,9 +13,9 @@
 <% end %>
 
 <div class="grey_board">
-	<div id="controls" class="left">
-		
-		<div id="userList">
+	
+	<div id="controls" class="left">		
+		<div id="user_list">
 			<%= render :partial => 'project_user_filter' %>
 		</div>
 	</div>
@@ -26,9 +26,11 @@
 				<%= link_to 'New Project', new_project_path, :class => 'button', :id=> 'new-project-button', :remote => true  %>
 			</div>
 		<% end -%>
-		<% @projects.each do |project| %>
-			<%= render(:partial => 'project_square', :locals => {:project => project})%>
-		<% end %>
+		
+		<div id="project_list">
+			<%= render :partial => 'project_list' %>
+		</div>
+		
 	</div>	
 	<br />	
 </div>

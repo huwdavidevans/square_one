@@ -24,10 +24,10 @@
   background: #FFF;
   width: 230px;
   min-height: 250px;
-  margin: 10px;
+  margin: 7px;
   float: left;
   @include border-radius(10px);
-  @include box-shadow(#999999 0px 2px 8px);
+  @include box-shadow(#97875C 0px 2px 8px);
   .top {
     min-height: 166px;
   }
@@ -142,8 +142,8 @@
 
 #projects {
   width: 735px;
-  background: url('cork_1.png');
-  @include single-box-shadow(#aaaaaa, -2px, 0px, 4px, false, false);
+  background: url('cork_2.png');
+  @include box-shadow(#97875C 0px 0px 8px inset);
   position: relative;
 }
 
@@ -215,7 +215,7 @@
       min-height: 250px;
       width: 225px;   
       
-      #userList {
+      #user_list {
         margin: 20px 0;        
       }
       

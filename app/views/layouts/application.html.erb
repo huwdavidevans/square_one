@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+	
 	<head>
 		<title>SquareOne :: <%= @page_title || '' %> </title>
-		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 	</head>
+	
 	<body>
 		<div class="square_one <%= @page_class %>">
 			
@@ -14,20 +16,18 @@
 			</div>
 			
 			<div id="top_fold">
-				
-					<%= yield :top %>
-				
+				<%= yield :top %>
 			</div>
 			
 			<% if flash %>
-			<div id="notify_fold">				
-			 <% flash.each do |key, value| %>
-			    <div class="<%= flash_class(key) %>">			     
-			      <%= value %>
-			    </div>
-			  <% end %>
-			  <%= yield :notify %>
-			</div>
+				<div id="notify_fold">				
+				 <% flash.each do |key, value| %>
+				    <div class="<%= flash_class(key) %>">			     
+				      <%= value %>
+				    </div>
+				  <% end %>
+				  <%= yield :notify %>
+				</div>
 			<%end%>
 			
 			<div id="main_fold">
@@ -42,4 +42,5 @@
 			
 		</div>
 	</body>
+	
 </html>

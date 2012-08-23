@@ -5,26 +5,40 @@ class ProjectsController < ApplicationController
   
   # GET /projects
   # GET /projects.json
-  def index
-    @all_projects = Project.all
+  def index 
     
     if params[:users] && !params[:users].empty?
-     @filtered_users = params[:users].split(/,/).map { |s| s.to_i }    
+     @filtered_users = params[:users].split(/,/).map { |s| s.to_i }
     else
      @filtered_users = User.all.collect(&:id)
-    end    
-   # @projects = Project.joins(:users) & User.id_exists_in(@filtered_users)
-    @projects = Project.joins(:users).where('user_id IN (?)', @filtered_users)  
+    end
     
-        
+    @all_projects = Project.all  
+    @projects = Project.joins(:users).where('user_id IN (?)', @filtered_users).uniq
+    #@projects = Project.joins(:users) & User.id_exists_in(@filtered_users)  
+          
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
+      format.js
       format.json { render json: @projects }
     end
   end
   
   
-  
+  def toggle
+    if params[:users] && !params[:users].empty?
+      @filtered_users = params[:users].split(/,/).map { |s| s.to_i }
+    else
+      @filtered_users = User.all.collect(&:id)
+    end
+    if params[:toggle] && !params[:toggle].empty?
+      @filtered_users.include?(params[:toggle].to_i) ? @filtered_users.delete(params[:toggle].to_i) : @filtered_users << params[:toggle].to_i
+    end    
+    respond_to do |format|
+      format.html { redirect_to :action=>:index, :users=>@filtered_users.join(',') }
+      format.js { redirect_to :action=>:index, :users=>@filtered_users.join(',') }
+    end    
+  end
   
 
   # GET /projects/1

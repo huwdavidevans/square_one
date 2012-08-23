@@ -27,6 +27,10 @@ SquareOne::Application.routes.draw do
     member do
       get :new_user
     end
+    
+    collection do
+      get :toggle
+    end
   end
   
 
