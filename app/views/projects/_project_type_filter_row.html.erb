@@ -1,0 +1,13 @@
+<% selected = @filtered_types.include?(project_type.id) %>
+<div class="project_type <%= cycle("odd", "even")%> <%= selected ? "selected" : "deselected" %> ">
+	<div class="toggle left">
+		<% if selected %>
+			<%= link_to image_tag('user_check_selected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(','), :type=>project_type.id, :types=>@filtered_types.join(',')}, :remote=>true %>		<% else %>			<%= link_to image_tag('user_check_deselected.png'), {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(','), :type=>project_type.id, :types=>@filtered_types.join(',')}, :remote=>true %>		<% end -%>	</div>
+	<div class="icon left" >
+	<%= image_tag "projects/bookmark_#{project_type.name.downcase.underscore}_mini.png" %> 	</div>
+	<div class="name">
+		<%= link_to project_type.name, {:controller=>'projects', :action=>'index', :users=>@filtered_users.join(','), :types=>project_type.id }, :remote=>true %>
+	</div>
+	<div class="clear"></div>
+</div>
+<hr />

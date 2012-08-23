@@ -6,38 +6,59 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index 
-    
+
     if params[:users] && !params[:users].empty?
      @filtered_users = params[:users].split(/,/).map { |s| s.to_i }
     else
      @filtered_users = User.all.collect(&:id)
     end
-    
+
+    if params[:types] && !params[:types].empty?
+      @filtered_types = params[:types].split(/,/).map { |s| s.to_i }
+    else
+      @filtered_types = ProjectType.all.collect(&:id)
+    end
+
     @all_projects = Project.all  
-    @projects = Project.joins(:users).where('user_id IN (?)', @filtered_users).uniq
+    @projects = Project.joins(:users).where('user_id IN (?)', @filtered_users).uniq.joins(:project_type).where('project_type_id IN (?)', @filtered_types)
+
     #@projects = Project.joins(:users) & User.id_exists_in(@filtered_users)  
-          
+
     respond_to do |format|
       format.html
       format.js
       format.json { render json: @projects }
     end
+    
   end
   
   
   def toggle
+    
     if params[:users] && !params[:users].empty?
       @filtered_users = params[:users].split(/,/).map { |s| s.to_i }
     else
       @filtered_users = User.all.collect(&:id)
+    end        
+    if params[:user] && !params[:user].empty?
+      @filtered_users.include?(params[:user].to_i) ? @filtered_users.delete(params[:user].to_i) : @filtered_users << params[:user].to_i
     end
-    if params[:toggle] && !params[:toggle].empty?
-      @filtered_users.include?(params[:toggle].to_i) ? @filtered_users.delete(params[:toggle].to_i) : @filtered_users << params[:toggle].to_i
-    end    
+    
+    
+    if params[:types] && !params[:types].empty?
+      @filtered_types = params[:types].split(/,/).map { |s| s.to_i }
+    else
+      @filtered_types = ProjectType.all.collect(&:id)
+    end
+    if params[:type] && !params[:type].empty?
+      @filtered_types.include?(params[:type].to_i) ? @filtered_types.delete(params[:type].to_i) : @filtered_types << params[:type].to_i
+    end
+    
     respond_to do |format|
-      format.html { redirect_to :action=>:index, :users=>@filtered_users.join(',') }
-      format.js { redirect_to :action=>:index, :users=>@filtered_users.join(',') }
-    end    
+      format.html { redirect_to :action=>:index, :users=>@filtered_users.join(','),  :types=>@filtered_types.join(',')}
+      format.js { redirect_to :action=>:index, :users=>@filtered_users.join(','), :types=>@filtered_types.join(',') }
+    end
+
   end
   
 

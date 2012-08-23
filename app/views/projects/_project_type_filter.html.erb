@@ -1,0 +1,20 @@
+<h2>Projects</h2>
+<% reset_cycle %>
+<% selected = params[:types].nil? || params[:types].empty? %>
+
+<div class="project_type <%= cycle("odd", "even")%> <%= selected ? "selected" : "deselected" %>">
+	<div class="toggle left">
+		<%= image_tag('user_check_null.png') %>
+	</div>
+	<div class="icon left">
+	<%= image_tag "projects/bookmark_mini.png" %> </div>
+	<div class="name">
+		<%= link_to 'All Types', {:controller=>'projects', :action=>'toggle', :users=>@filtered_users.join(',')}, :remote=>true %>
+	</div>
+	<div class="clear"></div>
+</div>
+<hr />
+
+<% ProjectType.all.each do |project_type| %>
+<%= render :partial => 'project_type_filter_row', :locals=>{:project_type => project_type} %>
+<% end -%>
