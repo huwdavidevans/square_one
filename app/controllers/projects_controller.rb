@@ -10,20 +10,25 @@ class ProjectsController < ApplicationController
     if params[:users] && !params[:users].empty?
      @filtered_users = params[:users].map { |s| s.to_i }
     else
-     @filtered_users = User.all.collect(&:id)
+     @filtered_users = []
     end
 
     if params[:types] && !params[:types].empty?
       @filtered_types = params[:types].map { |s| s.to_i }
     else
-      @filtered_types = ProjectType.all.collect(&:id)
+      @filtered_types = []
     end
 
     @all_projects = Project.all  
-    @projects = Project.joins(:users).where('user_id IN (?)', @filtered_users).uniq.joins(:project_type).where('project_type_id IN (?)', @filtered_types)
-      
-    @projects = @projects.order(sort_column + " " + sort_direction)
-
+    @projects = Project.with_users(@filtered_users).with_types(@filtered_types).uniq   
+    @projects = @projects.order(project_sort_column + " " + sort_direction)
+    
+    case project_sort_column
+    when "created_at" , "deadline" , "updated_at"
+        @projects = @projects.group_by{ |p| p.send(project_sort_column).beginning_of_month }
+    when "name" 
+        @projects = @projects.group_by{ |p| p.name[0,1] }
+    end
 
     #@projects = Project.joins(:users) & User.id_exists_in(@filtered_users)  
 
@@ -69,17 +74,18 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @all_tasks = Task.where(:project_id => @project.id)   
-    @filtered_user = User.find_by_id(filtered_user_id)    
-    @user_tasks = @all_tasks.by_user(filtered_user_id).order(sort_column + " " + sort_direction)    
-    @tasks = @user_tasks.send(filtered_task_state)   
+    @all_tasks = Task.where(:project_id => @project.id)
+    @filtered_user = User.find_by_id(filtered_user_id)
+    @user_tasks = @all_tasks.by_user(filtered_user_id).order(sort_column + " " + sort_direction)
+    @tasks = @user_tasks.send(filtered_task_state)
+    
     #@tasks_by_activity = Task.where(:project_id => @project.id).includes(:time_logs, :comments).order('comments.created_at desc')
   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
       format.js
-    end    
+    end
   end
 
 

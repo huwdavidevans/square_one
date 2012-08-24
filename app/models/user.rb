@@ -17,26 +17,34 @@ class User < ActiveRecord::Base
   
  # scope :named, lambda{ |usrnm| where(:username => usrnm)}
   scope :sorted, order("user.first_name ASC, user.last_name ASC")
-  scope :not_involved_in, lambda { |project| { :conditions => ['id not in (?)', project.users.select(&:id).collect(&:id)] }}
    
   
+  def self.not_involved_in(project)
+    proj_ids = project.users.select(&:id).collect(&:id)
+   !proj_ids.empty? ? where(['id not in (?)', proj_ids]) : scoped
+    
+  end
+  
   def self.id_exists_in(ids)  
-    where(['user.id IN (?)', ids]).scoped if ids.any?
+   ids.any? ? where(['user.id IN (?)', ids]).scoped : scoped
   end
   
   # For Paperclip
   has_attached_file :avatar, 
-  :styles => { :medium => "250x250#", :small => "150x150#", :thumb => ["50x50#", :png], :tiny => ["30x30#", :png], :teeny => ["20x20#", :png] }, 
+  :styles => { :medium => "250x250#", :small => ["150x150#", :png], :thumb => ["50x50#", :png], :tiny => ["30x30#", :png], :teeny => ["20x20#", :png] }, 
   :path => ":rails_root/public/:class/:attachment/:id_partition/:style/:filename",
   :url => "/:class/:attachment/:id_partition/:style/:filename",
   :default_url => "/users/avatars/default/:style.png",
   :convert_options => {
-                     :thumb => Proc.new{self.convert_options(8)}, 
-                                          :tiny => Proc.new{self.convert_options(4)},
-                                          #:teeny => Proc.new{self.convert_options(2)}
-                       # :thumb => Proc.new{self.convert_options_win(8)}, 
-                       #                        :tiny => Proc.new{self.convert_options_win(4)},
-                       #                        :teeny => Proc.new{self.convert_options_win(2)}
+                    # :small => Proc.new{self.convert_options(12)},
+                    # :thumb => Proc.new{self.convert_options(8)}, 
+                    # :tiny => Proc.new{self.convert_options(4)},
+                    # :teeny => Proc.new{self.convert_options(2)}
+                       :small => Proc.new{self.convert_options_win(12)},
+                       :thumb => Proc.new{self.convert_options_win(8)}, 
+                       :tiny => Proc.new{self.convert_options_win(4)},
+                       :teeny => Proc.new{self.convert_options_win(2)}
+                       
                       }
                       
                       

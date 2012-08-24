@@ -1,4 +1,4 @@
-<% selected = @filtered_users.include?(user.id) %><div class="user <%= cycle("odd", "even") %> <%= selected ? "selected" : "deselected" %> ">	
+<% selected = @filtered_users.include?(user.id) || @filtered_users.empty? %><div class="user <%= cycle("odd", "even") %> <%= selected ? "selected" : "deselected" %> ">	
 	<div class="toggle left" id="toggle_<%= user.id %>">		<%= form_tag(toggle_projects_path, :remote => true, :method => :get, :class=>'right') do %>			<%= hidden_field_tag 'user', user.id %>			<% @filtered_types.each do |i| %>			  <%= hidden_field_tag 'types[]', i %>			<% end %>					<% @filtered_users.each do |i| %>			  <%= hidden_field_tag 'users[]', i %>			<% end %>			<% if selected %>				<%= submit_tag "submit", :type => :image, :src => "assets/user_check_selected.png" %>			<% else %>				<%= submit_tag "submit", :type => :image, :src => "assets/user_check_deselected.png" %>			<% end -%>				<% end -%>	</div>
 	<div class="avatar left">
 		<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>	</div>

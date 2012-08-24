@@ -1,11 +1,127 @@
-<%= link_to("<< Back to list", {:action => 'list'}, :class => "back-link") %>
-<div class="user edit">
-	<h2>Edit User</h2>	
-	<%= form_for(:user, :url => {:action => 'update', :id=>@user.id}, :html => { :multipart => true } ) do |f| %>	
-	<%= render(:partial => 'form', :locals => {:f => f})%>	
+
+<div id="edit" class="fixed form">
+
+	<%= form_for(:user, :url => {:action => 'update', :id=>@user.id}, :html => { :multipart => true } ) do |f| %>
+	
+	<div class="avatar left">
+		<% if @user.avatar %>
+			<%= image_tag @user.avatar.url(:small) %> 
+			</br>
+				<%= f.check_box :del_avatar %>
+		
+		<% end %>
+		</br>
+		<%= 
+		#f.file_field :avatar 
+		%>
+	</div>
+
+	<div class="details left">
+		
+		
+		<div class="field">			
+			<p class="label">
+				Name: 
+				<%= f.text_field :first_name, :size=> '20' %>
+			
+				Surname: 
+				<%= f.text_field :last_name, :size=> '20' %>
+			</p>			
+			<p class="description">
+				Enter your full Name
+			</p>			
+		</div>
+		
+		<div class="field left">			
+			<p class="label">
+				Email:
+				
+			</p><%= f.text_field :email, :size=> '25' %>	
+			<p class="description">
+				Enter a valid email address
+			</p>			
+		</div>
+		
+		<div class="field left">			
+			<p class="label">
+				Screen name: 
+			</p>
+				<%= f.text_field :screen_name, :size=> '20' %>
+			<p class="description">
+				How your name will be abbreviated.
+			</p>			
+		</div>
+		
+		<div class="clear"></div>
+		
+		
+		<div class="field left">			
+			<p class="label">
+				Role:
+			</p>
+			<%= f.text_field :title, :size=> '15' %>
+			<p class="description">
+				User Role
+			</p>			
+		</div>
+		
+		
+		<div class="field left">			
+			<p class="label">
+				Description:
+			</p>
+			<%= f.text_area :description, :size=> '60x6' %>
+			<p class="description">
+				
+			</p>			
+		</div>
+		
+		
+	<div class="clear"></div>
+
+<% if current_user.is_admin? %>
+		<div class="field ">			
+			<p class="label">
+				User Level
+			</p>
+			<%= f.select(:level, UserRole.all.collect {|r| [r.title, r.id]}) %>
+			<p class="description">
+				
+			</p>			
+		</div>
+<% end -%>
+	
+	
+	<div class="field ">			
+		<p class="label">
+			<%= link_to "change password", '#' %>
+		</p>
+		<p class="description">
+		</p>			
+	</div>
+
+		
+	</div>
+
+	<div class="clear"></div>
+	
 	<div class="form-buttons">
 		<%= submit_tag("Update User") %>
 	</div>
 	
-	<% end %>
+	<% end -%>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%= link_to("<< Back to list", {:action => 'list'}, :class => "back-link") %>
+

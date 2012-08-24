@@ -12,6 +12,13 @@ class Project < ActiveRecord::Base
   validates :project_type_id, :presence => true
   validates :deadline, :presence => true
   
+  def self.with_users(filtered_users)
+   !filtered_users.empty? ? joins(:users).where('user_id IN (?)', filtered_users) : scoped 
+  end
+  
+  def self.with_types(filtered_types)
+   !filtered_types.empty? ? joins(:project_type).where('project_type_id IN (?)', filtered_types) : scoped 
+  end
   
   def work_days
     total = 0;    

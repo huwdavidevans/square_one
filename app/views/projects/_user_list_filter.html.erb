@@ -52,7 +52,7 @@
 	<% end %>
 
 	
-	<% if current_user.is_admin? &&  User.not_involved_in(@project).length > 0 %>
+	<% if current_user.is_admin? && User.not_involved_in(@project).length > 0 %>
 		<div id = "add-new-user">
 			<%= link_to 'Add New User', new_user_project_path, :class => 'button', :id=> 'new-user-button', :remote => true  %>
 		</div>

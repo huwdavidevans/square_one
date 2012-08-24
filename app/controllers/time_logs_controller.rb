@@ -47,16 +47,22 @@ class TimeLogsController < ApplicationController
   # POST /time_logs
   # POST /time_logs.json
   def create
-    
+
     @time_log = TimeLog.new(params[:time_log])
     @comment = Comment.new(params[:comment])
     @comment.user_id = @task.user_id
     @time_log.comment = @comment
     
-   # puts YAML::dump(@time_log)
+    # puts YAML::dump(@task)
+      
+    @task.updated_at = Time.now
+    @task.save
     
     respond_to do |format|
       if @time_log.save
+        
+       
+         
         format.html { redirect_to @task, notice: 'Time log was successfully created.' }
         format.json { render json: @time_log, status: :created, location: @time_log }
       else
@@ -65,10 +71,6 @@ class TimeLogsController < ApplicationController
       end
     end
   end
-
-
-
-
 
 
 

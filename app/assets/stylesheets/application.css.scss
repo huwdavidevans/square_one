@@ -126,6 +126,7 @@ body {
 .polabox {
   border: 3px solid #FFF;
   position: relative;
+  background: #EFEFEF;
   @include background-image(linear-gradient(#efefef, #D3D3D3));
   @include single-box-shadow(#aaaaaa, 0, 2px, 5px);
 }

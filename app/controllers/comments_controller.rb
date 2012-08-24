@@ -53,14 +53,16 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    puts YAML::dump(@task)
     
     respond_to do |format|
       if @comment.save
+        @task.save
         format.html { redirect_to @comment.task, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new"}
-#        redirect_to(:action => 'new', :id => @task.id)
+        # redirect_to(:action => 'new', :id => @task.id)
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -113,6 +115,7 @@ class CommentsController < ApplicationController
     @original_comment.replies << @reply
     respond_to do |format|
       if @original_comment.save
+        @task.save
         flash[:success] = "Reply added"
         format.js
         format.html { redirect_to @task }
@@ -131,9 +134,9 @@ class CommentsController < ApplicationController
    def find_task
      if params[:task_id]
        @task = Task.find_by_id(params[:task_id])
+     elsif params[:comment][:task_id]
+       @task = Task.find_by_id(params[:comment][:task_id])
      end 
    end
-  
-  
   
 end

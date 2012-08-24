@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
   has_many :comments
   has_many :time_logs
   
-  attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days, :complete
+  attr_accessible :deadline, :description, :name, :project_id, :user_id, :supplied_work_days, :complete, :updated_at
  
   scope :started, joins(:time_logs).uniq    
   scope :not_started, where("tasks.id NOT IN (SELECT task_id FROM time_logs)")

@@ -1,4 +1,4 @@
-<% selected = @filtered_types.include?(project_type.id) %>
+<% selected = @filtered_types.include?(project_type.id) || @filtered_types.empty?%>
 <div class="project_type <%= cycle("odd", "even")%> <%= selected ? "selected" : "deselected" %> ">
 	<div class="toggle left">		
 		<%= form_tag(toggle_projects_path, :remote => true, :method => :get) do %>

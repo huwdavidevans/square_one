@@ -1,5 +1,8 @@
 class UserController < ApplicationController
   
+  before_filter :confirm_is_user_or_admin, :except => [:show, :index]
+  
+  
   def index
     list
     render('list')

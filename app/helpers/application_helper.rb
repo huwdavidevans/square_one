@@ -25,6 +25,11 @@ module ApplicationHelper
     str
   end
   
+  def current_user_or_admin?(user)
+    current_user.is_admin? || current_user == user 
+  end
+  
+  
   def current_filter_state
     if params[:state].nil? || params[:state] != ""
       params[:state].to_s.titleize
