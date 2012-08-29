@@ -9,7 +9,7 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's <span class="bold">ly recommended to check this file into your version control system.
+# It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120815084500) do
 
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20120815084500) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "comment_replies", ["comment_id", "reply_id"], :name => "index_comment_replies_on_comment_id_and_reply_id"
+  add_index "comment_replies", ["comment_id", "reply_id"], :name => "index_comments_replies_on_comment_id_and_reply_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
