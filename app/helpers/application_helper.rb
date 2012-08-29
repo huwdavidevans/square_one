@@ -51,4 +51,12 @@ module ApplicationHelper
     link_to title, output_hash, :remote => true, :title => output_hash[:state].to_s.titleize
   end
    
+   def avatar_link_to_profile(u, size=:tiny)    
+     
+       link_to image_tag( u.avatar.url(size), :title => u.name ), u
+      
+   
+   end
+   
+   
 end

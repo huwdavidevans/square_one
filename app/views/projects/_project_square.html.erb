@@ -68,7 +68,7 @@
 	
 		<div class="users">
 			<% project.users.each do |u| %>
-			<%= image_tag u.avatar.url(:tiny), :title => u.name %>
+			<%= avatar_link_to_profile(u) %>
 			<% end %>
 		</div>
 	

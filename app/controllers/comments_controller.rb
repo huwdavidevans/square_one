@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   
   before_filter :find_task
   before_filter :confirm_is_admin, :except => [:show, :new, :create]
- 
+
     
   # GET /comments
   # GET /comments.json

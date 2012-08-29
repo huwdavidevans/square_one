@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   
-  before_filter :confirm_is_user_or_admin, :except => [:show, :index]
+  before_filter :confirm_self, :except => [:show, :index]
   
   
   def index
@@ -65,5 +65,16 @@ class UserController < ApplicationController
     flash[:notice] = "User deleted."
     redirect_to(:action => 'list')
   end
+
+  
+  
+  def confirm_self   
+    unless User.find_by_id(session[:user_id]).is_admin? || session[:user_id] == params[:id]
+      flash[:error] = "Authorisation Error"
+      redirect_no_auth
+      false
+    end
+  end
+
 
 end

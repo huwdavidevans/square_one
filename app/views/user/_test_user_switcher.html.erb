@@ -1,0 +1,6 @@
+<div class="right">
+		<%= form_tag(:controller => 'access', :action => 'switch')  do  %>	
+		<%= select(:user, :id, User.all.collect {|p| [ p.name, p.id ]}) %>
+		<%= submit_tag("switch") %>
+		<% end %>
+	</div>
