@@ -27,11 +27,11 @@
 
 </div>
 <% end -%>
-
+<div class="show_user">
 <h1>Time Logs</h1>
 <div class="">
 	<h2>This Week</h2>
-	<%=  render :partial => "time_logs/week_view", :locals=>{ :num_weeks_ago => 0} %>		
+	<%=  render :partial => "time_logs/week_view", :locals=>{ :num_weeks_ago => 0 }%>		
 </div>
 
 <div class="">
@@ -53,8 +53,7 @@
 	
 </div>
 
-
-
+</div>
 
 <%= link_to("Back to list", {:action => 'list'})%>
 

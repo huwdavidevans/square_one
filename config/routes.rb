@@ -33,7 +33,7 @@ SquareOne::Application.routes.draw do
     end
   end
   
-  resources :users 
+  resources :user
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

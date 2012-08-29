@@ -7,7 +7,21 @@
 @import "colours-mixins";
 @import "fancy-buttons";
 
+.login_summary{
+  font-size:13px;
+  text-align: right;
+  line-height: 16px;
+  .avatar{
+   margin-left:5px; 
+  }
+}
+.user_bar {
+  display:inline-block;
+}
 
+.show_user{
+  margin: 20px auto;
+}
 #show {
   margin: 20px auto;
   font-size: 24px;

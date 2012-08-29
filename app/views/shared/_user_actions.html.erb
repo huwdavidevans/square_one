@@ -1,1 +1,16 @@
-<%= link_to :controller=>'user', :action=>'show', :id=>current_user.id do %><%= image_tag current_user.avatar.url(:tiny) %> <%= current_user.name %><% end -%><%= link_to("log out", :controller => 'access', :action=>'logout') if session[:user_id]  %>
+<div class="login_summary user_bar">
+	<div class="left">
+		<p>
+			Logged in as
+		</p>
+		<p>
+			<%= link_to current_user.name, current_user%>
+		</p>
+	</div>	<div class="avatar left">
+		<%= avatar_link_to_profile(current_user) %>
+	</div>
+	<div class="clear"></div>
+</div>
+<div id="logout" class="user_bar">
+  <%= link_to("log out", :controller => 'access', :action=>'logout') if session[:user_id]  %>
+</div>

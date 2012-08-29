@@ -21,7 +21,7 @@ class UserController < ApplicationController
 
     if @user.save
       flash[:notice] = "User Created."
-      redirect_to(:action => 'list')
+      redirect_to('list')
     else
       flash[:notice] = "User Create Failed."
       render('new')

@@ -1,5 +1,5 @@
 <%= link_to("<< Back to list", {:action => 'list'}, :class => "back-link") %>
-<div class="user new">
+<div class="user new form">
 	<h2>Create New User</h2>
 	
 	<%= form_for(:user, :url => {:action => 'create'}, :html => { :multipart => true }) do |f| %>

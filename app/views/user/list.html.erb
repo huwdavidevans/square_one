@@ -1,5 +1,13 @@
 <div id="user list">
+	
 	<h2>User List</h2>
+	
+	<% if current_user_or_admin?(@user) %>
+	<%= link_to "New User", {:action=>:new},:class=>"button" %>
+	<% end -%>
+	<div class="clear">
+	  
+	</div>
 	<table class="listing" summary="User List" >
 		<% @users.each do |user| %>
 		<%= render :partial => 'user_list_item', :locals=>{:user =>user}%>
