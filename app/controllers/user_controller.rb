@@ -36,6 +36,8 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tasks = Task.by_user(@user.id).order("deadline asc").group_by{ |t| t.project }    
+    @time_logs = TimeLog.by_user(@user.id)       
   end
 
   # UPDATE

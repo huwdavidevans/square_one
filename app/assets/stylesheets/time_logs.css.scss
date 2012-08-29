@@ -1,3 +1,47 @@
 // Place all the styles related to the TimeLogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.table{
+  margin: 20px auto;
+  width: 100%;
+  border: 1px solid #CCC;
+  
+  .today{
+    background: #FFF;
+  }
+  
+  
+  td {
+    border-right: 1px solid #CCC;
+    padding:5px;
+    height: 80px;
+    background: #F0F0F0;
+  }
+}
+
+.day_log_header{
+  background: #EFEFEF;
+  
+  th {
+    font-weight: bold;
+    width:14%;
+    padding:5px 10px;
+    text-shadow: none;
+    color: #FFFFFF;
+    background: #888;
+  }
+  
+  th.today{
+   color: #FFFFFF;
+   background: #3333BB;
+  }
+}
+
+
+.day_log_details{
+  
+  font-size: 14px;
+  color: #888;
+
+  
+}

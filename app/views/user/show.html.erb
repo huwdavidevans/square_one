@@ -28,14 +28,33 @@
 </div>
 <% end -%>
 
+<h1>Time Logs</h1>
+<div class="">
+	<h2>This Week</h2>
+	<%=  render :partial => "time_logs/week_view", :locals=>{ :num_weeks_ago => 0} %>		
+</div>
 
-<% @tasks = Task.by_user(@user.id) %>
-<ul>
-<% @tasks.each do |task| %>
-<li><%= task.name %></li>
-<% end -%>
-</ul>
+<div class="">
+	<h2>Last Week</h2>
+	<%=  render :partial => "time_logs/week_view", :locals=>{ :num_weeks_ago => 1} %>		
+</div>
+
+
+<h1><%= @user.first_name %>'s Tasks</h1>
+<div id="task_list">	
+	<% @tasks.keys.sort.each do |project| %>
+	<div class="group">
+		<h2><%= project.name %></h2>
+		<% for task in @tasks[project] %>
+		<%= render(:partial => 'tasks/task_list_item', :locals => {:task => task})%>
+		<% end %>
+	</div>
+	<% end -%>
+	
+</div>
+
+
+
 
 <%= link_to("Back to list", {:action => 'list'})%>
-
 

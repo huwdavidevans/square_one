@@ -1,0 +1,22 @@
+<div class="user_list_item left">
+	<div class="avatar left">
+		<%= image_tag user.avatar.url(:tiny) %>
+		<% if current_user.is_admin? %>
+			<p>
+				<%= link_to image_tag('actions/edit_btn_16.png', {:title => "Edit User"}),  {:action=>:edit, :id=>user.id}  %>
+			</p> 
+		<% end -%>	</div>
+	<div class="details left">
+		<div id="fullname">
+			<%= link_to user.name, {:action=>:show, :id=>user.id}  %>
+		</div>
+		<div id="role" class="<%= "admin" if user.level == 2 %>">
+			<%= user.title %>
+		</div>
+		<div id="email">
+			<%= user.email %>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+</div>

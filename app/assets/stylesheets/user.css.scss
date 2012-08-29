@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+@import "compass";
+@import "colours-mixins";
+@import "fancy-buttons";
+
+
 #show {
   margin: 20px auto;
   font-size: 24px;
@@ -61,4 +66,22 @@
   margin-top: 1em;
   line-height: 1.2em;
   color: #888;
+}
+
+
+
+
+.user_list_item {
+  background: white;
+  @include box-shadow(#999999 0px 2px 8px);
+  @include border-radius(5px); 
+  padding: 10px;
+  margin: 5px;
+  width: 285px;
+  
+  .details{
+    margin-left: 10px;
+  }
+  
+  
 }

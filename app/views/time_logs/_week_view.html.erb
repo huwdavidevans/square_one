@@ -1,0 +1,25 @@
+<% time_logs = @time_logs.from_week(num_weeks_ago).order("created_at asc").group_by{ |t| t.created_at.to_date } %>
+<% week_day = num_weeks_ago.week.ago.to_date.beginning_of_week %>
+
+<table border="0" cellspacing="5" cellpadding="5" class="table">
+	<tr class="day_log_header">
+		<% for i in 0..6 %>
+			<th class="<%= 'today' if (week_day.to_date + i.days) == Date.today %>"><%= (week_day.to_date + i.days).strftime('%a %d %b') %></th>
+		<% end %>
+	</tr>
+	<tr class="day_log_details">
+		<% for i in 0..6 %>
+		<td class="<%= 'today' if (week_day.to_date + i.days) == Date.today %>">
+			<% if !time_logs.empty? && time_logs.first[0] == week_day.to_date + i.days %>
+				<% for log in time_logs.first[1] %>
+					<p><%= log.time_string %> in <%= link_to log.task.name, log.task %></p>
+				<% end %>
+				<% time_logs.shift() %>	
+			<% else %>
+				
+			<% end -%>
+		</td>
+		<% end %>
+	</tr>
+</table>
+

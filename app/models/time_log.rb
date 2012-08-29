@@ -14,6 +14,21 @@ class TimeLog < ActiveRecord::Base
   validates :user_id, :presence => true 
   validates :comment, :presence => true
   
+  
+   
+  def self.by_user(user_id)
+      if user_id.nil?
+        scoped
+      else
+        where(:user_id => user_id)
+      end
+  end
+   
+  def self.from_week(num = 0)
+    where(:created_at => num.week.ago.to_date.beginning_of_week..num.week.ago.to_date.end_of_week)
+     # where('created_at' > num.week.ago.to_date.beginning_of_week & 'created_at' < num.week.ago.to_date.end_of_week)    
+  end  
+  
   def body
     if comment
       comment.body
