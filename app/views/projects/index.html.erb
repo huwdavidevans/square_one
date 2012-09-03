@@ -3,6 +3,30 @@
 
 <% content_for :top do %>
 <div class="fixed">
+	
+	<div id="completed" class="left half top_summary_box">
+		<h2>Recently Completed</h2>
+	  <ul>
+	  	<% @recently_completed_projects.each do |p| %>
+	  	<li class="<%= cycle('odd','even') %>"> <%= render :partial => 'project_row', :locals=>{:p => p} %> </li>
+	  	<% end -%>	  	
+	  </ul>
+	</div>
+	
+	<div id="closed" class="left half top_summary_box">
+		<h2>Recently Closed</h2>
+	  <ul>
+	  	<% @recently_closed_projects.each do |p| %>
+	  	<li class="<%= cycle('odd','even') %>"> <%= render :partial => 'project_row', :locals=>{:p => p} %> </li>
+	  	<% end -%>	  	
+	  </ul>
+	</div>
+	
+	<div class="clear"></div>
+	
+	
+	
+	
 	<ul class="crumbtrail">
 		<li class="home">
 			<%= link_to image_tag('crumb_home.png'), projects_path %>

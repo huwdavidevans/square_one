@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815084500) do
+ActiveRecord::Schema.define(:version => 20120903093914) do
 
   create_table "comment_replies", :id => false, :force => true do |t|
     t.integer  "comment_id"
@@ -44,9 +44,11 @@ ActiveRecord::Schema.define(:version => 20120815084500) do
     t.text     "description"
     t.date     "deadline"
     t.string   "code"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "project_type_id"
+    t.boolean  "complete",        :default => false
+    t.boolean  "open",            :default => true
   end
 
   create_table "projects_users", :id => false, :force => true do |t|

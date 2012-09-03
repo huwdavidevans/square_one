@@ -20,6 +20,22 @@ class Project < ActiveRecord::Base
    !filtered_types.empty? ? joins(:project_type).where('project_type_id IN (?)', filtered_types) : scoped 
   end
   
+  def self.open
+   where(:open => true)
+  end
+  
+ def self.closed
+    where(:open => false)
+  end
+
+  def self.complete
+    where(:complete => true)
+  end
+
+  def self.incomplete
+    where(:complete => false)
+  end
+  
   def work_days
     total = 0;    
     tasks.each do |t|

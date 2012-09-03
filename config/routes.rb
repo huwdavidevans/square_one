@@ -25,8 +25,10 @@ SquareOne::Application.routes.draw do
   
   resources :projects do
     member do
-      get :new_user
-    end
+        get :new_user
+        get :open_close
+        get :mark_complete
+     end
     
     collection do
       get :toggle

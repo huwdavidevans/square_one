@@ -13,7 +13,24 @@
 		<%= @project.code %>
 		<% if current_user.is_admin?  %>
 			<%= link_to(image_tag('actions/edit_btn_16.png', {:title => "Edit Task"}), edit_project_path(@project) ) %> :
-			<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to image_tag('actions/destroy_btn_16.png'), @project, method: :delete, data: { confirm: 'Are you sure?' } %>		
+		
+			<% if @project.open 
+				open_label = 'Close Project'
+			else
+				open_label = 'Open Project'
+			end -%>		
+			<%= link_to open_label, open_close_project_path(@project), :class=>'button'%>
+		
+		
+			<% if @project.complete
+				complete_label = 'Mark In Progress'
+			else 
+				complete_label = 'Mark Complete'
+			end -%>
+			<%= link_to complete_label, mark_complete_project_path(@project), :class=>'button' %>
+		
+		
 		<% end -%>
 	</p>	
 	<p class="description">

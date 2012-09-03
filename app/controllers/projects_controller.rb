@@ -19,8 +19,8 @@ class ProjectsController < ApplicationController
       @filtered_types = []
     end
 
-    @all_projects = Project.all  
-    @projects = Project.with_users(@filtered_users).with_types(@filtered_types).uniq   
+    @all_projects = Project.open.incomplete  
+    @projects = @all_projects.with_users(@filtered_users).with_types(@filtered_types).uniq   
     @projects = @projects.order(project_sort_column + " " + sort_direction)
     
     case project_sort_column
@@ -30,7 +30,8 @@ class ProjectsController < ApplicationController
         @projects = @projects.group_by{ |p| p.name[0,1] }
     end
 
-    #@projects = Project.joins(:users) & User.id_exists_in(@filtered_users)  
+    @recently_completed_projects = Project.complete.open
+    @recently_closed_projects = Project.closed.where('updated_at > ?', Time.now - 1.week)  
 
     respond_to do |format|
       format.html
@@ -190,6 +191,49 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end    
+  end
+  
+  def open_close   
+    @project = Project.find(params[:id])
+   if (@project.open)
+      @project.open = false
+      msg = "Project Successfully Closed"
+    else
+      @project.open = true
+      msg = "Project Successfully Opened"
+    end
+
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to @project, :success => msg }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @project, notice: "Project not updated" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end 
+  end
+ 
+ 
+   def mark_complete   
+    @project = Project.find(params[:id])
+   if (@project.complete)
+      @project.complete = false
+      msg = "Project Successfully Marked as Complete"
+    else
+      @project.complete = true
+      msg = "Project Successfully Marked as In Progress"
+    end
+
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to @project, :success => msg }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @project, notice: "Project not updated" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end 
   end
   
   private
