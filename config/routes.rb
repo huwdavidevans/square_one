@@ -23,6 +23,7 @@ SquareOne::Application.routes.draw do
     end
   end
   
+  
   resources :projects do
     member do
         get :new_user
@@ -35,7 +36,12 @@ SquareOne::Application.routes.draw do
     end
   end
   
-  resources :user
+  resources :user do
+    member do
+      get :list
+    end
+  end
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

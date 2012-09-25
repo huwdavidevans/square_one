@@ -1,27 +1,173 @@
-namespace :bootstrap do
+ranamespace :bootstrap do
   
-  desc "Add the default user"
-  task :default_user => :environment do
+   desc "Add the user roles"
+  task :default_user_roles => :environment do
+    UserRole.create(:title => "user", :description => "Regular User")
+    UserRole.create(:title => "admin", :description => "Admin User")
+  end
+  
+   desc "Add users"
+   task :default_users => :environment do
+ 
     u = User.new
     u.first_name = "Huw"
     u.last_name = "Evans"
-    u.username = "evansh" 
+    u.username = "evansh"
     u.screen_name = "Huw E"
     u.email = "huwdavidevans@gmail.com"
     u.title = "Portal Manager"
     u.description = ""
     u.level = 2
     u.active = true
-    u.supplied_password = 'ngfl1234'
-    u.avatar = File.open("public/users/avatars/b.jpg")
+    u.supplied_password = 'admin_pass'
+    u.avatar = File.open("public/users/avatars/he.jpg")
     u.save
+
+    u = User.new
+    u.first_name = "Danielle"
+    u.last_name = "Griffiths"
+    u.username = "griffd"
+    u.screen_name = "Dan G"
+    u.email = "danielle.griffiths@ngfl-cymru.org.uk"
+    u.title = "Development Team Coordinator"
+    u.description = ""
+    u.level = 2
+    u.active = true
+    u.supplied_password = 'admin_pass'
+    u.avatar = File.open("public/users/avatars/dg.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Hywel"
+    u.last_name = "Jones"
+    u.username = "joneshy"
+    u.screen_name = "Hywel J"
+    u.email = "hywel.jones@ngfl-cymru.org.uk"
+    u.title = "Development Team Coordinator"
+    u.description = ""
+    u.level = 2
+    u.active = true
+    u.supplied_password = 'admin_pass'
+    u.avatar = File.open("public/users/avatars/hyj.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Melanie"
+    u.last_name = "Blount"
+    u.username = "blountm"
+    u.screen_name = "Mel B"
+    u.email = "melanie.blount@wjec.co.uk"
+    u.title = "Digital Team Co-ordinator"
+    u.description = ""
+    u.level = 2
+    u.active = true
+    u.supplied_password = 'admin_pass'
+    u.avatar = File.open("public/users/avatars/mb.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Mike"
+    u.last_name = "Ebbsworth"
+    u.username = "ebbsworthm"
+    u.screen_name = "Mike E"
+    u.email = "mike.ebbsworth@cbac.co.uk"
+    u.title = "Assistant Director, Educational Support"
+    u.description = ""
+    u.level = 2
+    u.active = true
+    u.supplied_password = 'admin_pass'
+    u.avatar = File.open("public/users/avatars/me.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Dafydd"
+    u.last_name = "Watcyn Williams"
+    u.username = "williamsd"
+    u.screen_name = "Dafydd WW"
+    u.email = "dafydd.williams@cbac.co.uk"
+    u.title = "Assistant Director, Educational Support"
+    u.description = ""
+    u.level = 2
+    u.active = true
+    u.supplied_password = 'admin_pass'
+    u.avatar = File.open("public/users/avatars/dww.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Natalie"
+    u.last_name = "White"
+    u.username = "whiten"
+    u.screen_name = "Natalie W"
+    u.email = "natalie.white@ngfl-cymru.org.uk"
+    u.title = "Developer"
+    u.description = ""
+    u.level = 1
+    u.active = true
+    u.supplied_password = 'so1234'
+    u.avatar = File.open("public/users/avatars/nw.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Osian"
+    u.last_name = "Hughes Jones"
+    u.username = "jonesoh"
+    u.screen_name = "Osian J"
+    u.email = "osian.jones@ngfl-cymru.org.uk"
+    u.title = "Developer"
+    u.description = ""
+    u.level = 1
+    u.active = true
+    u.supplied_password = 'so1234'
+    u.avatar = File.open("public/users/avatars/oj.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Christopher"
+    u.last_name = "Thomas"
+    u.username = "thomasc"
+    u.screen_name = "Chris T"
+    u.email = "christopher.thomas@ngfl-cymru.org.uk"
+    u.title = "Developer"
+    u.description = ""
+    u.level = 1
+    u.active = true
+    u.supplied_password = 'so1234'
+    u.avatar = File.open("public/users/avatars/ct.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Rhys"
+    u.last_name = "Morris"
+    u.username = "morrisr"
+    u.screen_name = "Rhys M"
+    u.email = "rhys.morris@wjec.co.uk"
+    u.title = "Developer"
+    u.description = ""
+    u.level = 1
+    u.active = true
+    u.supplied_password = 'so1234'
+    u.avatar = File.open("public/users/avatars/rm.jpg")
+    u.save
+
+    u = User.new
+    u.first_name = "Huw"
+    u.last_name = "Jones"
+    u.username = "joneshu"
+    u.screen_name = "Huw J"
+    u.email = "huw.jones@wjec.co.uk"
+    u.title = "Developer"
+    u.description = ""
+    u.level = 1
+    u.active = true
+    u.supplied_password = 'so1234'
+    u.avatar = File.open("public/users/avatars/hj.jpg")
+    u.save
+
+    
+    
   end
 
-  desc "Add the user roles"
-  task :default_user_roles => :environment do
-    UserRole.create(:title => "user", :description => "Regular User")
-    UserRole.create(:title => "admin", :description => "Admin User")
-  end
+
   
   
   desc "Add 5 Test Projects"
@@ -33,7 +179,7 @@ namespace :bootstrap do
     p.deadline = 30.days.from_now
     p.code = "ALICE"
     p.project_type_id = 1
-    p.users = [User.find_by_username('evansh'), User.find_by_username('legendary')] 
+    p.users = [User.find_by_id(2), User.find_by_id(4)] 
     p.save
     
     p.tasks << Task.new(:deadline => p.deadline, :description => 'Description for the white rabbit task', :name => 'Follow the White Rabbit', :project_id => p.id, :user_id => User.find_by_username('evansh').id )
@@ -48,7 +194,7 @@ namespace :bootstrap do
     p.deadline = DateTime.civil(2012, 8, 12)
     p.code = "Mars"
     p.project_type_id = 2
-    p.users = [User.find_by_username('evansh'), User.find_by_username('goatkeeper')]
+    p.users = [User.find_by_id(1), User.find_by_id(2)]
     p.save
     
     
@@ -58,9 +204,8 @@ namespace :bootstrap do
     p.deadline = DateTime.civil(2012, 8, 1)
     p.code = "OZ"
     p.project_type_id = 3
-    p.users = [User.find_by_username('evansh'), User.find_by_username('legendary'), User.find_by_username('goatkeeper')]
+    p.users = [User.find_by_id(5), User.find_by_id(3), User.find_by_id(6)]
     p.save
-    
     
     
     p = Project.new
@@ -69,45 +214,13 @@ namespace :bootstrap do
     p.deadline = DateTime.civil(2012, 8, 17)
     p.code = "WHALE"
     p.project_type_id = 4
-    p.users = [User.find_by_username('evansh'), User.find_by_username('legendary')]
+    p.users = [User.find_by_id(6), User.find_by_id(7)]
     p.save
     
   end
 
 
-  
-  desc "Add extra Users"
-  task :extra_users => :environment do
-    u = User.new
-    u.first_name = "Brian"
-    u.last_name = "Goat"
-    u.username = "goatkeeper" 
-    u.screen_name = "Jimmy"
-    u.email = "james@jj.com"
-    u.title = "Test Account"
-    u.description = "Pizza for tea!"
-    u.level = 1
-    u.active = true
-    u.supplied_password = 'ngfl1234'
-    u.avatar = File.open("public/users/avatars/g.jpg")
-    u.save
 
-    u = User.new
-    u.first_name = "Fred"
-    u.last_name = "Legendary"
-    u.username = "legendary" 
-    u.screen_name = "Ledge"
-    u.email = "ault@ault.com"
-    u.title = "Edge Editor"
-    u.description = "wee waa woo waa"
-    u.level = 1
-    u.active = true
-    u.supplied_password = 'ngfl1234'
-    u.avatar = File.open("public/users/avatars/d.jpg")
-    u.save
-  end
-  
-  
   
   desc "Add inital Project Types"
   task :add_project_types => :environment do
@@ -139,37 +252,8 @@ namespace :bootstrap do
     
   end
 
-  desc "Add Dan and Hywel"
-  task :dan_hywel => :environment do
-      u = User.new
-      u.first_name = "Danielle"
-      u.last_name = "Griffiths"
-      u.username = "griffd" 
-      u.screen_name = "Dan G"
-      u.email = "danielle.griffiths@ngfl-cymru.org.uk"
-      u.title = "Development Team Coordinator"
-      u.description = ""
-      u.level = 2
-      u.active = true
-      u.supplied_password = 'ngfl1234'
-      u.avatar = File.open("public/users/avatars/danielle.jpg")
-      u.save
-      
-      u = User.new
-      u.first_name = "Hywel"
-      u.last_name = "Jones"
-      u.username = "joneshy" 
-      u.screen_name = "Hywel J"
-      u.email = "hywel.jones@ngfl-cymru.org.uk"
-      u.title = "Development Team Coordinator"
-      u.description = ""
-      u.level = 2
-      u.active = true
-      u.supplied_password = 'ngfl1234'
-      u.avatar = File.open("public/users/avatars/hywel.jpg")
-      u.save
-  end
+
 
   desc "Run all bootstrapping tasks"
-  task :all => [:default_user_roles, :default_user, :extra_users, :dan_hywel, :add_project_types, :add_test_projects]
+  task :all => [:default_user_roles, :default_users, :add_project_types]
 end
