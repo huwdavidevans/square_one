@@ -7,13 +7,11 @@
 		<% if @user.avatar %>
 			<%= image_tag @user.avatar.url(:small) %> 
 			</br>
-				<%= f.check_box :del_avatar %>
+				<%= f.check_box :del_avatar if current_user.is_admin? %>
 		
 		<% end %>
 		</br>
-		<%= 
-		#f.file_field :avatar 
-		%>
+		<%= f.file_field :avatar  if current_user.is_admin? %>
 	</div>
 
 	<div class="details left">

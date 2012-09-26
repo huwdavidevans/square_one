@@ -18,9 +18,12 @@ pre {
 a {
   color: #000;
   &:visited {
-    color: #666; }
+    //color: #666;
+     }
   &:hover {
-    color: #fff; } }
+    //color: #fff;
+  } 
+}
 
 div {
   &.field, &.actions {
