@@ -36,14 +36,14 @@ class User < ActiveRecord::Base
   :url => "/:class/:attachment/:id_partition/:style/:filename",
   :default_url => "/users/avatars/default/:style.png",
   :convert_options => {
-                     :small => Proc.new{self.convert_options(12)},
-                     :thumb => Proc.new{self.convert_options(8)}, 
-                     :tiny => Proc.new{self.convert_options(4)},
-                     :teeny => Proc.new{self.convert_options(2)}
-                     #  :small => Proc.new{self.convert_options_win(12)},
-                     #  :thumb => Proc.new{self.convert_options_win(8)}, 
-                     #  :tiny => Proc.new{self.convert_options_win(4)},
-                     #  :teeny => Proc.new{self.convert_options_win(2)}                       
+                    # :small => Proc.new{self.convert_options(12)},
+                    #:thumb => Proc.new{self.convert_options(8)}, 
+                    # :tiny => Proc.new{self.convert_options(4)},
+                    # :teeny => Proc.new{self.convert_options(2)}
+                       :small => Proc.new{self.convert_options_win(12)},
+                       :thumb => Proc.new{self.convert_options_win(8)}, 
+                       :tiny => Proc.new{self.convert_options_win(4)},
+                       :teeny => Proc.new{self.convert_options_win(2)}                       
                      }
                       
                       
