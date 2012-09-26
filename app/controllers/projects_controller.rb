@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   
   helper_method :sort_column, :sort_direction  
-  before_filter :confirm_is_admin, :except => [:index, :show]
+  before_filter :confirm_is_admin, :except => [:index, :show, :toggle]
   
   # GET /projects
   # GET /projects.json
