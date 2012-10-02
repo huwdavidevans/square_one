@@ -3,8 +3,7 @@
 	<div class="avatar left">
 		<%= image_tag(user.avatar.url(:tiny), {:title => user.name}) %>	</div>
 	<div class="details">
-		<div class="name">						<%= form_tag(projects_path, :remote => true, :method => :get) do %>				<% @filtered_types.each do |i| %>				  <%= hidden_field_tag 'types[]', i %>				<% end %>				<%= hidden_field_tag 'users[]', user.id %>				<%= submit_tag "submit", :id=>"user-submit-#{user.id}", :hidden=>true %>				<%= link_to user.name, "#", :onclick=>"$('#user-submit-#{user.id}').click();" %>				<% end -%>			
-						
+		<div class="name">						<%= form_tag(projects_path, :remote => true, :method => :get) do %>				<% @filtered_types.each do |i| %>				  <%= hidden_field_tag 'types[]', i %>				<% end %>				<%= hidden_field_tag 'users[]', user.id %>				<%= submit_tag "submit", :id=>"user-submit-#{user.id}", :hidden=>true %>				<%= link_to user.name, "#", :onclick=>"$('#user-submit-#{user.id}').click();" %>				<% end -%>			
 		</div>
 		<div class="summary">
 			<%= user.projects.length %> projects

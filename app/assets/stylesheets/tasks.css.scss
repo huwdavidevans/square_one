@@ -279,10 +279,11 @@
   }
   .details {
     width: 230px;
+    word-wrap:break-word;
     .description {
       color: #555;
       margin: 20px 0 5px;
-      font-size: 15px;
+      font-size: 15px;      
     }
     
     .body {
@@ -290,6 +291,18 @@
       font-size: 12px;
       color: #777;
       line-height: 1.25em;
+      
+        
+  a{
+    color: #097;
+    text-decoration: none;
+   }
+   
+  a:hover{
+    color: #079;
+    text-decoration: underline;
+  }
+      
     }
   }
 	
@@ -299,6 +312,16 @@
 
   #reply-list {
     clear: left;
+	
+	a{
+    color: #097;
+    text-decoration: none;
+   }
+   
+  a:hover{
+    color: #079;
+    text-decoration: underline;
+  }
 	
 	.odd {
 		background: #FFFCDD;

@@ -33,9 +33,11 @@
 		
 		<% end -%>
 	</p>	
-	<p class="description">
-		<%= @project.description %>
+	
+	<div class="description">
+		<%= auto_link(simple_format(@project.description.html_safe)) %>		
 	</p>
+	
 	</div>	
 		<%= render :partial => 'milestone_view', :locals => {:project => @project} %>	
 	<div class="clear"></div>	

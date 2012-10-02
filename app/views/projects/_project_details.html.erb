@@ -18,7 +18,12 @@
 		<h3><%= pluralize project.tasks_overrun.length, 'task' %> Over-run</h3>
 		<% project.tasks_overrun.each do |task| %>
 			<div class="dev-list-task">
-				<%= image_tag task.user.avatar.url(:teeny), :title => task.user.name %> <%= task.name %>
+				<% if task.user %>
+				<%= image_tag(task.user.avatar.url(:teeny), :title => task.user.name, :size => "15x15")%>
+				<% else %>
+				<%= image_tag("/users/avatars/default/teeny.png",  :title => "Not Allocated", :size => "15x15")%>				
+				<% end -%>
+				<%= task.name %>
 			</div>
 		<% end %>
 	</div>
@@ -31,7 +36,12 @@
 		<h3> <%= pluralize project.tasks_overdue.length, 'task' %> Over-due</h3>
 		<% project.tasks_overdue.each do |task| %>
 			<div class="dev-list-task">
-				<%= image_tag task.user.avatar.url(:teeny), :title => task.user.name %> <%= task.name %>
+				<% if task.user %>
+				<%= image_tag(task.user.avatar.url(:teeny), :title => task.user.name, :size => "15x15")%>
+				<% else %>
+				<%= image_tag("/users/avatars/default/teeny.png",  :title => "Not Allocated", :size => "15x15")%>				
+				<% end -%>
+				<%= task.name %>
 			</div>
 		<% end %>
 	</div>

@@ -23,7 +23,7 @@
 	<% end -%>
 
 	<div class="description">
-		<%= @task.description %>
+		<%= auto_link(simple_format(@task.description.html_safe)) %>
 	</div>
 
 </div>

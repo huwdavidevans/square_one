@@ -6,7 +6,7 @@
 				<%= image_tag reply.user.avatar.url(:teeny) %>						
 			</div>
 			<div class="time left">
-				<span class="username bold"><%= reply.user.name %></span> replied 
+				<span class="username bold"><%= reply.user.name %></span>
 				<% if reply.created_at.to_date == Date.today %>
 					<span class="bold"><%= distance_of_time_in_words(Time.now, reply.created_at).gsub('about ','') %></span> ago
 				<% elsif %>
@@ -14,7 +14,7 @@
 				<% end %>
 			</div>
 			<div class="clear"></div>
-			<p><%= reply.body %></p>
+			<p><%= rinku_auto_link(simple_format(reply.body)) %></p>
 		</div>
 	<% end %>
 <% end %>

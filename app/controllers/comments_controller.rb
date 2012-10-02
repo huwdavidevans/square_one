@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   
   before_filter :find_task
-  before_filter :confirm_is_admin, :except => [:show, :new, :create]
+  before_filter :confirm_is_admin, :except => [:show, :new, :create, :new_reply]
 
     
   # GET /comments

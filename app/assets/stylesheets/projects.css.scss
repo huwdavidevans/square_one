@@ -23,7 +23,9 @@
   }
 }
 
-.group{
+.group {
+  
+  position: relative;
   
   margin-bottom: 80px;
   h2{
@@ -500,4 +502,20 @@ hr {
     min-height: 32px;
     vertical-align: middle;
     }
+}
+
+
+.column {  
+  float: left;
+  width: 245px;
+}
+
+.column.first {
+}
+
+.column.middle { 
+}
+
+.column.last {
+  
 }

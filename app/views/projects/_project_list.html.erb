@@ -1,9 +1,55 @@
 <% @projects.keys.sort.each do |group| %>
 	<div class="group">
+		
 		<h2 class="polabox"><%= group.is_a?(Date) || group.is_a?(Time) ? group.to_datetime.strftime("%B") : group %></h2>
-		<% for project in @projects[group] %>
-		<%= render(:partial => 'project_square', :locals => {:project => project})%>
-		<% end %>
+		
+		<% 
+		
+		@column_first = []
+		@column_middle = []
+		@column_last = []
+		
+		@projects[group].each_with_index do |psquare, index|
+		  
+			case index % 3
+			when 0%3
+			  @column_first.push(psquare)
+			when 1%3
+			 @column_middle.push(psquare)
+			when 2%3
+			 @column_last.push(psquare)	
+			end
+			
+		end 
+		
+		%>
+		
+		
+		
+		
+		<div class="column first">
+			<% for project in @column_first%>
+			<%= render(:partial => 'project_square', :locals => {:project => project}) %>
+			<% end %>
+		</div>
+		
+		
+		<div class="column middle">
+			<% for project in @column_middle %>
+			<%= render(:partial => 'project_square', :locals => {:project => project}) %>
+			<% end %>
+		</div>
+		
+		
+		<div class="column last">
+			<% for project in @column_last %>
+			<%= render(:partial => 'project_square', :locals => {:project => project}) %>
+			<% end %>
+		</div>
+		
+		
+		
 		<div class="clear"></div>
+		
 	</div>
 <% end -%>
