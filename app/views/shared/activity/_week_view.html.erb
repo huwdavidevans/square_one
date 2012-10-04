@@ -1,0 +1,67 @@
+<% time_logs = @time_logs.from_week(num_weeks_ago).order("created_at asc").group_by{ |t| t.created_at.to_date } %>
+<% week_day = num_weeks_ago.week.ago.to_date.beginning_of_week %>
+<% totals = [] %>
+<table border="0" cellspacing="5" cellpadding="5" class="table">
+
+	<tr class="day_log_header">
+		<% for i in 0..6 %>
+		<th class="<%= 'today' if (week_day.to_date + i.days) == Date.today %>"><%= (week_day.to_date + i.days).strftime('%a %d %b') %></th>
+		<% end %>
+	</tr>
+
+	<tr class="day_log_details">
+
+		<% for i in 0..6 %>
+		<% this_day = week_day.to_date + i.days %>
+		<td class="<%= 'today' if (this_day) == Date.today %>">
+	
+			<% if !time_logs.empty? && time_logs.first[0] == week_day.to_date + i.days %>
+	
+				<% this_days_logs = time_logs.first[1] %>
+				<% this_days_tasks = this_days_logs.group_by{ |log| log.task }	%>
+				<% this_days_projects = this_days_tasks.group_by{ |task| task[0].project } %>
+				<% this_days_total = 0 %>
+				
+				<% for proj_group in this_days_projects %>		
+					<% proj = proj_group[0] %>
+					<% tasks = proj_group[1] %>
+					<% logs = tasks[1] 	%>
+					<div class="project">
+						<p class="project_name">
+							<%= link_to proj.name, proj %>
+						</p>
+						<ul>
+							<% for task_group in tasks %>
+								<% task = task_group[0] %>
+								<li>
+									<p class="task_name">
+										<%= link_to task.name,  task_path(task, :anchor => this_day.to_date) %>
+									</p>
+									<p class="task_time">
+										<% this_task_time = task.log_total_from(this_day) %>
+										<%= minutes_to_time_string this_task_time %>
+										<% this_days_total += this_task_time %>
+									</p>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+				<% totals[i] = this_days_total %>
+				<% time_logs.shift() %>
+		
+			<% else %>
+			<!-- 		No Activity		 -->
+			<% end -%>
+		</td>
+		<% end %>
+	</tr>
+		
+			<% puts totals %>
+		<tr class="day_log_totals">
+			<% for i in 0..6 %>
+				<td><%= minutes_to_time_string totals[i] unless totals[i].nil?%></td>
+			<% end %>
+		</tr>
+</table>
+

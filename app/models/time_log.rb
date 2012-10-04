@@ -29,6 +29,11 @@ class TimeLog < ActiveRecord::Base
      # where('created_at' > num.week.ago.to_date.beginning_of_week & 'created_at' < num.week.ago.to_date.end_of_week)    
   end  
   
+  def self.from_day(date)
+    where(:created_at => date.to_date.beginning_of_day..date.to_date.end_of_day)
+     # where('created_at' > num.week.ago.to_date.beginning_of_week & 'created_at' < num.week.ago.to_date.end_of_week)    
+  end 
+  
   def body
     if comment
       comment.body

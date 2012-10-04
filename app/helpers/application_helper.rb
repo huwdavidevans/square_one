@@ -51,12 +51,16 @@ module ApplicationHelper
     link_to title, output_hash, :remote => true, :title => output_hash[:state].to_s.titleize
   end
    
-   def avatar_link_to_profile(u, size=:tiny)    
-     
-       link_to image_tag( u.avatar.url(size), :title => u.name ), u
-      
+  def avatar_link_to_profile(u, size=:tiny)    
+    link_to image_tag( u.avatar.url(size), :title => u.name ), u
+  end
    
-   end
-   
+  def minutes_to_time_string(minutes)
+    minutes_i = (minutes % 60).to_i
+    hours_i = (minutes / 60).to_i 
+    str_min = pluralize(minutes_i, "Minute") if minutes_i > 0
+    str_hrs = pluralize(hours_i, "Hour") if hours_i > 0
+    return  "#{str_hrs} #{str_min}" 
+  end
    
 end

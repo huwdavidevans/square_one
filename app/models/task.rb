@@ -112,7 +112,13 @@ class Task < ActiveRecord::Base
     str
   end
 
-  
+  def log_total_from(day = Date.today)
+    total = 0
+    time_logs.from_day(day).each do |tl|
+      total += tl.time_minutes
+    end
+    return total   
+  end
   
   private
   

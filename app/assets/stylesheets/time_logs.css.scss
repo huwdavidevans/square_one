@@ -1,6 +1,9 @@
 // Place all the styles related to the TimeLogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "colours-mixins";
+
 .table{
   margin: 20px auto;
   width: 100%;
@@ -16,6 +19,7 @@
     padding:5px;
     height: 80px;
     background: #F0F0F0;
+    vertical-align: top;
   }
 }
 
@@ -42,6 +46,60 @@
   
   font-size: 14px;
   color: #888;
+
+  .project {
+    margin-bottom: 20px;
+    
+    .project_name{
+      font-size: 14px;
+      @include gill-sans;
+      a{
+        text-decoration: none;
+        color: #085a81;
+      }
+      
+      a:hover{
+        color: #1f5511;
+      }
+    }
+    
+    ul{
+      margin: 5px 0 0 5px;
+      li{
+        margin-bottom: 5px;
+        
+        .task_name {
+          font-size: 11px;
+          margin-bottom: 2px;
+          font-weight: bold;
+          a{
+             text-decoration: none;
+             color: #666;
+          }
+          
+          a:hover{
+            color:#1d68bb;
+          }
+        }
+        
+        .task_time{
+          font-size: 10px;
+        }
+      }
+    }
+    
+  }
+}
+
+.day_log_totals{
+  
+  td {
+    height: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #7094A2;
+    background: #D6E7EB; 
+  }
 
   
 }

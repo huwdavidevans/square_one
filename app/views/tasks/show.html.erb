@@ -43,7 +43,9 @@
 			<% @task.activity.each do |a| %>
 			<% if a.created_at.to_date < recent_date %>
 		</div>
-		<h2 class="day"><%= a.created_at.strftime("%A %d %B") %></h2>
+		<a id="<%=a.created_at.to_date%>" />
+		<h2 class="day" ><%= a.created_at.strftime("%A %d %B") %></h2>
+		
 		<div class="seperator">
 			<% recent_date = a.created_at.to_date %>
 			<% end %>
